@@ -39,6 +39,8 @@ body {
 }
 
 .login1 {
+    margin-top: 3px;
+    background: rgb(206, 202, 202);
     position: absolute;
     right: 0;
 }
