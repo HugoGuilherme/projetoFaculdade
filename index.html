@@ -6,23 +6,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gás</title>
     <link rel="stylesheet" type="text/css" href="estilo/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <nav class="navInicio1">
-        <ul>
+        <ul class="pt-4">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="#">Sobre</a></li>
             <li><a href="#">Quem somos</a></li>
-            <li class="login1"><a href="#">Login</a></li>
+            <button type="button" class="login1 btn mr-3" data-toggle="modal" data-target="#exampleModal">Login</button>
         </ul>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email:</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Senha</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+
+                            <button type="submit" class="btn btn-dark col-12">Entrar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger col-12" data-toggle="modal" data-target=".bd-example-modal-lg" data-dismiss=" modal ">Cadastre-se</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-row" method="get" action=".">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" placeholder="nome" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Sobrenome</label>
+                                <input type="text" class="form-control" placeholder="sobrenome" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Senha</label>
+                                <input type="password" class="form-control" placeholder="Senha" required>
+                            </div>
 
-    <header class="head1">
+                            <div class="col-md-6 mb-3">
+                                <label>CEP
+                                <input name="cep" class="form-control" type="text" id="cep" placeholder="CEP" value="" size="100%" 
+                               onblur="pesquisacep(this.value);" required /></label></div>
+                            <div class="col-md-6 mb-3">
+                                <label>NÚMERO
+                                <input type="text" class="form-control" placeholder="Numero" size="100%"  name="numeroCasa">
+                                </label></div>
+                            <div class="col-md-6 mb-3">
+                                <label>RUA
+                                <input name="rua" class="form-control" type="text" size="100%" id="rua"  disabled /></label></div>
+                            <div class="col-md-6 mb-3">
+                                <label>BAIRRO
+                                <input name="bairro" class="form-control" type="text" size="100%" id="bairro" disabled /></label></div>
+                            <div class="col-md-6 mb-3">
+                                <label>CIDADE
+                                <input name="cidade" class="form-control" type="text" size="100%"  id="cidade"  disabled /></label></div>
+                            <div class="col-md-6 mb-3">
+                                <label>ESTADO
+                                <input name="uf" class="form-control" type="text" id="uf" size="100%"   disabled /></label></div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-dark col-12">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="head1 ">
         <h1>Gás legal</h1>
     </header>
-    <section class="corpo1">
+    <section class="corpo1 ">
         <h1>
             VENHA CONHECER O MELHOR GÁS DA REGIÃO
         </h1>
@@ -31,15 +122,19 @@
 
     </section>
 
-    <section class="corpo1">
-        <img src="imagens/botijãoDeGas.png">
-        <button>Comprar</button>
+    <section class="corpo1 ">
+        <img src="imagens/botijãoDeGas.png ">
+        <button class="btn btn-dark col-10 ml-4 mt-3 ">Comprar</button>
     </section>
 
-    <footer class="foot1">
+    <footer class="foot1 ">
         Todos os direitos reservados a Companhia Gás Legal
     </footer>
-    <script src="js/script.js"></script>
+    <script src="js/script.js "></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
 </body>
 
 </html>

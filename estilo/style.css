@@ -56,14 +56,6 @@ body {
     width: 80%;
 }
 
-button {
-    margin-top: 15px;
-    padding: 10px 40%;
-    border-radius: 3%;
-    background: rgb(176, 173, 182);
-    border-color: rgb(156, 156, 173);
-}
-
 .foot1 {
     position: fixed;
     left: 0;
