@@ -9,6 +9,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+p {
+    text-align: justify;
+}
+
 .navInicio1 {
     grid-column: 3 / 5;
     position: flex;
@@ -55,7 +59,7 @@ body {
 
 .corpo1 p {
     font-size: 1.2em;
-    width: 80%;
+    width: 100%;
 }
 
 .foot1 {
@@ -66,4 +70,21 @@ body {
     text-align: center;
     background: rgb(176, 173, 182);
     padding: 10px;
+}
+
+.c2 {
+    display: none;
+}
+
+.c3 {
+    display: none;
+}
+
+.inicioh {
+    color: rgba(0, 0, 0, 0.63);
+    text-align: center;
+}
+
+.imgbut {
+    text-align: center;
 }

@@ -73,6 +73,24 @@ function pesquisacep(valor) {
 const frases = document.getElementsByClassName('c1')
 let i = 0;
 
-console.log(frases)
+//console.log(frases)
 
 //fim do corpo
+
+//Function 
+
+var inicio = document.querySelector('.c1')
+var sobre = document.querySelector('.c2')
+var quemSomos = document.querySelector('.c3')
+
+function mostrarSobre() {
+    sobre.style.display = "block";
+    inicio.style.display = "none";
+    quemSomos.style.display = "none";
+}
+
+function mostrarQuemSomos() {
+    quemSomos.style.display = "block";
+    sobre.style.display = "none";
+    inicio.style.display = "none";
+}
