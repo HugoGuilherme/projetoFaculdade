@@ -68,14 +68,6 @@ function pesquisacep(valor) {
 
 //Final do CEP
 
-//Inicio do corpo
-
-const frases = document.getElementsByClassName('c1')
-let i = 0;
-
-//console.log(frases)
-
-//fim do corpo
 
 //Function 
 
