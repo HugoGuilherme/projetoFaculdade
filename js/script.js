@@ -69,8 +69,7 @@ function pesquisacep(valor) {
 //Final do CEP
 
 
-//Function 
-
+//Function do display da navbar 
 var inicio = document.querySelector('.c1')
 var sobre = document.querySelector('.c2')
 var quemSomos = document.querySelector('.c3')
@@ -86,3 +85,5 @@ function mostrarQuemSomos() {
     sobre.style.display = "none";
     inicio.style.display = "none";
 }
+
+//Final da function do display da navbar
