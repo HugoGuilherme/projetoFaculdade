@@ -93,12 +93,18 @@ function mostrarQuemSomos() {
 //Final da function do display da navbar
 
 if (window.matchMedia("(max-width: 575px)").matches) {
-    function mostrarSobre() {        
+    function mostrarSobre() {    
+        sobre.style.display = "block";
+        inicio.style.display = "none";
+        quemSomos.style.display = "none";    
         cardGas.style.display = "none";
         rodape.style.position = "absolute";
     }
     
     function mostrarQuemSomos() {        
+        quemSomos.style.display = "block";
+        sobre.style.display = "none";
+        inicio.style.display = "none";
         cardGas.style.display = "none";
         rodape.style.position = "absolute ";
     }    

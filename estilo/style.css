@@ -1,5 +1,5 @@
 body {
-    background: #faf3f3 !important;
+    background: #f3f3f3 !important;
     color: #222;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -25,10 +25,23 @@ p {
 }
 
 .login1 {
-    background: rgb(230, 226, 226);
+    background: transparent;
     margin-top: 5px;
     position: relative;
     right: 0;
+}
+.login1:hover{
+    box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
+}
+
+.btn.focus, .btn:focus {
+    outline: none;
+    box-shadow: none !important;
+    border: none; 
+}
+
+.loginIcon{
+    width: 30px;
 }
 
 .c2 {
