@@ -4,7 +4,6 @@ function limpa_formulário_cep() {
     document.getElementById('bairro').value = ("");
     document.getElementById('cidade').value = ("");
     document.getElementById('uf').value = ("");
-
 }
 
 function meu_callback(conteudo) {
@@ -69,7 +68,7 @@ function pesquisacep(valor) {
 //Final do CEP
 
 
-//Function do display da navbar 
+//Variaveis com querySelector para as funções de responsividade
 var inicio = document.querySelector('.c1')
 var sobre = document.querySelector('.c2')
 var quemSomos = document.querySelector('.c3')
@@ -77,7 +76,9 @@ var cardGas = document.querySelector('.cardGas')
 var rodape = document.querySelector('#rodape')
 var navbar = document.querySelector('.navbar')
 var containerCentral = document.querySelector('.containerCentral')
+//Final das variaveis
 
+//Funções onde mostram o texto de cada parte ao clicar
 function mostrarSobre() {
     sobre.style.display = "block";
     inicio.style.display = "none";
@@ -90,30 +91,31 @@ function mostrarQuemSomos() {
     inicio.style.display = "none";
 }
 
-//Final da function do display da navbar
+//Final da
 
+//Funções que ajustam a tela usando a responsividade
 if (window.matchMedia("(max-width: 575px)").matches) {
-    function mostrarSobre() {    
+    function mostrarSobre() {
         sobre.style.display = "block";
         inicio.style.display = "none";
-        quemSomos.style.display = "none";    
+        quemSomos.style.display = "none";
         cardGas.style.display = "none";
         rodape.style.position = "absolute";
     }
-    
-    function mostrarQuemSomos() {        
+
+    function mostrarQuemSomos() {
         quemSomos.style.display = "block";
         sobre.style.display = "none";
         inicio.style.display = "none";
         cardGas.style.display = "none";
         rodape.style.position = "absolute ";
-    }    
-  }
-  if (window.matchMedia("(max-width: 991px)").matches) {
+    }
+}
+if (window.matchMedia("(max-width: 991px)").matches) {
     navbar.style.position = "absolute";
     navbar.style.width = "100%";
     navbar.style.top = "0";
     navbar.style.zIndex = "2";
     containerCentral.style.marginTop = "65px";
-    
-  }
+}
+//final das funções
