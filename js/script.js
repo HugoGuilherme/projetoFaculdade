@@ -73,6 +73,10 @@ function pesquisacep(valor) {
 var inicio = document.querySelector('.c1')
 var sobre = document.querySelector('.c2')
 var quemSomos = document.querySelector('.c3')
+var cardGas = document.querySelector('.cardGas')
+var rodape = document.querySelector('#rodape')
+var navbar = document.querySelector('.navbar')
+var containerCentral = document.querySelector('.containerCentral')
 
 function mostrarSobre() {
     sobre.style.display = "block";
@@ -87,3 +91,23 @@ function mostrarQuemSomos() {
 }
 
 //Final da function do display da navbar
+
+if (window.matchMedia("(max-width: 575px)").matches) {
+    function mostrarSobre() {        
+        cardGas.style.display = "none";
+        rodape.style.position = "absolute";
+    }
+    
+    function mostrarQuemSomos() {        
+        cardGas.style.display = "none";
+        rodape.style.position = "absolute ";
+    }    
+  }
+  if (window.matchMedia("(max-width: 991px)").matches) {
+    navbar.style.position = "absolute";
+    navbar.style.width = "100%";
+    navbar.style.top = "0";
+    navbar.style.zIndex = "2";
+    containerCentral.style.marginTop = "65px";
+    
+  }
