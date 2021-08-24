@@ -76,6 +76,7 @@ var cardGas = document.querySelector('.cardGas')
 var rodape = document.querySelector('#rodape')
 var navbar = document.querySelector('.navbar')
 var containerCentral = document.querySelector('.containerCentral')
+var collapseLi = document.querySelectorAll('.teste')
 //Final das variaveis
 
 //Funções onde mostram o texto de cada parte ao clicar
@@ -117,5 +118,10 @@ if (window.matchMedia("(max-width: 991px)").matches) {
     navbar.style.top = "0";
     navbar.style.zIndex = "2";
     containerCentral.style.marginTop = "65px";
+    collapseLi.forEach(function(x){
+        x.setAttribute("data-toggle", "collapse");
+        x.setAttribute("data-target", "#navbarSupportedContent");
+    })
+    
 }
 //final das funções
