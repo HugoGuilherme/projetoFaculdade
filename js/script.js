@@ -119,6 +119,7 @@ if (window.matchMedia("(max-width: 991px)").matches) {
     navbar.style.zIndex = "2";
     containerCentral.style.marginTop = "65px";
     collapseLi.forEach(function(x){
+        
         x.setAttribute("data-toggle", "collapse");
         x.setAttribute("data-target", "#navbarSupportedContent");
     })
