@@ -80,6 +80,11 @@ var collapseLi = document.querySelectorAll('.collapseLi')
 //Final das variaveis
 
 //Funções onde mostram o texto de cada parte ao clicar
+function mostrarInicio() {
+    sobre.style.display = "none";
+    inicio.style.display = "block";
+    quemSomos.style.display = "none";
+}
 function mostrarSobre() {
     sobre.style.display = "block";
     inicio.style.display = "none";
