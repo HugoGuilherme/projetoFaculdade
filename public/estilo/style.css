@@ -78,8 +78,11 @@ p {
 
 /*Media query*/
 @media screen and (max-width: 575px) {
+    .c1{
+        display: none;
+    }
     #rodape {
-        position: relative;
+        position: fixed;
     }
     .containerCentral{
         padding-top: 20px;
