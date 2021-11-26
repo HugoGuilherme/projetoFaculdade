@@ -1,8 +1,5 @@
-const express = require('express');
-const app = express();
+const app = require('./src/config/custom-express');
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/view'));
 
 app.listen(3000, () => {
     console.log("rota 3000 rodando");
