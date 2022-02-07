@@ -1,0 +1,43 @@
+<section>
+    <div class="secao-home-cliente">
+        <div class="row">
+            <div class="col-2">
+                {{> funcionarioAcessos}}
+            </div>
+
+            <div class="col-9 secao-home-cliente-row-div-central">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Senha</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pessoas}}
+                        <tr>
+                            <td> {{this.id}} </td>
+                            <td> {{this.nome}} </td>
+                            <td> {{this.email}} </td>
+                            <td> {{this.senha}} </td>
+                            <td> {{this.endereco}} </td>
+                            <td> // </td>
+                            <td id="acoes-botoes"> 
+                                <button><a href="/funcionario/edit/{{this.id}}"> alterar</a></button>                                
+                                <form action="/funcionario/removeCliente/{{this.id}}" method="POST">
+                                    <button type="submit">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

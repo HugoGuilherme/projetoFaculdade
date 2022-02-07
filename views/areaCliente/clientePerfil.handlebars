@@ -1,0 +1,63 @@
+<section>
+    <div class="secao-home-cliente">
+        <div class="row">
+            <div class="col-2">
+                {{> clienteAcessos}}
+            </div>
+            <div class="col-6 secao-home-cliente-row-div-central">
+                <form>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" placeholder="nome" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Sobrenome</label>
+                            <input type="text" class="form-control" placeholder="sobrenome" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Senha</label>
+                            <input type="password" class="form-control" placeholder="Senha" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>CEP
+                                <input name="cep" class="form-control" type="text" id="cep" placeholder="CEP" value=""
+                                    size="100%" onblur="pesquisacep(this.value);" required /></label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>NÚMERO
+                                <input type="text" class="form-control" placeholder="Numero" size="100%"
+                                    name="numeroCasa">
+                            </label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>RUA
+                                <input name="rua" class="form-control" type="text" size="100%" id="rua"
+                                    disabled /></label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>BAIRRO
+                                <input name="bairro" class="form-control" type="text" size="100%" id="bairro"
+                                    disabled /></label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>CIDADE
+                                <input name="cidade" class="form-control" type="text" size="100%" id="cidade"
+                                    disabled /></label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>ESTADO
+                                <input name="uf" class="form-control" type="text" id="uf" size="100%"
+                                    disabled /></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

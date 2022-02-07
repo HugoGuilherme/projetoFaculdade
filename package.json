@@ -1,25 +1,20 @@
 {
-  "name": "projetofaculdade",
+  "name": "projetofaculdadehbs",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HugoGuilherme/projetoFaculdade.git"
-  },
-  "author": "Hugo Guilherme",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HugoGuilherme/projetoFaculdade/issues"
-  },
-  "homepage": "https://github.com/HugoGuilherme/projetoFaculdade#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "marko": "4.13.4-1",
-    "nodemon": "^2.0.15"
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
   }
 }

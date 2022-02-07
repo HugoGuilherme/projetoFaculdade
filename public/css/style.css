@@ -8,6 +8,15 @@ p {
     text-align: justify;
 }
 
+#acoes-botoes{
+    display: flex;
+}
+
+#acoes-botoes button{
+    display: inline;
+    margin: 2px;
+}
+
 .containerCentral{
     padding: 20px;
     padding-top: 40px;
@@ -53,17 +62,20 @@ p {
 }
 
 .cardGas {
-    width: 100%;
+    width: 25%;
     height: 100%;
     text-align: center;
     box-shadow: 1px 1px 10px rgb(171, 171, 173);
+    
 }
 
 .cardGas img {
     margin-top: 10px;
     width: 100%;
 }
-
+.clienteAcessado{
+    display: none !important;
+}
 #rodape {
     background: #d1d4d6;
     width: 100%;
@@ -80,6 +92,9 @@ p {
 @media screen and (max-width: 575px) {
     .c1{
         display: none;
+    }
+    .cardGas{
+        width: 100%;
     }
     #rodape {
         position: fixed;
@@ -117,4 +132,80 @@ p {
 
     }
     
+}
+
+/* Estilizacao cliente */
+#funcoesCliente{
+    position: fixed;
+    width: 500px;
+    height: 100%;
+    background-color: #dcdcdc;
+}
+#funcoesCliente li{
+    list-style-type: none;
+    margin-top: 30px;
+}
+#funcoesCliente li a{
+    color:#343a40 ;
+    text-transform: uppercase;
+    font-size: larger;
+}
+.secao-home-cliente-row-div-central{
+    margin-left: 2%;
+    margin-top: 10px;
+}
+.secao-home-cliente-row-div-direita{
+    margin-top: 10px;
+}
+@media screen and (max-width: 992px) {
+    
+    #funcoesCliente{
+        display: none !important;
+    }
+        
+    .clienteAcessado{
+        display: block !important;
+    }
+    .clienteSemAcesso{
+        display: none !important;
+    }
+
+}
+/* estilização cliente final*/
+
+/*estilização funcionario*/
+#funcoesfuncioanrio{
+        position: fixed;
+        width: 500px;
+        height: 100%;
+        background-color: #dcdcdc;
+    
+}
+#funcoesfuncioanrio li{
+    list-style-type: none;
+    margin-top: 30px;
+}
+#funcoesfuncioanrio li a{
+    color:#343a40 ;
+    text-transform: uppercase;
+    font-size: larger;
+}
+.funcionarioAcessado{
+    display: none !important;
+}
+@media screen and (max-width: 992px) {
+    
+    #funcoesCliente{
+        display: none !important;
+    }
+        
+    /* .funcionarioAcessado{
+        display: block !important;
+    } */
+    #funcoesfuncioanrio{
+        display: none !important;
+    }
+    .clienteSemAcesso{
+        display: none !important;
+    }
 }
