@@ -76,10 +76,15 @@ var cardGas = document.querySelector('.cardGas')
 var rodape = document.querySelector('#rodape')
 var navbar = document.querySelector('.navbar')
 var containerCentral = document.querySelector('.containerCentral')
-var collapseLi = document.querySelectorAll('.teste')
+var collapseLi = document.querySelectorAll('.collapseLi')
 //Final das variaveis
 
 //Funções onde mostram o texto de cada parte ao clicar
+function mostrarInicio() {
+    sobre.style.display = "none";
+    inicio.style.display = "block";
+    quemSomos.style.display = "none";
+}
 function mostrarSobre() {
     sobre.style.display = "block";
     inicio.style.display = "none";
@@ -92,10 +97,19 @@ function mostrarQuemSomos() {
     inicio.style.display = "none";
 }
 
-//Final da
+//Final da Função onde mostram o texto de cada parte ao clicar
+
 
 //Funções que ajustam a tela usando a responsividade
 if (window.matchMedia("(max-width: 575px)").matches) {
+    function mostrarInicio() {
+        sobre.style.display = "none";
+        inicio.style.display = "none";
+        quemSomos.style.display = "none";
+        cardGas.style.display = "block";
+        rodape.style.position = "absolute";
+        
+    }
     function mostrarSobre() {
         sobre.style.display = "block";
         inicio.style.display = "none";
