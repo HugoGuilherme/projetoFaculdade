@@ -97,7 +97,8 @@ function mostrarQuemSomos() {
     inicio.style.display = "none";
 }
 
-//Final da
+//Final da Função onde mostram o texto de cada parte ao clicar
+
 
 //Funções que ajustam a tela usando a responsividade
 if (window.matchMedia("(max-width: 575px)").matches) {

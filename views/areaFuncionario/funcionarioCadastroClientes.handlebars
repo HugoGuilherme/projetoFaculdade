@@ -11,6 +11,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Data de Nascimento</th>
                             <th scope="col">Email</th>
                             <th scope="col">Senha</th>
                             <th scope="col">Endereço</th>
@@ -21,15 +23,17 @@
                     <tbody>
                         {{#each pessoas}}
                         <tr>
-                            <td> {{this.id}} </td>
+                            <td> {{this.idCliente}} </td>
                             <td> {{this.nome}} </td>
+                            <td> {{this.cpf}} </td>
+                            <td> {{this.dataDeNascimento}} </td>
                             <td> {{this.email}} </td>
                             <td> {{this.senha}} </td>
                             <td> {{this.endereco}} </td>
                             <td> // </td>
                             <td id="acoes-botoes"> 
-                                <button><a href="/funcionario/edit/{{this.id}}"> alterar</a></button>                                
-                                <form action="/funcionario/removeCliente/{{this.id}}" method="POST">
+                                <button><a href="/funcionario/edit/{{this.idCliente}}"> alterar</a></button>                                
+                                <form action="/funcionario/removeCliente/{{this.idCliente}}" method="POST">
                                     <button type="submit">Remover</button>
                                 </form>
                             </td>

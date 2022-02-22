@@ -26,6 +26,8 @@ app.post('/novoUsuario', (req, res) => {
 
     const nome = req.body.nome
     const sobrenome = req.body.sobrenome
+    const cpf = req.body.cpf
+    const dataDeNascimento = req.body.dataDeNascimento
     const email = req.body.email
     const senha = req.body.senha
     const cep = req.body.cep
@@ -39,7 +41,7 @@ app.post('/novoUsuario', (req, res) => {
     var enderecoCompleto = `${rua}, ${numeroCasa} - ${bairro} - ${cidade}/${uf} - ${cep}`;
 
 
-    const insert = `INSERT INTO pessoa (nome, email, senha, endereco) VALUES ('${nomeCompleto}', '${email}', '${senha}', '${enderecoCompleto}')`
+    const insert = `INSERT INTO cliente (nome, cpf, endereco, dataDeNascimento, status, email, senha) VALUES ('${nomeCompleto}', '${cpf}', '${enderecoCompleto}', '${dataDeNascimento}', 'cliente' , '${email}', '${senha}')`
 
     conn.query(insert, function (err) {
         if (err) {
@@ -62,7 +64,7 @@ app.get('/funcionario/pedidos', function (req, res) {
     res.render('areaFuncionario/funcionarioPedidosDoCliente')
 })
 app.get('/funcionario/clientesCadastrados', function (req, res) {
-    const selectQuery = "SELECT * FROM pessoa"
+    const selectQuery = "SELECT * FROM cliente"
 
     conn.query(selectQuery, function (err, data) {
         if (err) {
@@ -74,7 +76,7 @@ app.get('/funcionario/clientesCadastrados', function (req, res) {
 })
 app.post('/funcionario/removeCliente/:id', function (req, res) {
     const id = req.params.id
-    const query = `DELETE FROM pessoa WHERE id = ${id}`
+    const query = `DELETE FROM cliente WHERE idCliente = ${id}`
 
     conn.query(query, function (err) {
         if (err) {
@@ -88,7 +90,7 @@ app.post('/funcionario/removeCliente/:id', function (req, res) {
 app.get('/funcionario/edit/:id', (req, res) => {
     const id = req.params.id
 
-    const query = `SELECT * FROM pessoa WHERE id = ${id}`
+    const query = `SELECT * FROM cliente WHERE idCliente = ${id}`
 
     conn.query(query, function (err, data) {
         if (err) {
@@ -106,13 +108,15 @@ app.get('/funcionario/edit/:id', (req, res) => {
 app.post('/funcionario/updateCliente', function (req, res) {
     const id = req.body.id
     const nome = req.body.nome
+    const cpf = req.body.cpf
+    const dataDeNascimento = req.body.dataDeNascimento
     const email = req.body.email
     const senha = req.body.senha
     const endereco = req.body.endereco
 
     console.log(id, nome, email, senha, endereco);
 
-    const query = `UPDATE pessoa SET nome = '${nome}', email = '${email}', senha = '${senha}', endereco = '${endereco}' WHERE id = ${id}`
+    const query = `UPDATE cliente SET nome = '${nome}', cpf = '${cpf}', endereco = '${endereco}', dataDeNascimento = '${dataDeNascimento}', email = '${email}', senha = '${senha}'  WHERE idCliente = ${id}`
 
     conn.query(query, function (err) {
         if (err) {
@@ -131,14 +135,31 @@ app.get('/funcionario/relatorios', function (req, res) {
     res.render('areaFuncionario/funcionarioRelatorios')
 })
 
-app.get('/cliente/', function (req, res) {
-    res.render('areaCliente/cliente')
+app.get('/cliente/:id', function (req, res) {
+    id = req.params.id  
+    res.render('areaCliente/cliente', {id})
+    
 })
 
-app.get('/cliente/perfil', function (req, res) {
-    res.render('areaCliente/clientePerfil')
+app.get('/cliente/:id/perfil', function (req, res) {
+    id = req.params.id  
+
+    const query = `SELECT * FROM cliente WHERE idCliente = ${id}`
+
+    
+    conn.query(query, function (err, data) {
+        if (err) {
+            console.log(err)
+        }
+
+        const pessoa = data[0]
+
+        console.log(data[0])
+
+        res.render('areaCliente/clientePerfil', {id, pessoa })
+    })
 })
-app.get('/cliente/pedidos', function (req, res) {
+app.get('/cliente/:id/pedidos', function (req, res) {
     const pedidos = [{
         quantidade: 1,
         endereco: "Rua nova, 400",
@@ -149,35 +170,48 @@ app.get('/cliente/pedidos', function (req, res) {
         valor: "R$ 45,00"
     }
     ]
-    res.render('areaCliente/clientePedidos', { pedidos })
+    id = req.params.id  
+    res.render('areaCliente/clientePedidos', { id })
 })
 
 app.post('/acessoCliente', (req, res) => {
 
-    const email = req.body.email
-    const senha = req.body.password
-    if (!email) {
-        res.redirect('/')
-    } else {
-        const queryEmailToId = `SELECT id FROM pessoa WHERE email = '${email}'`
+    try {
+        let email = req.body.email
+        const queryEmail = `SELECT email FROM cliente WHERE email = '${email}'`
+        conn.query(queryEmail, function (err, data) {
+            const senha = req.body.password
+            const queryEmailToId = `SELECT idCliente FROM cliente WHERE email = '${email}'`
+            if (email == undefined || email == null || email == '' || data == '') {
+                res.redirect('/')
+            } else {
+                conn.query(queryEmailToId, function (err, data) {
+                    const idPessoa = data
+                    const idPessoaValue = Object.values(idPessoa.find(element => element = "id")).find(element => element)
+                    const queryIdToSenha = `SELECT senha FROM cliente WHERE idCliente = '${idPessoaValue}'`
 
-        conn.query(queryEmailToId, function (err, data) {
-            const idPessoa = data
-            const idPessoaValue = Object.values(idPessoa.find(element => element = "id")).find(element => element)
-            const queryIdToSenha = `SELECT senha FROM pessoa WHERE id = ${idPessoaValue}`
-            conn.query(queryIdToSenha, function (err, data) {
-                const senhaPessoa = data
-                const senhaPessoaValue = (Object.values(senhaPessoa.find(element => element = "senha")).find(element => element))
-                if (email && senha == senhaPessoaValue) {
-                    console.log(`Olá ${email}, seja bem vindo`)
-                    res.redirect('/cliente')
-                } else {
-                    console.log("erro")
-                    res.redirect('/')
-                }
-            })
+                    conn.query(queryIdToSenha, function (err, data) {
+                        const senhaPessoa = data
+                        if(data == ''){
+                            res.redirect('/')
+                        }else{
+                            const senhaPessoaValue = (Object.values(senhaPessoa.find(element => element = "senha")).find(element => element))
+                            if (senha == senhaPessoaValue) {
+                                res.redirect('/cliente/' + idPessoaValue)
+                            } else {
+                                console.log(senha + " != " + senhaPessoaValue)
+                                res.redirect('/')
+                            }
+                        }
+                    })
+                })
+            }
         })
+
+    } catch (error) {
+        console.log(error)
     }
+
 })
 
 //conexão banco de dados
@@ -185,7 +219,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'test'
+    database: 'projetofaculdade'
 })
 conn.connect(function (err) {
     if (err) {
