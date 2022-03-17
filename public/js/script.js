@@ -99,7 +99,6 @@ function mostrarQuemSomos() {
 
 //Final da Função onde mostram o texto de cada parte ao clicar
 
-
 //Funções que ajustam a tela usando a responsividade
 if (window.matchMedia("(max-width: 575px)").matches) {
     function mostrarInicio() {
@@ -139,3 +138,21 @@ if (window.matchMedia("(max-width: 991px)").matches) {
     
 }
 //final das funções
+
+acessoCliente = document.querySelector("#exampleModalLabelCliente");
+acessoFuncionario = document.querySelector("#exampleModalLabelFuncionario");
+acessoLoginCliente = document.getElementById("loginCliente");
+acessoLoginFuncionario = document.querySelector("#loginFuncionario");
+
+acessoCliente.addEventListener("click", ocultarAcessoFuncionario);
+acessoFuncionario.addEventListener("click", ocultarAcessoCliente);
+
+function ocultarAcessoCliente() {
+    acessoLoginCliente.style.display = "none";
+    acessoLoginFuncionario.style.display = "block";
+}
+
+function ocultarAcessoFuncionario() {
+    acessoLoginCliente.style.display = "block";
+    acessoLoginFuncionario.style.display = "none";
+  }

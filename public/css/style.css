@@ -33,6 +33,10 @@ p {
     font-size: 1.4em;
 }
 
+#loginFuncionario{
+    display: none;
+}
+
 .login1 {
     background: transparent;
     margin-top: 5px;
@@ -41,6 +45,10 @@ p {
 }
 .login1:hover{
     box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
+}
+
+.modal-title{
+    margin-right: 15px;
 }
 
 .btn.focus, .btn:focus {

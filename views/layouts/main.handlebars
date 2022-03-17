@@ -17,17 +17,32 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            {{#if session.userid}}
+            <a class="navbar-brand ml-3 pr-2" href="/areaCliente/cliente">GÁS LEGAL</a>
+            {{else}}
             <a class="navbar-brand ml-3 pr-2" href="/">GÁS LEGAL</a>
+            {{/if}}
+            
 
+            {{#if session.userid}}
+            <li class="login1 btn "> <a href="/logout">Sair</a> </li>
+            {{else}}
             <button type="button" class="login1 btn " data-toggle="modal" data-target="#exampleModal"><img
                     class="loginIcon" src="../../imagens/abstract-user-flat-4.svg"></button>
+            {{/if}}
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="clienteSemAcesso navbar-nav mr-auto">
+                    {{#if session.userid}}
+                    <li class="nav-item ">
+                        <a class="nav-link collapseLi" href="/areaCliente/cliente" onclick="mostrarInicio()">Inicio</a>
+                    </li>
+                    {{else}}
                     <li class="nav-item ">
                         <a class="nav-link collapseLi" href="#" onclick="mostrarInicio()">Inicio</a>
                     </li>
+                    {{/if}}
+
                     <li class="nav-item">
                         <a class="nav-link collapseLi" onclick="mostrarSobre()">Sobre</a>
                     </li>
@@ -37,16 +52,11 @@
                     </li>
 
                 </ul>
-                <ul class="clienteAcessado navbar-nav mr-auto">
+                {{!-- <ul class="navbar-nav mr-auto">
                     <li><a class="nav-link collapseLi" href="/cliente">Home</a></li>
                     <li><a class="nav-link collapseLi" href="/cliente/perfil">Perfil</a></li>
                     <li><a class="nav-link collapseLi" href="/cliente/pedidos">Pedidos</a></li>
-                </ul>
-                <ul class="funcionarioAcessado navbar-nav mr-auto">
-                    <li><a class="nav-link collapseLi" href="/funcionario">Home</a></li>
-                    <li><a class="nav-link collapseLi" href="/funcionario/perfil">Perfil</a></li>
-                    <li><a class="nav-link collapseLi" href="/funcionario/pedidos">Pedidos</a></li>
-                </ul>
+                </ul> --}}
             </div>
 
         </nav>
@@ -57,13 +67,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                            <h5 class="modal-title" id="exampleModalLabelCliente">Cliente</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="/acessoCliente">
+                            <form id="loginCliente" method="post" action="/acessoCliente">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email:</label>
                                     <input type="email" name="email" class="form-control" id="exampleInputEmail1"
@@ -71,13 +81,14 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Senha</label>
-                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="senha">Senha</label>
+                                    <input type="password" name="senha" class="form-control"
+                                        id="exampleInputPassword1" placeholder="Password">
                                 </div>
 
                                 <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
                             </form>
+                           
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger col-12" data-toggle="modal"
@@ -103,7 +114,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-row" method="post" action="/novoUsuario">
+                            <form class="form-row" method="post" action="/cadastrarCliente">
+                                {{#if messages.message}}
+                                {{messages.message}}
+                                {{/if}}
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label>Nome</label>
@@ -111,7 +125,8 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>Sobrenome</label>
-                                        <input type="text" name="sobrenome" class="form-control" placeholder="sobrenome" required>
+                                        <input type="text" name="sobrenome" class="form-control" placeholder="sobrenome"
+                                            required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>CPF</label>
@@ -123,11 +138,18 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Email"
+                                            required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Senha</label>
-                                        <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+                                        <label for="password">Senha</label>
+                                        <input type="password" name="senha" class="form-control" placeholder="Senha"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="confirmpassword">Confirmação de Senha</label>
+                                        <input type="password" name="confirmpassword" class="form-control"
+                                            placeholder="Confirme a sua senha" required>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -166,6 +188,7 @@
                                 <div class="modal-footer col-12">
                                     <button type="submit" class="btn btn-dark col-12">Enviar</button>
                                 </div>
+
                             </form>
 
                         </div>
@@ -177,6 +200,8 @@
         <!--Final da seção do cadastro-->
     </section>
 
+    <!--Mensagens-->
+
     {{{body}}}
 
     <footer id="rodape">
@@ -184,7 +209,7 @@
     </footer>
 
 
-    <script src="../js/script.js"></script>
+    <script src="../../js/script.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN "
