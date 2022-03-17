@@ -1,13 +1,14 @@
 var { 
-    --cor-principal: #f3f3f3;
-    --cor-secundaria: #222222;
-    --cor-terciaria: #ffffff;
-    --cor-sombras1: rgb(26, 24, 24);
-    --cor-sombras2: rgb(171, 171, 173);
-    --cor-rodape: #d1d4d6;
-    --cor-funcoes-primarias: #dcdcdc;
-    --cor-funcoes-secundarias: #343a40;
+    --cor-principal: #ff0000 !important;
+    --cor-secundaria: #222222 !important; 
+    --cor-terciaria: #ff0000 !important;
+    --cor-sombras1: rgb(26, 24, 24) !important;
+    --cor-sombras2: rgb(171, 171, 173) !important;
+    --cor-rodape: #d1d4d6 !important;
+    --cor-funcoes-primarias: #dcdcdc !important;
+    --cor-funcoes-secundarias: #343a40 !important;
 }
+
 * {
     margin: 0px;
     padding: 0px;
