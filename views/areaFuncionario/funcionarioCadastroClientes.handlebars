@@ -16,24 +16,25 @@
                             <th scope="col">Email</th>
                             <th scope="col">Senha</th>
                             <th scope="col">Endereço</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Ações</th>
+                            <th><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target=".bd-example-modal-lg" data-dismiss=" modal "
+                                id="btnCadastro">+</button></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each pessoas}}
+                        {{#each clientesCadastrados}}
                         <tr>
-                            <td> {{this.idCliente}} </td>
+                            <td> {{this.id}} </td>
                             <td> {{this.nome}} </td>
                             <td> {{this.cpf}} </td>
                             <td> {{this.dataDeNascimento}} </td>
                             <td> {{this.email}} </td>
-                            <td> {{this.senha}} </td>
+                            <td> ************ </td>
                             <td> {{this.endereco}} </td>
-                            <td> // </td>
                             <td id="acoes-botoes"> 
-                                <button><a href="/funcionario/edit/{{this.idCliente}}"> alterar</a></button>                                
-                                <form action="/funcionario/removeCliente/{{this.idCliente}}" method="POST">
+                                <button><a href="/dashboard/edit/{{this.id}}"> alterar</a></button>                                
+                                <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
                                     <button type="submit">Remover</button>
                                 </form>
                             </td>

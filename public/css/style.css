@@ -1,24 +1,7 @@
-var { 
-    --cor-principal: #f3f3f3;
-    --cor-secundaria: #222222;
-    --cor-terciaria: #ffffff;
-    --cor-sombras1: rgb(26, 24, 24);
-    --cor-sombras2: rgb(171, 171, 173);
-    --cor-rodape: #d1d4d6;
-    --cor-funcoes-primarias: #dcdcdc;
-    --cor-funcoes-secundarias: #343a40;
-}
-* {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-    background: var(--cor-principal) !important;
-    color: var(--cor-secundaria);
+    background: #f3f3f3 !important;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
@@ -37,7 +20,7 @@ p {
 .containerCentral{
     padding: 20px;
     padding-top: 40px;
-    background: var(--cor-terciaria);
+    background: #ffffff;
     height: 90vh;
     margin-top: 8px;
 }
@@ -61,7 +44,7 @@ p {
     right: 0;
 }
 .login1:hover{
-    box-shadow: 0.6px 1px 3px var(--cor-sombras1);
+    box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
 }
 
 .modal-title{
@@ -90,7 +73,7 @@ p {
     width: 25%;
     height: 100%;
     text-align: center;
-    box-shadow: 1px 1px 10px var(--cor-sombras2);
+    box-shadow: 1px 1px 10px rgb(171, 171, 173);
     
 }
 
@@ -102,7 +85,7 @@ p {
     display: none !important;
 }
 #rodape {
-    background: var(--cor-rodape);
+    background: #d1d4d6;
     width: 100%;
     height: 30px;
     position: absolute;
@@ -126,7 +109,7 @@ p {
     }
     .containerCentral{
         padding-top: 20px;
-        background: var(--cor-terciaria);
+        background: #ffffff;
         height: 100%;
     }
     .textoCorpo{
@@ -164,14 +147,14 @@ p {
     position: fixed;
     width: 500px;
     height: 100%;
-    background-color: var(--cor-funcoes-primarias);
+    background-color: #dcdcdc;
 }
 #funcoesCliente li{
     list-style-type: none;
     margin-top: 30px;
 }
 #funcoesCliente li a{
-    color: var(--cor-funcoes-secundarias);
+    color:#343a40 ;
     text-transform: uppercase;
     font-size: larger;
 }
@@ -203,7 +186,7 @@ p {
         position: fixed;
         width: 500px;
         height: 100%;
-        background-color: var(--cor-funcoes-primarias);
+        background-color: #dcdcdc;
     
 }
 #funcoesfuncioanrio li{
@@ -211,7 +194,7 @@ p {
     margin-top: 30px;
 }
 #funcoesfuncioanrio li a{
-    color: var(--cor-funcoes-secundarias);
+    color:#343a40 ;
     text-transform: uppercase;
     font-size: larger;
 }

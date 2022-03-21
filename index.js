@@ -11,16 +11,10 @@ const app = express()
 
 const conn = require('./db/conn')
 
-//Models
-const Cliente = require('./models/Cliente')
-const Funcionario = require('./models/Funcionario')
-const Pedido = require('./models/Pedido')
-const Estoque = require('./models/Estoque')
-const Movimentos = require('./models/Movimentos')
-const Caixa = require('./models/Caixa')
-
 //Import routes
 const authRoutes = require('./routes/authRoutes')
+const clienteRoutes = require('./routes/clienteRoutes')
+const funcionarioRoutes = require('./routes/funcionarioRoutes')
 
 //Template engine HBS
 app.engine('handlebars', hbs.engine)
@@ -66,6 +60,8 @@ app.use((req, res, next) => {
 
 //Routes
 app.use('/', authRoutes)
+app.use('/', clienteRoutes)
+app.use('/', funcionarioRoutes)
 
 conn
     .sync()

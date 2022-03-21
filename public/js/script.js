@@ -107,7 +107,7 @@ if (window.matchMedia("(max-width: 575px)").matches) {
         quemSomos.style.display = "none";
         cardGas.style.display = "block";
         rodape.style.position = "absolute";
-        
+
     }
     function mostrarSobre() {
         sobre.style.display = "block";
@@ -131,13 +131,37 @@ if (window.matchMedia("(max-width: 991px)").matches) {
     navbar.style.top = "0";
     navbar.style.zIndex = "2";
     containerCentral.style.marginTop = "65px";
-    collapseLi.forEach(function(x){
-        
+    collapseLi.forEach(function (x) {
         x.setAttribute("data-toggle", "collapse");
         x.setAttribute("data-target", "#navbarSupportedContent");
     })
-    
+
 }
+
+var btnCadastro = document.querySelector('#btnCadastro');
+
+btnCadastro.addEventListener('click', (e => {
+    var alertVermelho = document.querySelector('#alertVermelho');
+    alertVermelho.style.display = 'none';
+    var inputSenha = document.querySelector('#senha');
+    var submitCadastrar = document.querySelector('#submitCadastrar');
+    var inputConfirmpassword = document.querySelector('#confirmpassword');
+
+    inputConfirmpassword.addEventListener('blur', (e => {
+        if (inputSenha.value !== confirmpassword.value) {
+            alertVermelho.style.display = 'block';
+            submitCadastrar.disabled = true;
+        } else if (confirmpassword.value === '' || inputSenha.value === '') {
+            submitCadastrar.disabled = true;
+        }
+        else {
+            alertVermelho.style.display = 'none';
+            submitCadastrar.disabled = false;
+        }
+    }));
+
+}))
+
 //final das funções
 
 acessoCliente = document.querySelector("#exampleModalLabelCliente");
@@ -156,4 +180,6 @@ function ocultarAcessoCliente() {
 function ocultarAcessoFuncionario() {
     acessoLoginCliente.style.display = "block";
     acessoLoginFuncionario.style.display = "none";
-  }
+}
+
+

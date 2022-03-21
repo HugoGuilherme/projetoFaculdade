@@ -4,34 +4,34 @@
     </div>
     <div class="col-9 secao-home-cliente-row-div-central">
 
-        <form class="form" action="/dashboard/updateCliente" method="POST">
-            <h2>Formulario cliente {{clienteCadastrado.id}}</h2>
+        <form class="form" action="/dashboard/updateFuncionario" method="POST">
+            <h2>Formulario Funcionario {{funcionarioCadastrado.id}}</h2>
             <div class="form-row">
-                <input type="hidden" name="id" value="{{clienteCadastrado.id}}">
+                <input type="hidden" name="id" value="{{funcionarioCadastrado.id}}">
                 <div class="col-md-6 mb-3">
                     <label>Nome</label>
                     <input type="text" class="form-control" name="nome" placeholder="nome"
-                        value="{{clienteCadastrado.nome}}" required>
+                        value="{{funcionarioCadastrado.nome}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>cpf</label>
-                    <input type="text" name="cpf" class="form-control" value="{{clienteCadastrado.cpf}}"
+                    <input type="text" name="cpf" class="form-control" value="{{funcionarioCadastrado.cpf}}"
                         required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" placeholder="Email"
-                        value="{{clienteCadastrado.email}}" required>
+                        value="{{funcionarioCadastrado.email}}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Senha</label>
                     <input type="text" class="form-control" name="senha" placeholder="Senha"
-                        value="{{clienteCadastrado.senha}}" required>
+                        value="{{funcionarioCadastrado.senha}}" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label>Endereço</label>
                     <input type="text" class="form-control" name="endereco" placeholder="Endereço"
-                        value="{{clienteCadastrado.endereco}}" required>
+                        value="{{funcionarioCadastrado.endereco}}" required>
                 </div>
                 <input type="submit" class="btn btn-dark "  value="Editar">
         </form>
