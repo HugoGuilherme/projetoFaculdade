@@ -12,10 +12,15 @@ module.exports = class AuthController {
             const funcionario = await Funcionario.findOne({ where: { email: email } })
             if (cliente) {
                 const senhaCorreta = bcrypt.compareSync(senha, cliente.senha)
-                req.session.userid = cliente.id
-                req.session.save(() => {
-                    res.redirect('./areaCliente/cliente')
-                })
+                if(cliente && senhaCorreta){
+                    req.session.userid = cliente.id
+                    req.session.save(() => {
+                        res.redirect('./areaCliente/cliente')
+                    })
+                } else {
+                    res.redirect('/')
+                }
+                
             } else if (funcionario) {
                 const senhaFuncionarioCorreta = bcrypt.compareSync(senha, funcionario.senha)
                 if (funcionario && senhaFuncionarioCorreta) {
@@ -23,6 +28,8 @@ module.exports = class AuthController {
                     req.session.save(() => {
                         res.redirect('./dashboard')
                     })
+                } else {
+                    res.redirect('/')
                 }
             } else {
                 res.redirect('/')
