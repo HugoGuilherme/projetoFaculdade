@@ -35,8 +35,8 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: new FileStore({
-            logFn: function() {},
-            path:require('path').join(require('os').tmpdir(), 'sessions')
+            logFn: function () { },
+            path: require('path').join(require('os').tmpdir(), 'sessions')
         }),
         cookie: {
             secure: false,
@@ -52,7 +52,7 @@ app.use(flash())
 
 // set session to res
 app.use((req, res, next) => {
-    if(req.session.userid) {
+    if (req.session.userid) {
         res.locals.session = req.session
     }
     next()

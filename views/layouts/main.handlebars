@@ -34,7 +34,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="clienteSemAcesso navbar-nav mr-auto">
                     {{#if session.userid}}
-                    
+
+                    {{ <ul class="navbar-nav mr-auto">
+                        <li><a class="nav-link collapseLi" href="/areaCliente/cliente">Home</a></li>
+                        <li><a class="nav-link collapseLi" href="/areaCliente/perfil">Perfil</a></li>
+                        <li><a class="nav-link collapseLi" href="/areaCliente/pedidos">Pedidos</a></li>
+                    </ul> }}
+
                     {{else}}
                     <li class="nav-item ">
                         <a class="nav-link collapseLi" href="#" onclick="mostrarInicio()">Inicio</a>
@@ -48,14 +54,8 @@
                     </li>
                     {{/if}}
 
-                    
-
                 </ul>
-                {{!-- <ul class="navbar-nav mr-auto">
-                    <li><a class="nav-link collapseLi" href="/cliente">Home</a></li>
-                    <li><a class="nav-link collapseLi" href="/cliente/perfil">Perfil</a></li>
-                    <li><a class="nav-link collapseLi" href="/cliente/pedidos">Pedidos</a></li>
-                </ul> --}}
+
             </div>
 
         </nav>
