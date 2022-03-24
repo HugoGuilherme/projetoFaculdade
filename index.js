@@ -29,7 +29,7 @@ app.use(
 app.use(express.json())
 
 handlebars.registerHelper('ifCond', function (value, options) {
-    if (value == 1) {
+    if (value == 3) {
         return options.fn(this);
     } else
         return options.inverse(this);
@@ -71,9 +71,6 @@ app.use(
         }
     })
 )
-//Models
-const Cliente = require('./models/Cliente')
-const Funcionario = require('./models/Funcionario')
 const Pedido = require('./models/Pedido')
 const Estoque = require('./models/Estoque')
 const Movimentos = require('./models/Movimentos')
@@ -96,7 +93,7 @@ app.use('/', clienteRoutes)
 app.use('/', funcionarioRoutes)
 
 conn
-    .sync({force: true})
+    .sync()
     .then(() => {
         app.listen(3000)
     })
