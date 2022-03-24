@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 
 module.exports = class UserController {
     static async cadastrarUsuario(req, res) {
-        const { nome, sobrenome, cpf, status, dataDeNascimento, email, senha, confirmpassword, cep, numeroCasa, rua, bairro, cidade, uf } = req.body
+        const { nome, sobrenome, cpf, status, dataDeNascimento, email, senha,  cep, numeroCasa, rua, bairro, cidade, uf } = req.body
         const endereco = `${rua}, ${numeroCasa} - ${bairro} - ${cidade} - ${uf} - ${cep}`
 
         try {

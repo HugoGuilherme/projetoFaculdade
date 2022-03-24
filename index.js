@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require("express-handlebars");
+const handlebars = require('handlebars');
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
@@ -26,6 +27,13 @@ app.use(
     express.urlencoded({ extended: true })
 )
 app.use(express.json())
+
+handlebars.registerHelper('ifCond', function (v1, options) {
+    if(v1 == 1) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+  });
 
 //Session middleware
 app.use(

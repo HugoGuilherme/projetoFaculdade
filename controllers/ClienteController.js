@@ -16,13 +16,16 @@ module.exports = class ClienteController {
 
     static atualizaClientetPost(req, res) {
         const id = req.session.userid
+        // create a password
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(req.body.senha, salt)
 
         const cliente = {
             id: req.body.id,
             nome: req.body.nome,
             email: req.body.email,
             dataDeNascimento: req.body.dataDeNascimento,
-            senha: req.body.senha,
+            senha: hashedPassword,
             endereco: req.body.endereco
         }
 
