@@ -17,25 +17,11 @@ const Caixa = db.define('Caixa', {
   valorRetirado: {
     type: DataTypes.FLOAT
     // allowNull defaults to true
-  },
-  valorTotal: {
-    type: DataTypes.FLOAT
-    // allowNull defaults to true
-  },
-  formaDePagamento: {
-    type: DataTypes.FLOAT
-    // allowNull defaults to true
   }
 })
 
 Caixa.belongsTo(Pedido)
 Pedido.hasMany(Caixa)
-
-Caixa.belongsTo(Movimentos)
-Movimentos.hasMany(Caixa)
-
-Caixa.belongsTo(Estoque)
-Estoque.hasOne(Caixa)
 
 Caixa.belongsTo(Funcionario)
 Funcionario.hasMany(Caixa)

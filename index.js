@@ -28,12 +28,29 @@ app.use(
 )
 app.use(express.json())
 
-handlebars.registerHelper('ifCond', function (v1, options) {
-    if(v1 == 1) {
+handlebars.registerHelper('ifCond', function (value, options) {
+    if (value == 1) {
         return options.fn(this);
-      }
-      return options.inverse(this);
-  });
+    } else
+        return options.inverse(this);
+});
+
+handlebars.registerHelper('switch', function (value, options) {
+    this.switch_value = value;
+    return options.fn(this);
+});
+
+handlebars.registerHelper('case', function (value, options) {
+    if (value == this.switch_value) {
+        return options.fn(this);
+    }
+});
+
+handlebars.registerHelper('case', function (value, options) {
+    if (value == this.switch_value) {
+        return options.fn(this);
+    }
+});
 
 //Session middleware
 app.use(
@@ -43,8 +60,8 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: new FileStore({
-            logFn: function() {},
-            path:require('path').join(require('os').tmpdir(), 'sessions')
+            logFn: function () { },
+            path: require('path').join(require('os').tmpdir(), 'sessions')
         }),
         cookie: {
             secure: false,
@@ -54,13 +71,20 @@ app.use(
         }
     })
 )
+//Models
+const Cliente = require('./models/Cliente')
+const Funcionario = require('./models/Funcionario')
+const Pedido = require('./models/Pedido')
+const Estoque = require('./models/Estoque')
+const Movimentos = require('./models/Movimentos')
+const Caixa = require('./models/Caixa')
 
 // flash messages
 app.use(flash())
 
 // set session to res
 app.use((req, res, next) => {
-    if(req.session.userid) {
+    if (req.session.userid) {
         res.locals.session = req.session
     }
     next()
@@ -72,7 +96,7 @@ app.use('/', clienteRoutes)
 app.use('/', funcionarioRoutes)
 
 conn
-    .sync()
+    .sync({force: true})
     .then(() => {
         app.listen(3000)
     })

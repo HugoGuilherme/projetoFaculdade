@@ -4,7 +4,7 @@
         <li><a href="/dashboard/perfil">Perfil</a></li>
         <li><a href="/dashboard/pedidos">Pedidos</a></li>
         <li><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
-        {{#ifCond session.userid}}
+        {{#ifCond session.status}}
         <li><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
         {{/ifCond}}
         <li><a href="/dashboard/caixa">Caixa</a></li>

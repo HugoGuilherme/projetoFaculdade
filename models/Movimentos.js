@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize')
 
 const db = require('../db/conn')
+const Caixa = require('./Caixa')
 
 const Movimentos = db.define('Movimentos', {
   // Model attributes are defined here
@@ -14,6 +15,7 @@ const Movimentos = db.define('Movimentos', {
   }
 })
 
-
+Movimentos.belongsTo(Caixa)
+Caixa.hasMany(Movimentos)
 
 module.exports = Movimentos

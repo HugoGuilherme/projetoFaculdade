@@ -35,5 +35,4 @@ const Funcionario = db.define('Funcionario', {
 })
 
 
-
 module.exports = Funcionario
