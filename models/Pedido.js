@@ -3,7 +3,6 @@ const { DataTypes } = require('sequelize')
 const db = require('../db/conn')
 const Cliente = require('./Cliente')
 const Funcionario = require('./Funcionario')
-const Estoque = require('./Estoque')
 
 const Pedido = db.define('Pedido', {
   // Model attributes are defined here
@@ -34,8 +33,5 @@ Cliente.hasMany(Pedido)
 
 Pedido.belongsTo(Funcionario)
 Funcionario.hasMany(Pedido)
-
-Pedido.belongsTo(Estoque)
-Estoque.hasMany(Pedido)
 
 module.exports = Pedido

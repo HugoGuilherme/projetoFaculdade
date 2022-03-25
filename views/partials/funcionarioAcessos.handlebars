@@ -3,8 +3,10 @@
         <li><a href="/dashboard">Home</a></li>
         <li><a href="/dashboard/perfil">Perfil</a></li>
         <li><a href="/dashboard/pedidos">Pedidos</a></li>
-         <li><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
+        <li><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
+        {{#ifCond session.status}}
         <li><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
+        {{/ifCond}}
         <li><a href="/dashboard/caixa">Caixa</a></li>
         <li><a href="/dashboard/relatorios">Relatorios</a></li>
     </ul>

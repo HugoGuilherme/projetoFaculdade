@@ -1,5 +1,6 @@
 const Funcionario = require('../models/Funcionario')
 const Cliente = require('../models/Cliente')
+const bcrypt = require('bcryptjs')
 module.exports = class FuncionarioController {
 
     static async atualizaFuncionarioPerfil(req, res) {
@@ -58,13 +59,16 @@ module.exports = class FuncionarioController {
 
     static atualizaClientetPost(req, res) {
         const id = req.body.id
+        // create a password
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(req.body.senha, salt)
 
         const cliente = {
             id: req.body.id,
             nome: req.body.nome,
             cpf: req.body.cpf,
             email: req.body.email,
-            senha: req.body.senha,
+            senha: hashedPassword,
             endereco: req.body.endereco
         }
 
@@ -94,12 +98,16 @@ module.exports = class FuncionarioController {
     static atualizaFuncionariotPost(req, res) {
         const id = req.body.id
 
+        // create a password
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(req.body.senha, salt)
+
         const funcionario = {
             id: req.body.id,
             nome: req.body.nome,
             cpf: req.body.cpf,
             email: req.body.email,
-            senha: req.body.senha,
+            senha: hashedPassword,
             endereco: req.body.endereco
         }
 

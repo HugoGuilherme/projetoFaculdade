@@ -14,6 +14,9 @@ module.exports = class AuthController {
                 const senhaCorreta = bcrypt.compareSync(senha, cliente.senha)
                 if(cliente && senhaCorreta){
                     req.session.userid = cliente.id
+                    req.session.status = cliente.status
+                    console.log(cliente.status);
+                    console.log(req.session);
                     req.session.save(() => {
                         res.redirect('./areaCliente/cliente')
                     })
@@ -25,6 +28,7 @@ module.exports = class AuthController {
                 const senhaFuncionarioCorreta = bcrypt.compareSync(senha, funcionario.senha)
                 if (funcionario && senhaFuncionarioCorreta) {
                     req.session.userid = funcionario.id
+                    req.session.status = funcionario.status
                     req.session.save(() => {
                         res.redirect('./dashboard')
                     })
