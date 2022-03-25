@@ -1,16 +1,24 @@
 
-* {
+/* * {
     border: none;
     background-color: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+} */
 
 body {
     background: #f3f3f3 !important;
     color: #222222;
     font-family: Arial, Helvetica, sans-serif;
+    width: 100% auto;
+    height: 100vh !important;
+}
+
+.navbar-brand:hover {
+    color: red !important;
+    transition: 0,2ms;
+    font-size: 25px;
 }
 
 p {
