@@ -62,12 +62,12 @@ p {
 
 .navbar{
     position: relative;
-    display: flex;
+    display: block;
     align-items: center;
     font-size: 1.2em !important;
     padding-left: 1em;
     font-weight: bolder;
-    height: 70px;
+    height: auto;
 }
 
 .nav-link:hover {
@@ -261,19 +261,9 @@ p {
 .funcionarioAcessado{
     display: none !important;
 }
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
     
-    #funcoesCliente{
-        display: none !important;
-    }
-        
-    /* .funcionarioAcessado{
-        display: block !important;
-    } */
-    #funcoesfuncioanrio{
-        display: none !important;
-    }
-    .clienteSemAcesso{
+    .usuarioAcessado{
         display: none !important;
     }
 }

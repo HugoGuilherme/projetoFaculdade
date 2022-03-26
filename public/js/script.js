@@ -172,14 +172,6 @@ acessoLoginFuncionario = document.querySelector("#loginFuncionario");
 acessoCliente.addEventListener("click", ocultarAcessoFuncionario);
 acessoFuncionario.addEventListener("click", ocultarAcessoCliente);
 
-function ocultarAcessoCliente() {
-    acessoLoginCliente.style.display = "none";
-    acessoLoginFuncionario.style.display = "block";
-}
 
-function ocultarAcessoFuncionario() {
-    acessoLoginCliente.style.display = "block";
-    acessoLoginFuncionario.style.display = "none";
-}
 
 
