@@ -13,7 +13,7 @@ router.get('/areaCliente/pedidos', checkAuth, (req, res) => {
     res.render('./areaCliente/clientePedidos')
 })
 
-router.post('/cadastrarCliente', UserController.cadastrarUsuario)
+router.post('/cadastrarCliente', checkAuth, UserController.cadastrarUsuario)
 router.post('/cliente/updateCliente', checkAuth, clienteController.atualizaClientetPost)
 
 module.exports = router
