@@ -13,64 +13,67 @@
 <body>
     <section>
         <nav class="navbar navbar-expand-lg navbar-dark nav-cor">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {{#switch session.status}}
-            {{#case '1'}} <a class="nav-link collapseLi" href="/areaCliente/cliente"><img src="/imagens/logo_gas_8.png"
-                    alt="icon" width="85px">GÁS LEGAL</a>
-            {{/case}}
-            {{#case '2'}} <a class="nav-link collapseLi" href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
-                    width="85px">GÁS LEGAL</a>
-            {{/case}}
-            {{#case '3'}} <a class="nav-link collapseLi" href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
-                    width="85px">GÁS LEGAL</a>
-            {{/case}}
-            {{#case null}}
-            <a class="nav-link collapseLi" href="/"><img src="/imagens/logo_gas_8.png" alt="icon" width="85px">GÁS
-                LEGAL</a>
-            {{/case}}
-            {{/switch}}
+            <div class="itens-navbar-mobile">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {{#switch session.status}}
+                {{#case '1'}} <a class="" href="/areaCliente/cliente"><img src="/imagens/logo_gas_8.png" alt="icon"
+                        width="85px">GÁS LEGAL</a>
+                {{/case}}
+                {{#case '2'}} <a class=" " href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
+                        width="85px">GÁS LEGAL</a>
+                {{/case}}
+                {{#case '3'}} <a class=" " href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
+                        width="85px">GÁS LEGAL</a>
+                {{/case}}
+                {{#case null}}
+                <a class=" " href="/"><img src="/imagens/logo_gas_8.png" alt="icon" width="85px">GÁS
+                    LEGAL</a>
+                {{/case}}
+                {{/switch}}
 
-            {{#if session.userid}}
-            <li class="login1 btn "> <a href="/logout">Sair</a> </li>
-            {{else}}
-            <button type="button" class="login1 btn " data-toggle="modal" data-target="#exampleModal"><img
-                    class="loginIcon" src="../../imagens/abstract-user-flat-4.svg"></button>
-            {{/if}}
-
+                {{#if session.userid}}
+                <li class="login1 btn "> <a href="/logout">Sair</a> </li>
+                {{else}}
+                <button type="button" class="login1 btn " data-toggle="modal" data-target="#exampleModal"><img
+                        class="loginIcon" src="../../imagens/abstract-user-flat-4.svg"></button>
+                {{/if}}
+            </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav mr-auto">
                     {{#switch session.status}}
                     <ul class="usuarioAcessado navbar-nav mr-auto">
                         {{#case '1'}}
-                        <li><a class="nav-link collapseLi" id="home" href="/areaCliente/cliente"> Home</a></li>
-                        <li><a class="nav-link collapseLi" id="perfil" href="/areaCliente/perfil"> Perfil</a></li>
-                        <li><a class="nav-link collapseLi" id="pedidos" href="/areaCliente/pedidos"> Pedidos</a></li>
+                        <li><a class="nav-link" id="home" href="/areaCliente/cliente"> Home</a></li>
+                        <li><a class="nav-link" id="perfil" href="/areaCliente/perfil"> Perfil</a></li>
+                        <li><a class="nav-link" id="pedidos" href="/areaCliente/pedidos"> Pedidos</a></li>
                         {{/case}}
                         {{#case '2'}}
-                        <li class="nav-item "><a href="/dashboard">Home</a></li>
+                        <li class="nav-item"><a href="/dashboard">Home</a></li>
                         <li class="nav-item"><a href="/dashboard/pedidos">Pedidos</a></li>
                         <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
                         <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
                         {{#ifCond session.status}}
-                        <li><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
                         {{/ifCond}}
-                        <li><a href="/dashboard/caixa">Caixa</a></li>
-                        <li><a href="/dashboard/relatorios">Relatorios</a></li>
+                        <li class="nav-item"><a href="/dashboard/caixa">Caixa</a></li>
+                        <li class="nav-item"><a href="/dashboard/relatorios">Relatorios</a></li>
                         {{/case}}
                         {{#case '3'}}
                         <li class="nav-item "><a href="/dashboard">Home</a></li>
-                        <li><a href="/dashboard/perfil">Perfil</a></li>
-                        <li><a href="/dashboard/pedidos">Pedidos</a></li>
-                        <li><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
+                        <li class="nav-item"><a href="/dashboard/pedidos">Pedidos</a></li>
+                        <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
                         {{#ifCond session.status}}
-                        <li><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a>
+                        </li>
                         {{/ifCond}}
-                        <li><a href="/dashboard/caixa">Caixa</a></li>
-                        <li><a href="/dashboard/relatorios">Relatorios</a></li>
+                        <li class="nav-item"><a href="/dashboard/caixa">Caixa</a></li>
+                        <li class="nav-item"><a href="/dashboard/relatorios">Relatorios</a></li>
                         {{/case}}
                     </ul>
                     <ul class="clienteSemAcesso navbar-nav mr-auto">

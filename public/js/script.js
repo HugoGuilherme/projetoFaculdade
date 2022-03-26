@@ -77,6 +77,7 @@ var rodape = document.querySelector('#rodape')
 var navbar = document.querySelector('.navbar')
 var containerCentral = document.querySelector('.containerCentral')
 var collapseLi = document.querySelectorAll('.collapseLi')
+
 //Final das variaveis
 
 //Funções onde mostram o texto de cada parte ao clicar
@@ -126,11 +127,12 @@ if (window.matchMedia("(max-width: 575px)").matches) {
     }
 }
 if (window.matchMedia("(max-width: 991px)").matches) {
-    navbar.style.position = "absolute";
     navbar.style.width = "100%";
+    navbar.style.display = "block";
     navbar.style.top = "0";
     navbar.style.zIndex = "2";
-    containerCentral.style.marginTop = "65px";
+    
+    navbar.style.height = "auto";
     collapseLi.forEach(function (x) {
         x.setAttribute("data-toggle", "collapse");
         x.setAttribute("data-target", "#navbarSupportedContent");
