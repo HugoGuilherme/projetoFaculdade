@@ -71,6 +71,8 @@ app.use(
         }
     })
 )
+const Cliente = require('./models/Cliente')
+const Funcionario = require('./models/Funcionario')
 const Pedido = require('./models/Pedido')
 const Estoque = require('./models/Estoque')
 const Movimentos = require('./models/Movimentos')
