@@ -22,6 +22,7 @@ router.get('/dashboard/relatorios', function (req, res) {
     res.render('areaFuncionario/funcionarioRelatorios')
 })
 
+
 //Perfil funcionario
 router.get('/dashboard/perfil', funcionarioController.atualizaFuncionarioPerfil)
 router.post('/dashboard/atualizaFuncionarioPerfilPost', funcionarioController.atualizaFuncionarioPerfilPost)

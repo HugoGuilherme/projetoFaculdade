@@ -79,8 +79,11 @@ p {
     display: none;
 }
 
-.modal-title{
-    margin-right: 15px;
+.login1 {
+    background: transparent;
+    
+    position: relative;
+    right: 0;
 }
 /* Botões do Navbar de login e sair  */
 .itens-navbar-mobile:first-child a{
@@ -220,6 +223,7 @@ p {
 }
 @media screen and (min-width: 992px) {
     .login1 {
+        margin-top: 15px;
         margin-right: 12px;        
         right: 0;
         position: absolute;
@@ -305,5 +309,10 @@ p {
     .itens-navbar-mobile{
         display: flex;
         justify-content: space-between;
+    }
+    .login1  a{
+        margin-top: 15px;
+        
+
     }
 }

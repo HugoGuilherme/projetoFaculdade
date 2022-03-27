@@ -35,7 +35,7 @@ module.exports = class FuncionarioController {
     static async clientesCadastrados(req, res) {
         const clientes = await Cliente.findAll()
         const clientesCadastrados = clientes.map((result) => result.dataValues)
-        res.render('areaFuncionario/funcionarioCadastroClientes', { clientesCadastrados })
+        res.render('areaFuncionario/clienteCRUD/funcionarioRegistroClientes', { clientesCadastrados })
     }
 
     static async deletaCliente(req, res) {
@@ -52,7 +52,7 @@ module.exports = class FuncionarioController {
         const { id } = req.params
         Cliente.findOne({ where: { id: id }, raw: true })
             .then((clienteCadastrado) => {
-                res.render('areaFuncionario/funcionarioCadastroCliente', { clienteCadastrado })
+                res.render('areaFuncionario/clienteCRUD/funcionarioCadastroCliente', { clienteCadastrado })
             })
             .catch((err) => console.log())
     }
@@ -83,14 +83,14 @@ module.exports = class FuncionarioController {
     static async funcionariosCadastrados(req, res) {
         const funcionarios = await Funcionario.findAll()
         const funcionariosCadastrados = funcionarios.map((result) => result.dataValues)
-        res.render('areaFuncionario/funcionariosCadastrados', { funcionariosCadastrados })
+        res.render('areaFuncionario/funcionarioCRUD/funcionariosCadastrados', { funcionariosCadastrados })
     }
 
     static async atualizaFuncionario(req, res) {
         const { id } = req.params
         Funcionario.findOne({ where: { id: id }, raw: true })
             .then((funcionarioCadastrado) => {
-                res.render('areaFuncionario/funcionarioAtualizacao', { funcionarioCadastrado })
+                res.render('areaFuncionario/funcionarioCRUD/funcionarioAtualizacao', { funcionarioCadastrado })
             })
             .catch((err) => console.log())
     }
@@ -113,7 +113,7 @@ module.exports = class FuncionarioController {
 
         Funcionario.update(funcionario, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/funcionariosCadastrados`)
+                res.redirect(`/dashboard/funcionarioCRUD/funcionariosCadastrados`)
             })
             .catch((err) => console.log())
     }
@@ -122,7 +122,7 @@ module.exports = class FuncionarioController {
         const { id } = req.params
         try {
             await Funcionario.destroy({ where: { id: Number(id) } })
-            res.redirect(`/dashboard/funcionariosCadastrados`)
+            res.redirect(`/dashboard/funcionarioCRUD/funcionariosCadastrados`)
         } catch (error) {
             return res.status(500).json(error.message)
         }
