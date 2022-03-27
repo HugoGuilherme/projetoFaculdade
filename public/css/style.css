@@ -172,10 +172,12 @@ p {
 }
 #rodape {
     background: #d1d4d6;
-    width: 100%;
-    height: 30px;
-    position: absolute;
+    text-align: center;
+    position: fixed;
     bottom: 0;
+    width: 100%;
+    opacity: 0.80;
+    box-sizing: border-box;
 }
 
 #rodape p {
@@ -334,5 +336,10 @@ p {
         transition: 0,7s;
         font-size: 1.0em;
         font-weight: bolder;
+    }
+    .table{
+        table-layout:fixed;
+        width:100%;
+        word-wrap:break-word;
     }
 }
