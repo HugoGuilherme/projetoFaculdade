@@ -83,7 +83,7 @@ p {
     background: transparent;
     
     position: relative;
-    right: 0;
+    top: 0;
 }
 /* Botões do Navbar de login e sair  */
 .itens-navbar-mobile:first-child a{
@@ -98,12 +98,8 @@ p {
     background: transparent;
     position: absolute;
     right: 0;
-    top: -76px;
 }
 
-.login1 img {
-    margin-top: 10px !important;
-} 
 
 .login1:hover{
     box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
@@ -147,6 +143,7 @@ p {
 
 .loginIcon{
     width: 40px;
+    top: 10px;
 }
 
 .c2 {
@@ -223,7 +220,7 @@ p {
 }
 @media screen and (min-width: 992px) {
     .login1 {
-        margin-top: 15px;
+        margin-top: 5px;
         margin-right: 12px;        
         right: 0;
         position: absolute;
@@ -312,7 +309,30 @@ p {
     }
     .login1  a{
         margin-top: 15px;
-        
-
+    }
+    .login1 img {
+        display: block;
+        background: transparent;
+        position: absolute;
+        right: 10px;
+        top: 28px;
+    }
+    .sair{
+        padding-top: 25px;
+        right: 10px;
+    }
+    .sair a{
+        font-size: 1em;
+    }
+    .sair a:hover {
+        color: #FFC95A !important;
+        transition: 0,7s !important;
+        font-size: 1.0em !important;
+    }
+    .nav-link:hover {
+        color: #FFC95A !important;
+        transition: 0,7s;
+        font-size: 1.0em;
+        font-weight: bolder;
     }
 }
