@@ -16,6 +16,7 @@ const conn = require('./db/conn')
 const authRoutes = require('./routes/authRoutes')
 const clienteRoutes = require('./routes/clienteRoutes')
 const funcionarioRoutes = require('./routes/funcionarioRoutes')
+const estoqueRoutes = require('./routes/estoqueRoutes')
 
 //Template engine HBS
 app.engine('handlebars', hbs.engine)
@@ -65,8 +66,8 @@ app.use(
         }),
         cookie: {
             secure: false,
-            maxAge: 360000,
-            expires: new Date(Date.now() + 360000),
+            maxAge: 3600000,
+            expires: new Date(Date.now() + 3600000),
             httpOnly: true
         }
     })
@@ -93,6 +94,7 @@ app.use((req, res, next) => {
 app.use('/', authRoutes)
 app.use('/', clienteRoutes)
 app.use('/', funcionarioRoutes)
+app.use('/', estoqueRoutes)
 
 conn
     .sync()

@@ -88,7 +88,7 @@ p {
 
 .login1 {
     background: transparent;
-    margin-top: 5px;
+    
     position: relative;
     right: 0;
 }
@@ -184,6 +184,7 @@ p {
 }
 @media screen and (min-width: 992px) {
     .login1 {
+        margin-top: 15px;
         margin-right: 12px;        
         right: 0;
         position: absolute;
@@ -243,7 +244,6 @@ p {
 
 /*estilização funcionario*/
 #funcoesfuncioanrio{
-        position: fixed;
         width: 500px;
         height: 100%;
         background-color: #dcdcdc;
@@ -271,5 +271,10 @@ p {
     .itens-navbar-mobile{
         display: flex;
         justify-content: space-between;
+    }
+    .login1  a{
+        margin-top: 15px;
+        
+
     }
 }
