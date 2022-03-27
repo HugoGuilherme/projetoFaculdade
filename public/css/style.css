@@ -70,13 +70,6 @@ p {
     height: 70px;
 }
 
-.nav-link:hover {
-    color: #FFC95A !important;
-    transition: 0,7s;
-    font-size: 1.2em;
-    font-weight: bolder;
-}
-
 .nav-cor {
     background-color: #1A1B30 !important; 
     border-color: #1A1B30 !important;
@@ -86,20 +79,63 @@ p {
     display: none;
 }
 
-.login1 {
-    background: transparent;
-    margin-top: 5px;
-    position: relative;
-    right: 0;
+.modal-title{
+    margin-right: 15px;
 }
+/* Botões do Navbar de login e sair  */
+.itens-navbar-mobile:first-child a{
+    text-decoration: none !important;
+    margin-top: 5px !important;
+    display: block;
+    padding-top: 2px;
+}
+
+.login1 img {
+    display: block;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: -76px;
+}
+
+.login1 img {
+    margin-top: 10px !important;
+} 
+
 .login1:hover{
     box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
 }
 
-.modal-title{
-    margin-right: 15px;
+.sair a{
+    font-size: 1.5em;
 }
 
+.sair a:hover {
+    color: #FFC95A !important;
+    transition: 0,7s !important;
+    font-size: 1.8em !important;
+    font-weight: bolder !important;
+}
+
+.nav-link:hover {
+    color: #FFC95A !important;
+    transition: 0,7s;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.itens-navbar-mobile a:hover {
+    color: #FFC95A !important;
+    transition: 0,7s;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+#acoes-botoes{
+    margin: 3px;
+}
+#acoes-botoes a{
+    color: #1A1B30;
+}
 .btn.focus, .btn:focus {
     outline: none;
     box-shadow: none !important;
@@ -211,7 +247,6 @@ p {
     font-weight: bold;
 }
 
-
 #funcoesCliente li a:hover{
     margin-left: 10px;
     color: #F57A3E;
@@ -243,7 +278,6 @@ p {
 
 /*estilização funcionario*/
 #funcoesfuncioanrio{
-        position: fixed;
         width: 500px;
         height: 100%;
         background-color: #dcdcdc;

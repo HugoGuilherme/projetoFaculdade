@@ -36,7 +36,7 @@
                 {{/switch}}
 
                 {{#if session.userid}}
-                <li class="login1 btn "> <a href="/logout">Sair</a> </li>
+                <li class="login1 btn sair"> <a href="/logout">Sair</a> </li>
                 {{else}}
                 <button type="button" class="login1 btn " data-toggle="modal" data-target="#exampleModal"><img
                         class="loginIcon" src="../../imagens/abstract-user-flat-4.svg"></button>
@@ -58,7 +58,8 @@
                         <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
                         <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
                         {{#ifCond session.status}}
-                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a>
+                        </li>
                         {{/ifCond}}
                         <li class="nav-item"><a href="/dashboard/caixa">Caixa</a></li>
                         <li class="nav-item"><a href="/dashboard/relatorios">Relatorios</a></li>
