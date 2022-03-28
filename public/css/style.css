@@ -320,11 +320,11 @@ p {
         top: 28px;
     }
     .sair{
-        padding-top: 25px;
         right: 10px;
     }
     .sair a{
         font-size: 1em;
+        padding-top: 20px !important;
     }
     .sair a:hover {
         color: #FFC95A !important;
@@ -341,5 +341,8 @@ p {
         table-layout:fixed;
         width:100%;
         word-wrap:break-word;
+    }
+    #acoes-botoes{
+        display: block;
     }
 }

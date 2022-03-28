@@ -33,9 +33,9 @@
                             <td> ************ </td>
                             <td> {{this.endereco}} </td>
                             <td id="acoes-botoes"> 
-                                <button><a href="/dashboard/edit/{{this.id}}"> alterar</a></button>                                
+                                <a href="/dashboard/edit/{{this.id}}"> <button type="button" class="btn btn-primary">alterar</button></a>                           
                                 <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
-                                    <button type="submit">Remover</button>
+                                    <button type="button" class="btn btn-danger" type="submit">Remover</button>
                                 </form>
                             </td>
                         </tr>

@@ -113,7 +113,7 @@ module.exports = class FuncionarioController {
 
         Funcionario.update(funcionario, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/funcionarioCRUD/funcionariosCadastrados`)
+                res.redirect(`/dashboard/funcionariosCadastrados`)
             })
             .catch((err) => console.log())
     }
@@ -122,7 +122,7 @@ module.exports = class FuncionarioController {
         const { id } = req.params
         try {
             await Funcionario.destroy({ where: { id: Number(id) } })
-            res.redirect(`/dashboard/funcionarioCRUD/funcionariosCadastrados`)
+            res.redirect(`/dashboard/funcionariosCadastrados`)
         } catch (error) {
             return res.status(500).json(error.message)
         }

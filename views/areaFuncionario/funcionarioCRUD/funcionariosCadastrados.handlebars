@@ -129,10 +129,10 @@
                             <td> ************ </td>
                             <td> {{this.endereco}} </td>
                             <td id="acoes-botoes">
-                                <button><a href="/dashboard/editFuncionario/{{this.id}}"> alterar &nbsp;&nbsp;&nbsp;</a>
-                                </button>
+                                <a href="/dashboard/editFuncionario/{{this.id}}"> <button type="button" class="btn btn-primary">alterar &nbsp;&nbsp;&nbsp;
+                                </button></a>
                                 <form action="/dashboard/removeFuncionario/{{this.id}}" method="POST">
-                                    <button type="submit">&nbsp;&nbsp;&nbsp;Remover</button>
+                                    <button type="button" class="btn btn-danger" type="submit">&nbsp;&nbsp;&nbsp;Remover</button>
                                 </form>
                             </td>
                         </tr>

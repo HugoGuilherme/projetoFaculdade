@@ -1,0 +1,28 @@
+<section>
+    <div class="secao-home-cliente">
+        <div class="row">
+            <div id="funcoesfuncioanrio" class="col-2">
+                {{> funcionarioAcessos}}
+            </div>
+            <div class="col-6 secao-home-cliente-row-div-central">
+                <form method="post" action="/dashboard/updateEstoque">
+                    <input hidden type="text" name="id" value="{{this.estoque.id}}">
+                    <div class="form-group">
+                        <label for="nomeDoProduto">Nome do produto</label>
+                        <input type="text" class="form-control" id="nomeDoProduto" name="nomeDoProduto" value="{{estoque.nomeDoProduto}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="valorDoProduto">Valor do produto</label>
+                        <input type="text" class="form-control" id="valorDoProduto" name="valorDoProduto" value="{{estoque.valorDoProduto}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{estoque.quantidade}}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">atualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

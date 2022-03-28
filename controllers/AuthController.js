@@ -5,7 +5,7 @@ const session = require('express-session')
 const Funcionario = require('../models/Funcionario')
 
 module.exports = class AuthController {
-    static async acessoCliente(req, res) {
+    static async acessoUsuario(req, res) {
         const { email, senha } = req.body
         try {
             const cliente = await Cliente.findOne({ where: { email: email } })
