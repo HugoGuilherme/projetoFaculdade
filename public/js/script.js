@@ -67,6 +67,24 @@ function pesquisacep(valor) {
 
 //Final do CEP
 
+//função para fazer aparecer e desaparecer com o input de troco
+document.getElementById("dinheiro").onclick = function(){
+    document.getElementById("trocoPagamento").hidden = false
+}
+document.getElementById("cartao").onclick = function(){
+    document.getElementById("trocoPagamento").hidden = true
+}
+//final da função para fazer aparecer e desaparecer com o input de troco
+
+document.getElementById("quantidadeDeGas").onmouseup = function(){
+    quantidadeDeGas = document.getElementById("quantidadeDeGas").value
+    document.getElementById("valorTotalCompra").value = quantidadeDeGas * 100
+}
+
+document.getElementById("quantidadeDeGas").onblur = function(){
+    quantidadeDeGas = document.getElementById("quantidadeDeGas").value
+    document.getElementById("valorTotalCompra").value = quantidadeDeGas * 100
+}
 
 //Variaveis com querySelector para as funções de responsividade
 var inicio = document.querySelector('.c1')
@@ -171,8 +189,6 @@ acessoFuncionario = document.querySelector("#exampleModalLabelFuncionario");
 acessoLoginCliente = document.getElementById("loginCliente");
 acessoLoginFuncionario = document.querySelector("#loginFuncionario");
 
-acessoCliente.addEventListener("click", ocultarAcessoFuncionario);
-acessoFuncionario.addEventListener("click", ocultarAcessoCliente);
 
 
 

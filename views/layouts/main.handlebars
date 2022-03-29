@@ -242,8 +242,30 @@
     </section>
 
     <!--Mensagens-->
-
-    {{{body}}}
+    <section class="container-fluid">
+        <div class="row">
+        {{#switch session.status}}
+        {{#case '1'}}
+        <div id="funcoesfuncioanrio" class="col-2">
+            {{> clienteAcessos}}
+        </div>
+        {{/case}}
+        {{#case '2'}}
+        <div id="funcoesfuncioanrio" class="col-2">
+            {{> funcionarioAcessos}}
+        </div>
+        {{/case}}
+        {{#case '3'}}
+        <div id="funcoesfuncioanrio" class="col-2">
+            {{> funcionarioAcessos}}
+        </div>
+        {{/case}}
+        {{#case null}}
+        {{/case}}
+        {{/switch}}
+        {{{body}}}
+        </div>
+    </section>
 
     <footer id="rodape">
         <p>&copy; TADS - 2021</p>

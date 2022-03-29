@@ -1,44 +1,26 @@
-<section >
-    <div class="secao-home-cliente">
-        <div class="row">
-            <div id="funcoesfuncioanrio" class="col-2">
-                {{> funcionarioAcessos}}
-            </div>
-            <div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">id Cliente </th>
-                            <th scope="col">quantidadePedido</th>
-                            <th scope="col">tipoDePagamentoNaEntrega</th>
-                            <th scope="col">valorTotal</th>
-                            <th scope="col">statusPedidos</th>                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{!-- {{#each pessoas}}
-                        <tr>
-                            <td> {{this.idCliente}} </td>
-                            <td> {{this.nome}} </td>
-                            <td> {{this.cpf}} </td>
-                            <td> {{this.dataDeNascimento}} </td>
-                            <td> {{this.email}} </td>
-                            <td> {{this.senha}} </td>
-                            <td> {{this.endereco}} </td>
-                            <td> // </td>
-                            <td id="acoes-botoes"> 
-                                <button><a href="/funcionario/edit/{{this.idCliente}}"> alterar</a></button>                                
-                                <form action="/funcionario/removeCliente/{{this.idCliente}}" method="POST">
-                                    <button type="submit">Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {{/each}} --}}
-                    </tbody>
-                </table>
-            </div>
-                
-        </div>
-    </div>
-</section>
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">id Cliente </th>
+                <th scope="col">quantidade</th>
+                <th scope="col">pagamento</th>
+                <th scope="col">valor total</th>
+                <th scope="col">status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each pedidosCadastrados}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.ClienteId}}</td>
+                <td>{{{this.quantidadePedido}}}</td>
+                <td>{{this.tipoDePagamentoNaEntrega}}</td>
+                <td>{{{this.valorTotal}}}</td>
+                <td>{{{this.statusPedidos}}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

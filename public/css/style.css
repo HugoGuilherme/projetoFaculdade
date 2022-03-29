@@ -305,6 +305,10 @@ p {
 }
 
 @media screen and (max-width: 992px) {
+    .navbar{
+        display: block;
+        height: 100%;
+    }
     .itens-navbar-mobile{
         display: flex;
         justify-content: space-between;

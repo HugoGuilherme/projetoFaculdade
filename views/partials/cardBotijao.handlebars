@@ -2,11 +2,11 @@
     <img src="../imagens/botijãoDeGas.png">
     <h4 class="mt-4">Gás de cozinha</h4>
     {{#if session.userid}}
-        <p class="mt-4"> Compre o seu gás no valor de R$100</p>
-        <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal1">COMPRAR</button>
+    <p class="mt-4"> Compre o seu gás no valor de R$100</p>
+    <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal1">COMPRAR</button>
     {{else}}
-        <p class="m-4 text-center"> Entre com seu usuário e venha aproveitar o melhor preço da região!</p>
-        <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal">Logar</button>
+    <p class="m-4 text-center"> Entre com seu usuário e venha aproveitar o melhor preço da região!</p>
+    <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal">Logar</button>
     {{/if}}
 </div>
 
@@ -23,30 +23,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="/pedido/realizado" method="post">
                     <div>
                         <h6>Escolha a quantidade desejada</h6>
-                        <input type="number">
+                        <input type="number" name="quantidadeDeGas" id="quantidadeDeGas">
 
                     </div>
                     <br>
                     <div name="tipoDePagamentoNaEntrega">
                         <h6>Escolha a sua forma de pagamento na entrega</h6>
-                        <input type="radio" name="dinheiro" value="dinheiro"> Dinheiro
-                        <input type="radio" name="cartao" value="cartao"> cartao
+                        <input type="radio" id="dinheiro" name="pagamento" value="dinheiro">
+                        <label for="dinheiro">Dinheiro</label>
+                        <input hidden id="trocoPagamento" type="text" placeholder="troco?"><br>
+                        <input type="radio" id="cartao" name="pagamento" value="cartao">
+                        <label for="cartao">Cartão</label><br>
                     </div>
                     <br>
                     <div>
                         <h6>Valor total</h6>
-                        <h7>R$<h7 name="valorTotal"> </h7>
+                        <h7>R$<h7 ><input id="valorTotalCompra" name="valorTotal" type="text" readonly> </h7>
                         </h7>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Pedir</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
         </div>
     </div>
 </div>

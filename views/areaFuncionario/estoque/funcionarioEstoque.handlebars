@@ -1,42 +1,33 @@
-<section>
-    <div class="secao-home-cliente">
-        <div class="row">
-            <div id="funcoesfuncioanrio" class="col-2">
-                {{> funcionarioAcessos}}
-            </div>
-            <div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">nomeDoProduto</th>
-                            <th scope="col">valorDoProduto</th>
-                            <th scope="col">quantidade</th>
-                            <th scope="col">data</th>
-                            <th scope="col"><button class="btn btn-primary"><a href="/dashboard/novoProduto">+</a></button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each estoqueCadastrado}}
-                        <tr>
-                            <td> {{this.id}} </td>
-                            <td> {{this.nomeDoProduto}} </td>
-                            <td> {{this.valorDoProduto}} </td>
-                            <td> {{this.quantidade}} </td>
-                            <td> {{this.data}} </td>
-                            <td id="acoes-botoes">
-                                <a href="/dashboard/editEstoque/{{this.id}}"><button type="button" class="btn btn-primary" >alterar &nbsp;&nbsp;&nbsp;
-                                </button></a>
-                                <form action="/dashboard/removeEstoque/{{this.id}}" method="POST">
-                                    <button type="submit" class="btn btn-danger" type="submit">&nbsp;&nbsp;&nbsp;Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</section>
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">nomeDoProduto</th>
+                <th scope="col">valorDoProduto</th>
+                <th scope="col">quantidade</th>
+                <th scope="col">data</th>
+                <th scope="col"><button class="btn btn-primary"><a href="/dashboard/novoProduto">+</a></button></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each estoqueCadastrado}}
+            <tr>
+                <td> {{this.id}} </td>
+                <td> {{this.nomeDoProduto}} </td>
+                <td> {{this.valorDoProduto}} </td>
+                <td> {{this.quantidade}} </td>
+                <td> {{this.data}} </td>
+                <td id="acoes-botoes">
+                    <a href="/dashboard/editEstoque/{{this.id}}"><button type="button" class="btn btn-primary">alterar
+                            &nbsp;&nbsp;&nbsp;
+                        </button></a>
+                    <form action="/dashboard/removeEstoque/{{this.id}}" method="POST">
+                        <button type="submit" class="btn btn-danger" type="submit">&nbsp;&nbsp;&nbsp;Remover</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

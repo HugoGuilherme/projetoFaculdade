@@ -1,29 +1,20 @@
-<section>
-    <div class="secao-home-cliente">
-        <div class="row">
-            <div id="funcoesCliente"  class="col-2">
-                {{> clienteAcessos}}
-            </div>
-            <div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Quantidade</th>
-                            <th>Endereço</th>
-                            <th>valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each pedidos}}
-                    <tr>
-                        <td>{{{this.quantidade}}}</td>
-                        <td>{{{this.endereco}}}</td>
-                        <td>{{{this.valor}}}</td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Quantidade</th>
+                <th>valor</th>
+                <th>statusPedidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each pedidoCadastrado}}
+            <tr>
+                <td>{{{this.quantidadePedido}}}</td>
+                <td>{{{this.valorTotal}}}</td>
+                <td>{{{this.statusPedidos}}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

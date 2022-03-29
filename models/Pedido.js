@@ -15,14 +15,10 @@ const Pedido = db.define('Pedido', {
     // allowNull defaults to true
   },
   valorTotal: {
-    type: DataTypes.FLOAT
+    type: DataTypes.STRING
     // allowNull defaults to true
   },
   tipoDePagamentoNaEntrega: {
-    type: DataTypes.DATEONLY
-    // allowNull defaults to true
-  },
-  status: {
     type: DataTypes.STRING
     // allowNull defaults to true
   }

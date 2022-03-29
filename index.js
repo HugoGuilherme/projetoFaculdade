@@ -17,6 +17,7 @@ const authRoutes = require('./routes/authRoutes')
 const clienteRoutes = require('./routes/clienteRoutes')
 const funcionarioRoutes = require('./routes/funcionarioRoutes')
 const estoqueRoutes = require('./routes/estoqueRoutes')
+const pedidoRoutes = require('./routes/pedidoRoutes')
 
 //Template engine HBS
 app.engine('handlebars', hbs.engine)
@@ -95,6 +96,7 @@ app.use('/', authRoutes)
 app.use('/', clienteRoutes)
 app.use('/', funcionarioRoutes)
 app.use('/', estoqueRoutes)
+app.use('/', pedidoRoutes)
 
 conn
     .sync()
