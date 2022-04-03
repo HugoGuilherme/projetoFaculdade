@@ -1,0 +1,35 @@
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
+    <table class="table table-responsive">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">id Cliente </th>
+                <th scope="col">quantidade</th>
+                <th scope="col">pagamento</th>
+                <th scope="col">valor total</th>
+                <th scope="col">status</th>
+                <th scope="col">ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each pedidosCadastrados}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.ClienteId}}</td>
+                <td>{{{this.quantidadePedido}}}</td>
+                <td>{{this.tipoDePagamentoNaEntrega}}</td>
+                <td>{{{this.valorTotal}}}</td>
+                <td>{{{this.statusPedidos}}}</td>
+                <td id="acoes-botoes">
+                    <a href="/dashboard/editPedido/{{this.id}}"> <button type="button"
+                            class="btn btn-primary">alterar 
+                        </button></a>
+                    <form action="/dashboard/removePedido/{{this.id}}" method="POST">
+                        <button class="btn btn-danger" type="submit">Remover</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

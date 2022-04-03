@@ -1,145 +1,129 @@
-<section>
-    <div class="container secao-home-cliente">
-        <div class="row">
-            <div id="funcoesfuncioanrio" class="col-2">
-                {{> funcionarioAcessos}}
-            </div>
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
 
-            <div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
-
-                <!-- Modal -->
-                <div class="modal fade" id="cadastroFuncionario" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabelCliente">Login</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+    <!-- Modal -->
+    <div class="modal fade" id="cadastroFuncionario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelCliente">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-row" method="post" action="/cadastrarUsuario">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>Nome</label>
+                                <input type="text" name="nome" class="form-control" placeholder="nome" required>
                             </div>
-                            <div class="modal-body">
-                                <form class="form-row" method="post" action="/cadastrarUsuario">
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>Nome</label>
-                                            <input type="text" name="nome" class="form-control" placeholder="nome"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Sobrenome</label>
-                                            <input type="text" name="sobrenome" class="form-control"
-                                                placeholder="sobrenome" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>CPF</label>
-                                            <input type="text" name="cpf" class="form-control" placeholder="cpf"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Data de Nascimento</label>
-                                            <input type="date" name="dataDeNascimento" class="form-control" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Email</label>
-                                            <input type="email" name="email" class="form-control" placeholder="Email"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="password">Senha</label>
-                                            <input type="password" name="senha" id="senha" class="form-control"
-                                                placeholder="Senha" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="confirmpassword">Confirmação de Senha</label>
-                                            <input type="password" name="confirmpassword" id="confirmpassword"
-                                                class="form-control" placeholder="Confirme a sua senha" required>
-                                        </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Sobrenome</label>
+                                <input type="text" name="sobrenome" class="form-control" placeholder="sobrenome"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>CPF</label>
+                                <input type="text" name="cpf" class="form-control" placeholder="cpf" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Data de Nascimento</label>
+                                <input type="date" name="dataDeNascimento" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="password">Senha</label>
+                                <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="confirmpassword">Confirmação de Senha</label>
+                                <input type="password" name="confirmpassword" id="confirmpassword" class="form-control"
+                                    placeholder="Confirme a sua senha" required>
+                            </div>
 
-                                        <div class="col-md-6 mb-3">
-                                            <label>CEP
-                                                <input name="cep" class="form-control" type="text" id="cep"
-                                                    placeholder="CEP" value="" size="100%"
-                                                    onblur="pesquisacep(this.value);" required /></label>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>NÚMERO
-                                                <input type="text" class="form-control" placeholder="Numero" size="100%"
-                                                    name="numeroCasa">
-                                            </label>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>RUA
-                                                <input name="rua" class="form-control" type="text" size="100%"
-                                                    id="rua" /></label>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>BAIRRO
-                                                <input name="bairro" class="form-control" type="text" size="100%"
-                                                    id="bairro" /></label>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>CIDADE
-                                                <input name="cidade" class="form-control" type="text" size="100%"
-                                                    id="cidade" /></label>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>ESTADO
-                                                <input name="uf" class="form-control" type="text" id="uf"
-                                                    size="100%" /></label>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="status" id="status" value="2" />
-                                    <div class="modal-footer col-12">
-                                        <button type="submit" class="btn btn-dark col-12"
-                                            id="submitCadastrar">Enviar</button>
-                                    </div>
-
-                                </form>
-
+                            <div class="col-md-6 mb-3">
+                                <label>CEP
+                                    <input name="cep" class="form-control" type="text" id="cep" placeholder="CEP"
+                                        value="" size="100%" onblur="pesquisacep(this.value);" required /></label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>NÚMERO
+                                    <input type="text" class="form-control" placeholder="Numero" size="100%"
+                                        name="numeroCasa">
+                                </label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>RUA
+                                    <input name="rua" class="form-control" type="text" size="100%" id="rua" /></label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>BAIRRO
+                                    <input name="bairro" class="form-control" type="text" size="100%"
+                                        id="bairro" /></label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>CIDADE
+                                    <input name="cidade" class="form-control" type="text" size="100%"
+                                        id="cidade" /></label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>ESTADO
+                                    <input name="uf" class="form-control" type="text" id="uf" size="100%" /></label>
                             </div>
                         </div>
-                    </div>
+                        <input type="hidden" name="status" id="status" value="2" />
+                        <div class="modal-footer col-12">
+                            <button type="submit" class="btn btn-dark col-12" id="submitCadastrar">Enviar</button>
+                        </div>
+
+                    </form>
+
                 </div>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Data de Nascimento</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Senha</th>
-                            <th scope="col">Endereço</th>
-                            <th scope="col">Ações</th>
-                            <th><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#cadastroFuncionario">
-                                    +
-                                </button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each funcionariosCadastrados}}
-                        <tr>
-                            <td> {{this.id}} </td>
-                            <td> {{this.nome}} </td>
-                            <td> {{this.cpf}} </td>
-                            <td> {{this.dataDeNascimento}} </td>
-                            <td> {{this.email}} </td>
-                            <td> ************ </td>
-                            <td> {{this.endereco}} </td>
-                            <td id="acoes-botoes">
-                                <a href="/dashboard/editFuncionario/{{this.id}}"> <button type="button" class="btn btn-primary">alterar &nbsp;&nbsp;&nbsp;
-                                </button></a>
-                                <form action="/dashboard/removeFuncionario/{{this.id}}" method="POST">
-                                    <button type="button" class="btn btn-danger" type="submit">&nbsp;&nbsp;&nbsp;Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-</section>
+    <table class="table table-responsive">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Email</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Ações</th>
+                <th><button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#cadastroFuncionario">
+                        +
+                    </button></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each funcionariosCadastrados}}
+            <tr>
+                <td> {{this.id}} </td>
+                <td> {{this.nome}} </td>
+                <td> {{this.cpf}} </td>
+                <td> {{this.dataDeNascimento}} </td>
+                <td> {{this.email}} </td>
+                <td> ************ </td>
+                <td> {{this.endereco}} </td>
+                <td id="acoes-botoes">
+                    <a href="/dashboard/editFuncionario/{{this.id}}"> <button type="button"
+                            class="btn btn-primary">alterar 
+                        </button></a>
+                    <form action="/dashboard/removeFuncionario/{{this.id}}" method="POST">
+                        <button class="btn btn-danger" type="submit">Remover</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

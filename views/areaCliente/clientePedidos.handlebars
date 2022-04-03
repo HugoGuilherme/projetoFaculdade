@@ -1,9 +1,12 @@
 <div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
-    <table class="table">
+    <table class="table table-responsive">
         <thead class="thead-dark">
             <tr>
                 <th>Quantidade</th>
+                <th>Tipo de pagamento</th>
                 <th>valor</th>
+                <th>Data</th>
+                <th>Endereço</th>
                 <th>statusPedidos</th>
             </tr>
         </thead>
@@ -11,7 +14,10 @@
             {{#each pedidoCadastrado}}
             <tr>
                 <td>{{{this.quantidadePedido}}}</td>
+                <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
                 <td>{{{this.valorTotal}}}</td>
+                <td>{{{this.createdAt}}}</td>                
+                <td>{{{this.Cliente.dataValues.endereco}}}</td>
                 <td>{{{this.statusPedidos}}}</td>
             </tr>
             {{/each}}

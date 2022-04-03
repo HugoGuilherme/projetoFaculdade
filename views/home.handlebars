@@ -1,10 +1,16 @@
 <!--Seção do container-->
-<section class="container containerCentral">
+<section class="container-fluid containerCentral">
     <div class="paginaCentral">
         <div class="row">
-            {{> cardBotijao}}
-            {{> cardTextosCentrais}}
+             {{> cardTextosCentrais}}
+            {{> cardBotijao}}           
+        </div>
+        <div class="row">
+            {{> infosHome}}
         </div>
     </div>
 </section>
 <!--Final da seção do container-->
+<script>
+    document.getElementById("funcoesfuncioanrio").style.display = "none";
+</script>

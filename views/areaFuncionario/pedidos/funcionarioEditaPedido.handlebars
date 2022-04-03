@@ -1,0 +1,28 @@
+<div class="col-md-12 col-lg-9 secao-home-cliente-row-div-central">
+    <form class="form" action="/dashboard/updatePedido" method="POST">
+        <h2>Formulario pedido {{pedido.id}}</h2>
+        <div class="form-row">
+            <input type="hidden" name="id" value="{{pedido.id}}">
+            <div class="col-md-6 mb-3">
+                <label>Tipo de pagamento</label>
+                <input type="text" class="form-control" name="tipoDePagamentoNaEntrega"
+                    value="{{pedido.tipoDePagamentoNaEntrega}}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Valor total</label>
+                <input type="text" name="valorTotal" class="form-control" value="{{pedido.valorTotal}}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>quantidade</label>
+                <input type="text" class="form-control" name="quantidadePedido"
+                    value="{{pedido.quantidadePedido}}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Status</label>
+                <input type="text" class="form-control" name="statusPedidos" 
+                    value="{{pedido.statusPedidos}}" required>
+            </div>
+            
+            <input type="submit" class="btn btn-dark " value="Editar">
+    </form>
+</div>
