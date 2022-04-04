@@ -18,18 +18,16 @@ module.exports = class PedidoController {
         const id = req.session.userid
         const pedido = await Pedido.findAll({
             where: {ClienteId: id},
-            include: Clientes,
-            plain: true
+            include: Clientes
         })
-        const pedidoCadastrado = pedido
-        console.log(pedido);
+        const pedidoCadastrado = pedido.map(el => el.get({plain: true}))
+        console.log(pedidoCadastrado);
         res.render('areaCliente/clientePedidos', { pedidoCadastrado })
     }
 
     static async pedidosCadastrados(req, res) {
-        const pedido = await Pedido.findAll({include:Clientes})
-        const pedidosCadastrados = pedido.map((result) => result.dataValues)
-        console.log(pedidosCadastrados);
+        const pedido = await Pedido.findAll({include:Clientes})            
+        const pedidosCadastrados = pedido.map(el => el.get({plain: true}))
         res.render('areaFuncionario/pedidos/funcionarioPedidosDoCliente', { pedidosCadastrados })
         
     }
