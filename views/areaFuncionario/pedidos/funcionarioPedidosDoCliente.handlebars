@@ -1,6 +1,13 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
-    <table class="table table-responsive">
+    <form action="/dashboard/pedidos" method="GET">
+        <input type="text" name="search" placeholder="ID cliente">
+        <input type="submit" class="btn" value="buscar">
+    </form>
+
+    <table class="table table-striped table-responsive">
         <thead class="thead-dark">
+            {{#switch session.status}}
+            {{#case '2'}}
             <tr>
                 <th scope="col">id pedido</th>
                 <th scope="col">id Cliente </th>
@@ -11,10 +18,28 @@
                 <th scope="col">status</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">data</th>
+            </tr>
+            {{/case}}
+            {{#case '3'}}
+            <tr>
+                <th scope="col">id pedido</th>
+                <th scope="col">id Cliente </th>
+                <th scope="col">nome </th>
+                <th scope="col">quantidade</th>
+                <th scope="col">pagamento</th>
+                <th scope="col">valor total</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">data</th>
+                <th scope="col">status</th>
                 <th scope="col">ações</th>
             </tr>
+            {{/case}}
+            {{/switch}}
         </thead>
         <tbody>
+
+            {{#switch session.status}}
+            {{#case '2'}}
             {{#each pedidosCadastrados}}
             <tr>
                 <td>{{this.id}}</td>
@@ -26,9 +51,40 @@
                 <td>{{{this.statusPedidos}}}</td>
                 <td>{{{this.Cliente.endereco}}}</td>
                 <td>{{{this.createdAt}}}</td>
+            </tr>
+            {{/each}}
+            {{/case}}
+            {{#case '3'}}
+            {{#each pedidosCadastrados}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.ClienteId}}</td>
+                <td>{{this.Cliente.nome}}</td>
+                <td>{{{this.quantidadePedido}}}</td>
+                <td>{{this.tipoDePagamentoNaEntrega}}</td>
+                <td>{{{this.valorTotal}}}</td>                
+                <td>{{{this.Cliente.endereco}}}</td>
+                <td>{{{this.createdAt}}}</td>
+                <form method="post" action="/dashboard/updatePedidoStatus">
+                <td>
+                    {{#switch this.statusPedidos}}
+                    <select name="statusDoPedido" id="status">
+                        <option value="pendente">Pendente</option>                        
+                        <option value="confirmado">Confirmado</option>
+                        <option value="aCaminho">A caminho</option>
+                        <option value="finalizado">Finalizado</option>
+                    </select>
+
+                    {{/switch}}
+                
+                
+                <input hidden type="text" name="id" value="{{this.id}}">
+                
+                    <button type="submit" class="btn btn-secundary">atualizar</button>
+                </td>
+                </form>
                 <td id="acoes-botoes">
-                    <a href="/dashboard/editPedido/{{this.id}}"> <button type="button"
-                            class="btn btn-primary">alterar 
+                    <a href="/dashboard/editPedido/{{this.id}}"> <button type="button" class="btn btn-primary">alterar
                         </button></a>
                     <form action="/dashboard/removePedido/{{this.id}}" method="POST">
                         <button class="btn btn-danger" type="submit">Remover</button>
@@ -36,6 +92,8 @@
                 </td>
             </tr>
             {{/each}}
+            {{/case}}
+            {{/switch}}
         </tbody>
     </table>
 </div>

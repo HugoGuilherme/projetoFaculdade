@@ -49,12 +49,6 @@ handlebars.registerHelper('case', function (value, options) {
     }
 });
 
-handlebars.registerHelper('case', function (value, options) {
-    if (value == this.switch_value) {
-        return options.fn(this);
-    }
-});
-
 //Session middleware
 app.use(
     session({

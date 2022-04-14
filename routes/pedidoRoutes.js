@@ -10,5 +10,6 @@ router.get('/dashboard/pedidos', checkAuth, PedidoController.pedidosCadastrados)
 router.post('/dashboard/removePedido/:id', checkAuth, PedidoController.deletaPedido)
 router.get('/dashboard/editPedido/:id', checkAuth, PedidoController.editPedido)
 router.post('/dashboard/updatePedido', checkAuth, PedidoController.updatePedido)
+router.post('/dashboard/updatePedidoStatus', checkAuth, PedidoController.updatePedidoStatus)
 
 module.exports = router

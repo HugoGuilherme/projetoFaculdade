@@ -2,6 +2,8 @@ const Pedido = require("../models/Pedido")
 const session = require('express-session')
 const Clientes = require("../models/Cliente")
 
+const { Op } = require('sequelize')
+
 module.exports = class PedidoController {
 
     static async cadastrarPedido(req, res){
@@ -26,7 +28,17 @@ module.exports = class PedidoController {
     }
 
     static async pedidosCadastrados(req, res) {
-        const pedido = await Pedido.findAll({include:Clientes})            
+
+        let search = ''
+
+        if(req.query.search){
+            search = req.query.search
+        }
+
+        const pedido = await Pedido.findAll({include:Clientes,
+        where:{
+            ClienteId: {[Op.like]: `%${search}%`}
+        }})            
         const pedidosCadastrados = pedido.map(el => el.get({plain: true}))
         res.render('areaFuncionario/pedidos/funcionarioPedidosDoCliente', { pedidosCadastrados })
         
@@ -60,6 +72,19 @@ module.exports = class PedidoController {
             valorTotal: req.body.valorTotal,
             quantidadePedido: req.body.quantidadePedido,
             statusPedidos: req.body.statusPedidos
+        }
+        Pedido.update(pedido, { where: { id: id } })
+            .then(() => {
+                res.redirect(`/dashboard/pedidos`)
+            })
+            .catch((err) => console.log())
+    }
+    static  updatePedidoStatus(req, res) {
+        const id = req.body.id
+        console.log(req.body.statusDoPedido);
+        const pedido = {
+            statusPedidos: req.body.statusDoPedido,
+            FuncionarioId: req.session.userid
         }
         Pedido.update(pedido, { where: { id: id } })
             .then(() => {

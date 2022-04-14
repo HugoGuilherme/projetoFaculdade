@@ -1,8 +1,12 @@
 <div class=" col-md-12 col-lg-10 secao-home-cliente-row-div-central">
+    <form action="/dashboard/clientesCadastrados" method="GET">
+        <input type="text" name="search"  placeholder="nome do cliente">
+        <input type="submit" class="btn" value="buscar">
+    </form>
     <table class="table table-responsive">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Data de Nascimento</th>

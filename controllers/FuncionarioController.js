@@ -1,6 +1,7 @@
 const Funcionario = require('../models/Funcionario')
 const Cliente = require('../models/Cliente')
 const bcrypt = require('bcryptjs')
+const { Op } = require('sequelize')
 module.exports = class FuncionarioController {
 
     static async atualizaFuncionarioPerfil(req, res) {
@@ -33,7 +34,14 @@ module.exports = class FuncionarioController {
 
     
     static async clientesCadastrados(req, res) {
-        const clientes = await Cliente.findAll()
+        let search = ''
+
+        if(req.query.search){
+            search = req.query.search
+        }
+        const clientes = await Cliente.findAll({where:{
+            nome: {[Op.like]: `%${search}%`}
+        }})
         const clientesCadastrados = clientes.map((result) => result.dataValues)
         res.render('areaFuncionario/clienteCRUD/funcionarioRegistroClientes', { clientesCadastrados })
     }
@@ -81,7 +89,14 @@ module.exports = class FuncionarioController {
 
     
     static async funcionariosCadastrados(req, res) {
-        const funcionarios = await Funcionario.findAll()
+        let search = ''
+
+        if(req.query.search){
+            search = req.query.search
+        }
+        const funcionarios = await Funcionario.findAll({where:{
+            nome: {[Op.like]: `%${search}%`}
+        }})
         const funcionariosCadastrados = funcionarios.map((result) => result.dataValues)
         res.render('areaFuncionario/funcionarioCRUD/funcionariosCadastrados', { funcionariosCadastrados })
     }
