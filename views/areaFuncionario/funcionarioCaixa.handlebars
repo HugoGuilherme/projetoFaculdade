@@ -1,3 +1,78 @@
 <div class="col-10 secao-home-cliente-row-div-central">
-
+    <div class="caixa" style="    border: 1px black solid;
+    display: block;
+    width: fit-content;">
+        <h1 style="display: flex; justify-content: center; background-color: #8784fa;
+    border-bottom: 1px black solid; font-weight: 900; margin: 0;">CAIXA ABERTO</h1>
+        <div class="valorApagar"
+            style="width: 850px; background-color: #8784FA; display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; padding: 10px;">
+            <div class=" itensColuna" style="display: flex; align-items: flex-end; flex-direction: column;">
+                <div>
+                    <label for="subTotal" style="font-size: 20px; font-weight: 800; color: #fff;"> R$ SUB TOTAL
+                    </label>
+                    <input type="text" name="subTotal">
+                </div>
+                <div>
+                    <label for="descItem" style="font-size: 20px; font-weight: 800; color: #fff;"> R$ DESCONTO NOS
+                        ITENS
+                    </label>
+                    <input type="text" name="descItem">
+                </div>
+                <div>
+                    <label for="descTotal" style="font-size: 20px; font-weight: 800; color: #fff;"> R$ DESCONTO
+                        TOTAL
+                    </label>
+                    <input type="text" name="descTotal">
+                </div>
+                <div>
+                    <label for="acrescimo" style="font-size: 20px; font-weight: 800; color: #fff;"> R$ ACRÉSCIMO
+                    </label>
+                    <input type="text" name="acrescimo">
+                </div>
+            </div>
+            <div class="pagar"
+                style="display: flex; align-items: center; height: 150px; width: min-content; justify-content: space-around; flex-direction: column; text-align: center;">
+                <label for="total" style="font-size: 30px; font-weight: 900; color: #ff0000;"> R$ TOTAL A PAGAR
+                </label>
+                <input type="text" name="total" style="font-size: 30px;">
+            </div>
+        </div>
+        {{!-- Botões da Pagina --}}
+        <div class="botoes">
+            <p style="display: flex; justify-content: space-around; flex-direction: column;">
+                <a href="/dashboard/caixa/entrada" class="btn btn-dark"
+                    style="font-size: 35px; font-weight: bolder; margin-bottom: 10px;">DINHEIRO</a>
+                <a href="/dashboard/caixa/saida" class="btn btn-dark"
+                    style="font-size: 35px; font-weight: bolder; margin-bottom: 10px;">CARTÃO</a>
+                <a href="/dashboard/caixa/saida" class="btn btn-dark"
+                    style="font-size: 35px; font-weight: bolder; margin-bottom: 10px;">OUTROS</a>
+            </p>
+        </div>
+        <div class="resultados">
+            <h3>R$ TOTAL A PAGAR
+                <label>
+                    <input type="text" id="total">
+                </label>
+            </h3>
+            <h3>R$ VALOR PAGO
+                <label>
+                    <input type="text" id="pago">
+                </label>
+            </h3>
+            <h3>R$ SALDO A PAGAR
+                <label>
+                    <input type="text" id="aPagar">
+                </label>
+            </h3>
+            <h3>R$ TROCO
+                <label>
+                    <input type="text" id="troco">
+                </label>
+            </h3>
+        </div>
+        <p>
+            <a href="/dashboard/caixa/entrada" class="btn btn-dark">CANCELAR</a>
+            <a href="/dashboard/caixa/entrada" class="btn btn-dark">FINALIZAR VENDA</a>
+        </p>
+    </div>
 </div>

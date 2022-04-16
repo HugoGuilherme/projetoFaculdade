@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/caixa.css">
 </head>
 
 <body>
     <section>
+        {{!-- Navbar Menu --}}
         <nav class="navbar navbar-expand-lg navbar-dark nav-cor">
             <div class="itens-navbar-mobile">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -43,7 +45,6 @@
                 {{/if}}
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                 <ul class="navbar-nav mr-auto">
                     {{#switch session.status}}
                     <ul class="usuarioAcessado navbar-nav mr-auto">
@@ -244,30 +245,28 @@
     <!--Mensagens-->
     <section class="container-fluid">
         <div class="row">
-        {{#switch session.status}}
-        {{#case '1'}}
-        <div id="funcoesfuncioanrio" class="col-2">
-            {{> clienteAcessos}}
-        </div>
-        {{/case}}
-        {{#case '2'}}
-        <div id="funcoesfuncioanrio" class="col-2">
-            {{> funcionarioAcessos}}
-        </div>
-        {{/case}}
-        {{#case '3'}}
-        <div id="funcoesfuncioanrio" class="col-2">
-            {{> funcionarioAcessos}}
-        </div>
-        {{/case}}
-        {{#case null}}
-        {{/case}}
-        {{/switch}}
-        {{{body}}}
+            {{#switch session.status}}
+            {{#case '1'}}
+            <div id="funcoesfuncioanrio" class="col-2">
+                {{> clienteAcessos}}
+            </div>
+            {{/case}}
+            {{#case '2'}}
+            <div id="funcoesfuncioanrio" class="col-2">
+                {{> funcionarioAcessos}}
+            </div>
+            {{/case}}
+            {{#case '3'}}
+            <div id="funcoesfuncioanrio" class="col-2">
+                {{> funcionarioAcessos}}
+            </div>
+            {{/case}}
+            {{#case null}}
+            {{/case}}
+            {{/switch}}
+            {{{body}}}
         </div>
     </section>
-
-
 
     <script src="/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
