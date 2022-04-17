@@ -34,13 +34,8 @@ module.exports = class UserController {
                         })
                     } else {
                         const funcionarioCriado = await Funcionario.create(usuario)
-        
-                        //iniciando sessão
-                        req.session.userid = funcionarioCriado.id
-                        req.session.status = clienteCriado.status
-                        req.session.save(() => {
-                            res.redirect('/dashboard/funcionariosCadastrados')
-                        })
+                        res.redirect('/dashboard/funcionariosCadastrados')
+                        
                     }
                 } catch (error) {
                     console.log(error);
@@ -48,10 +43,6 @@ module.exports = class UserController {
             }
         } catch (error) {
             console.log(error)
-        }
-
-
-
-        
+        }        
     }
 }
