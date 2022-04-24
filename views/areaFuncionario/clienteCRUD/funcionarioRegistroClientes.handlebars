@@ -1,6 +1,6 @@
 <div class=" col-md-12 col-lg-10 secao-home-cliente-row-div-central">
     <form action="/dashboard/clientesCadastrados" method="GET">
-        <input type="text" name="search"  placeholder="nome do cliente">
+        <input type="text" name="search" placeholder="nome do cliente">
         <input type="submit" class="btn" value="buscar">
     </form>
     <table class="table table-responsive">
@@ -32,7 +32,7 @@
                     <a href="/dashboard/edit/{{this.id}}"> <button type="button"
                             class="btn btn-primary">alterar</button></a>
                     <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
-                        <button class="btn btn-danger" type="submit">Remover</button>
+                        <button class="btn btn-warning" type="submit">Remover</button>
                     </form>
                 </td>
             </tr>

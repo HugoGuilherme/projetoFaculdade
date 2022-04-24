@@ -1,6 +1,6 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
-<form action="/dashboard/funcionariosCadastrados" method="GET">
-        <input type="text" name="search"  placeholder="nome do funcionario">
+    <form action="/dashboard/funcionariosCadastrados" method="GET">
+        <input type="text" name="search" placeholder="nome do funcionario">
         <input type="submit" class="btn" value="buscar">
     </form>
     <!-- Modal -->
@@ -81,7 +81,7 @@
                         </div>
                         <input type="hidden" name="status" id="status" value="2" />
                         <div class="modal-footer col-12">
-                            <button type="submit" class="btn btn-dark col-12" id="submitCadastrar">Enviar</button>
+                            <button type="submit" class="btn btn-primary col-12" id="submitCadastrar">Enviar</button>
                         </div>
 
                     </form>
@@ -119,10 +119,10 @@
                 <td> {{this.endereco}} </td>
                 <td id="acoes-botoes">
                     <a href="/dashboard/editFuncionario/{{this.id}}"> <button type="button"
-                            class="btn btn-primary">alterar 
+                            class="btn btn-primary">alterar
                         </button></a>
                     <form action="/dashboard/removeFuncionario/{{this.id}}" method="POST">
-                        <button class="btn btn-danger" type="submit">Remover</button>
+                        <button class="btn btn-warning" type="submit">Remover</button>
                     </form>
                 </td>
             </tr>

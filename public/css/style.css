@@ -28,12 +28,14 @@ body {
 .nav-item {
   margin: auto 15px;
 }
+
 .nav-item a:hover {
   color: #ffc95a !important;
   transition: 0, 02s;
   font-size: 23px;
   font-weight: bolder;
 }
+
 p {
   text-align: justify;
 }
@@ -51,18 +53,20 @@ p {
   padding-top: 40px;
   background: #ffffff;
   margin-top: 8px;
+  padding: 0px !important;
 }
 
 .qualificacoes {
-  background-color: #c61c2c;
+  /* cor de fundo anterior #c61c2c */
+  background-color: #dcae1d;
   border-radius: 2%;
   color: #fff;
   text-align: justify;
 }
 
-.avatarImg{
-    width: 370px;
-    height: 345px;
+.avatarImg {
+  width: 370px;
+  height: 345px;
 }
 
 .paginaCentral {
@@ -72,9 +76,11 @@ p {
 .gasInfo {
   background-color: #f3f3f3f3;
 }
+
 .imgInfo {
   height: 100px;
 }
+
 .navbar {
   position: relative;
   display: flex;
@@ -86,7 +92,8 @@ p {
 }
 
 .nav-cor {
-  background-color: #c61c2c !important;
+  /* #c61c2c */
+  background-color: #0a1612 !important;
   border-color: #1a1b30 !important;
 }
 
@@ -96,16 +103,17 @@ p {
 
 .login1 {
   background: transparent;
-
   position: relative;
   top: 0;
 }
+
 /* Botões do Navbar de login e sair  */
 .itens-navbar-mobile:first-child a {
   text-decoration: none !important;
   margin-top: 5px !important;
   display: block;
   padding-top: 2px;
+  color: #ffffff;
 }
 
 .login1 img {
@@ -134,6 +142,7 @@ p {
   color: #fff !important;
   cursor: pointer;
 }
+
 .nav-link:hover {
   color: #ffc95a !important;
   transition: 0, 7s;
@@ -147,12 +156,15 @@ p {
   font-size: 1.2em;
   font-weight: bolder;
 }
+
 #acoes-botoes {
   margin: 3px;
 }
+
 #acoes-botoes a {
   color: #1a1b30;
 }
+
 .btn.focus,
 .btn:focus {
   outline: none;
@@ -172,16 +184,19 @@ p {
 .c3 {
   display: none;
 }
-.gasInicio{
-    display: flex;
-    justify-content: center;
+
+.gasInicio {
+  display: flex;
+  justify-content: center;
 }
+
 .cardGas {
   width: 380px;
   height: 100%;
   text-align: center;
   box-shadow: 1px 1px 10px rgb(171, 171, 173);
-  background-color: #d2dcdd;
+  background-color: #cdcdcd;
+  /* #d2dcdd */
 }
 
 .cardGas img {
@@ -192,8 +207,10 @@ p {
 .clienteAcessado {
   display: none !important;
 }
+
 .rodape {
-  background: #343a40;
+  /* Cor de Fundo anterior #343a40 */
+  background: #0a1612;
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -205,40 +222,125 @@ p {
 .rodape p {
   text-align: center;
 }
-.imgFuncionarioHome{
-    width: 280px;
+
+.imgFuncionarioHome {
+  width: 340px;
+  background-color: white;
+  border-radius: 100%;
+  border: outset;
+  border-bottom-style: inset;
 }
+
+.btn-warning {
+  font-weight: 600 !important;
+}
+
+.logotipo {
+  background-color: white;
+  border-radius: 100%;
+  border-style: outset;
+  width: 75px;
+  border-bottom: inset;
+  margin-right: 15px;
+}
+
+/* Estilo para as Tabelas */
+.thead-dark th {
+  text-align: center;
+}
+
+/* Estilo para o Caixa  */
+
+.posicao-caixa {
+  display: flex;
+  justify-content: center;
+  background-color: #cdcdcd;
+  /* ultima cor de fundo #b7dcdd */
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgb(171, 171, 173);
+
+}
+
+.texto-center {
+  display: flex;
+  justify-content: center;
+  background-color: #c06014;
+  color: #f2d388;
+  /* font-size: 30px; */
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.valorApagar {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.label-estilo {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+.texto-total {
+  display: flex;
+  justify-content: center;
+  color: #000000;
+  font-size: 35px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fechamento-caixa {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 1px 0px 0px 15px;
+  align-items: flex-end;
+}
+
 /*Media query*/
 @media screen and (max-width: 575px) {
   .c1 {
     display: none;
   }
+
   .cardGas {
     width: 100%;
   }
+
   .containerCentral {
     background: #ffffff;
     height: 100%;
   }
+
   .textoCorpo {
     text-align: center;
   }
+
   .inicioh {
     padding-top: 10px;
     font-size: 1.5em;
   }
 }
+
 @media screen and (min-width: 576px) {
   .login1 {
     margin-right: 12px;
   }
+
   .textoCorpo {
     padding-left: 40px !important;
   }
+
   .cardGas {
     left: 15px !important;
   }
 }
+
 @media screen and (min-width: 992px) {
   .login1 {
     margin-top: 5px;
@@ -253,13 +355,16 @@ p {
 #funcoesCliente {
   width: 500px;
   height: 100vh;
-  background-color: #9d9d9d;
+  background-color: #c06014;
+  /* cor de fundo anterior #9d9d9d */
+  z-index: -1;
 }
 
 #funcoesCliente li {
   list-style-type: none;
   margin: 30px 0px 30px 0px;
 }
+
 #funcoesCliente li a {
   color: #156a8f;
   text-transform: uppercase;
@@ -272,16 +377,20 @@ p {
   color: #f57a3e;
   transition: 0.2s;
 }
+
 .secao-home-cliente-row-div-central {
   margin-top: 10px;
 }
+
 .secao-home-cliente-row-div-direita {
   margin-top: 10px;
 }
+
 @media screen and (max-width: 992px) {
   #funcoesCliente {
     display: none !important;
   }
+
   #funcoesfuncioanrio {
     display: none !important;
   }
@@ -289,31 +398,44 @@ p {
   .clienteAcessado {
     display: block !important;
   }
-  .avatarImg{
+
+  .avatarImg {
     width: 250px;
     height: 265px;
+  }
 }
-}
+
 /* estilização cliente final*/
 
 /*estilização funcionario*/
 #funcoesfuncioanrio {
   width: 500px;
-  height: 91vh;
-  background-color: #dcdcdc;
+  height: 100vh;
+  background-color: #c06014;
 }
+
 #funcoesfuncioanrio li {
   list-style-type: none;
   margin-top: 30px;
 }
+
 #funcoesfuncioanrio li a {
-  color: #343a40;
+  color: #ffffff;
   text-transform: uppercase;
   font-size: larger;
+  font-weight: 600;
 }
+
+#funcoesfuncioanrio li a:hover {
+  margin-left: 5px;
+  transition: all 0.2s;
+}
+
+
 .funcionarioAcessado {
   display: none !important;
 }
+
 @media screen and (min-width: 992px) {
   .usuarioAcessado {
     display: none !important;
@@ -325,13 +447,16 @@ p {
     display: block;
     height: 100%;
   }
+
   .itens-navbar-mobile {
     display: flex;
     justify-content: space-between;
   }
+
   .login1 a {
     margin-top: 15px;
   }
+
   .login1 img {
     display: block;
     background: transparent;
@@ -339,29 +464,35 @@ p {
     right: 10px;
     top: 28px;
   }
+
   .sair {
     right: 10px;
   }
+
   .sair a {
     font-size: 1em;
     padding-top: 20px !important;
   }
+
   .sair a:hover {
     color: #ffc95a !important;
     transition: 0, 7s !important;
     font-size: 1em !important;
   }
+
   .nav-link:hover {
     color: #ffc95a !important;
     transition: 0, 7s;
     font-size: 1em;
     font-weight: bolder;
   }
+
   .table {
     table-layout: fixed;
     width: 100%;
     word-wrap: break-word;
   }
+
   #acoes-botoes {
     display: block;
   }

@@ -1,6 +1,6 @@
 <div class="col-10 secao-home-cliente-row-div-central">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-5">
             <div class="ContainerTable">
                 <table class="table">
                     <thead>
@@ -22,21 +22,18 @@
                 </table>
             </div>
         </div>
-        <div class="col-lg-9" style="background-color: #b7dcdd; padding: 15px;">
+        <div class="col-lg-7 posicao-caixa">
             <div>
-                <h1
-                    style="display: flex; justify-content: center; background-color:#347d9d; color: #000; font-weight: 800;">
-                    Caixa Aberto</h1>
-                <div class="valorApagar"
-                    style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 10px;">
-                    <div class=" itensColuna" style="display: flex; align-items: flex-end; flex-direction: column;">
+                <h1 class="texto-center"> Caixa Aberto</h1>
+                <div class="valorApagar">
+                    <div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01"
-                                    style="font-size: 15px; font-weight: 800;">Forma de Pagamento</label>
+                                <label class="input-group-text label-estilo" for="inputGroupSelect01">Forma de
+                                    Pagamento</label>
                             </div>
                             <select class="custom-select" id="inputGroupSelect01">
-                                <option selected disabled>ESCOLHA</option>
+                                <option selected disabled>ESCOLHA OPÇÃO...</option>
                                 <option value="1">DINHEIRO</option>
                                 <option value="2">CARTÃO</option>
                             </select>
@@ -44,7 +41,7 @@
                         <div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Sub Total
+                                    <span class="input-group-text label-estilo">Sub Total
                                         R$</span>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -55,7 +52,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Desconto
+                                <span class="input-group-text label-estilo">Desconto
                                     R$</span>
                             </div>
                             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -67,9 +64,7 @@
                     <div>
                         <div class="input-group mb-3"
                             style="display: flex; flex-direction: column; align-items: center;">
-                            <h1 style="display: flex; justify-content: center; color: #000; font-weight: 800;">
-                                Total
-                                a Pagar</h1>
+                            <h1 class="texto-total"> Total a Pagar</h1>
                             <div>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
@@ -84,9 +79,9 @@
                         {{!-- Botões da Pagina --}}
                         <div class="botoes" style="margin-top: 15px">
                             <p style="display: flex; justify-content: space-around;">
-                                <a href="/dashboard/caixa/entrada" class="btn btn-danger"
+                                <a href="/dashboard/caixa/entrada" class="btn btn-warning"
                                     style="font-size: 20px; font-weight: bolder; ">CANCELAR</a>
-                                <a href="/dashboard/caixa/saida" class="btn btn-success"
+                                <a href="/dashboard/caixa/saida" class="btn btn-primary"
                                     style="font-size: 20px; font-weight: bolder; background">FINALIZAR</a>
                             </p>
                         </div>
@@ -95,17 +90,13 @@
 
                 {{!-- Fechamento do Caixa --}}
                 <div class="resultados">
-                    <h1
-                        style="display: flex; justify-content: center; background-color:#347d9d; color: #000; font-weight: 800;">
+                    <h1 class="texto-center">
                         Fechamento do Caixa</h1>
                     <hr style="margin-top: 10px; padding: 0;">
-                    <div class="row"
-                        style="display: flex; flex-direction: column; align-items: flex-end; align-content: flex-start; padding: 1px 0px 0px 15px;">
+                    <div class="row fechamento-caixa">
                         <div>
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
-                                    Inserido
-                                    R$</span>
+                                <span class="input-group-text label-estilo">Valor Inserido R$</span>
                                 <div class="input-group-append">
                                     <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">.00</span>
@@ -114,9 +105,7 @@
                         </div>
                         <div>
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
-                                    Retirado
-                                    R$</span>
+                                <span class="input-group-text label-estilo">Valor Retirado R$</span>
                                 <div class="input-group-append">
                                     <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">.00</span>
@@ -125,9 +114,7 @@
                         </div>
                         <div>
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
-                                    Total
-                                    R$</span>
+                                <span class="input-group-text label-estilo">Valor Total R$</span>
                                 <div class="input-group-append">
                                     <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">.00</span>

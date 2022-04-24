@@ -62,32 +62,32 @@
                 <td>{{this.Cliente.nome}}</td>
                 <td>{{{this.quantidadePedido}}}</td>
                 <td>{{this.tipoDePagamentoNaEntrega}}</td>
-                <td>{{{this.valorTotal}}}</td>                
+                <td>{{{this.valorTotal}}}</td>
                 <td>{{{this.Cliente.endereco}}}</td>
                 <td>{{{this.createdAt}}}</td>
                 <form method="post" action="/dashboard/updatePedidoStatus">
-                <td>
-                    {{#switch this.statusPedidos}}
-                    <select name="statusDoPedido" id="status">
-                        <option value="pendente">Pendente</option>                        
-                        <option value="confirmado">Confirmado</option>
-                        <option value="aCaminho">A caminho</option>
-                        <option value="finalizado">Finalizado</option>
-                    </select>
+                    <td>
+                        {{#switch this.statusPedidos}}
+                        <select name="statusDoPedido" id="status">
+                            <option value="pendente">Pendente</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="aCaminho">A caminho</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
 
-                    {{/switch}}
-                
-                
-                <input hidden type="text" name="id" value="{{this.id}}">
-                
-                    <button type="submit" class="btn btn-secundary">atualizar</button>
-                </td>
+                        {{/switch}}
+
+
+                        <input hidden type="text" name="id" value="{{this.id}}">
+
+                        <button type="submit" class="btn btn-secundary">atualizar</button>
+                    </td>
                 </form>
                 <td id="acoes-botoes">
                     <a href="/dashboard/editPedido/{{this.id}}"> <button type="button" class="btn btn-primary">alterar
                         </button></a>
                     <form action="/dashboard/removePedido/{{this.id}}" method="POST">
-                        <button class="btn btn-danger" type="submit">Remover</button>
+                        <button class="btn btn-warning" type="submit">Remover</button>
                     </form>
                 </td>
             </tr>

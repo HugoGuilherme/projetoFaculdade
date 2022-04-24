@@ -22,17 +22,17 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 {{#switch session.status}}
-                {{#case '1'}} <a class="" href="/areaCliente/cliente"><img src="/imagens/logo_gas_8.png" alt="icon"
-                        width="85px">GÁS LEGAL</a>
+                {{#case '1'}} <a class="" href="/areaCliente/cliente"><img src="/imagens/logo_gas_8.png" alt="icon">GÁS
+                    LEGAL</a>
                 {{/case}}
-                {{#case '2'}} <a class=" " href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
-                        width="85px">GÁS LEGAL</a>
+                {{#case '2'}} <a class=" " href="/dashboard"><img class="logotipo" src="/imagens/logo_gas_8.png"
+                        alt="icon">GÁS LEGAL</a>
                 {{/case}}
-                {{#case '3'}} <a class=" " href="/dashboard"><img src="/imagens/logo_gas_8.png" alt="icon"
-                        width="85px">GÁS LEGAL</a>
+                {{#case '3'}} <a class=" " href="/dashboard"><img class="logotipo" src="/imagens/logo_gas_8.png"
+                        alt="icon">GÁS LEGAL</a>
                 {{/case}}
                 {{#case null}}
-                <a class=" " href="/"><img src="/imagens/logo_gas_8.png" alt="icon" width="85px">GÁS
+                <a class=" " href="/"><img class="logotipo" src="/imagens/logo_gas_8.png" alt="icon">GÁS
                     LEGAL</a>
                 {{/case}}
                 {{/switch}}
@@ -124,11 +124,11 @@
                                     <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
                                         placeholder="Password">
                                 </div>
-                                <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
+                                <button type="submit" id="acessarCliente" class="btn btn-primary col-12">Entrar</button>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger col-12" data-toggle="modal"
+                            <button type="button" class="btn btn-warning col-12" data-toggle="modal"
                                 data-target=".bd-example-modal-lg" data-dismiss=" modal "
                                 id="btnCadastro">Cadastre-se</button>
                         </div>
@@ -227,7 +227,7 @@
                                 </div>
                                 <input type="hidden" name="status" id="status" value="1" />
                                 <div class="modal-footer col-12">
-                                    <button type="submit" class="btn btn-dark col-12" id="submitCadastrar"
+                                    <button type="submit" class="btn btn-primary col-12" id="submitCadastrar"
                                         disabled>Enviar</button>
                                 </div>
 
