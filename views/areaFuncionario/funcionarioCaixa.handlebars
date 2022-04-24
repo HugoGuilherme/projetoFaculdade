@@ -1,3 +1,141 @@
 <div class="col-10 secao-home-cliente-row-div-central">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ContainerTable">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col-lg">ID</th>
+                            <th scope="col-lg">Nome</th>
+                            <th scope="col-lg">Quantidade</th>
+                            <th scope="col-lg">Valor Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row-lg">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-9" style="background-color: #b7dcdd; padding: 15px;">
+            <div>
+                <h1
+                    style="display: flex; justify-content: center; background-color:#347d9d; color: #000; font-weight: 800;">
+                    Caixa Aberto</h1>
+                <div class="valorApagar"
+                    style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 10px;">
+                    <div class=" itensColuna" style="display: flex; align-items: flex-end; flex-direction: column;">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01"
+                                    style="font-size: 15px; font-weight: 800;">Forma de Pagamento</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option selected disabled>ESCOLHA</option>
+                                <option value="1">DINHEIRO</option>
+                                <option value="2">CARTÃO</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Sub Total
+                                        R$</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Desconto
+                                    R$</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group mb-3"
+                            style="display: flex; flex-direction: column; align-items: center;">
+                            <h1 style="display: flex; justify-content: center; color: #000; font-weight: 800;">
+                                Total
+                                a Pagar</h1>
+                            <div>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">R$</span>
+                                    <div class="input-group-append">
+                                        <input type="text" class="form-control"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- Botões da Pagina --}}
+                        <div class="botoes" style="margin-top: 15px">
+                            <p style="display: flex; justify-content: space-around;">
+                                <a href="/dashboard/caixa/entrada" class="btn btn-danger"
+                                    style="font-size: 20px; font-weight: bolder; ">CANCELAR</a>
+                                <a href="/dashboard/caixa/saida" class="btn btn-success"
+                                    style="font-size: 20px; font-weight: bolder; background">FINALIZAR</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                {{!-- Fechamento do Caixa --}}
+                <div class="resultados">
+                    <h1
+                        style="display: flex; justify-content: center; background-color:#347d9d; color: #000; font-weight: 800;">
+                        Fechamento do Caixa</h1>
+                    <hr style="margin-top: 10px; padding: 0;">
+                    <div class="row"
+                        style="display: flex; flex-direction: column; align-items: flex-end; align-content: flex-start; padding: 1px 0px 0px 15px;">
+                        <div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
+                                    Inserido
+                                    R$</span>
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
+                                    Retirado
+                                    R$</span>
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Valor
+                                    Total
+                                    R$</span>
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,30 @@
+.valorApagar {
+    width: 900px;
+    height: auto;
+    background-color: #878787;
+}
+
+.itensColuna {
+    display: flex !important;
+    width: 850px !important;
+    height: 96 !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    background-color: #555555;
+}
+
+.pagar {
+    width: 230px;
+    height: 148px;
+    display: block;
+    position: absolute;
+    top: 124px;
+    right: 0;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
