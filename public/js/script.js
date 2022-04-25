@@ -1,3 +1,5 @@
+
+window.onload = addRowHandlers();
 function limpa_formulário_cep() {
     //Limpa valores do formulário de cep.
     document.getElementById('rua').value = ("");
@@ -68,20 +70,17 @@ function pesquisacep(valor) {
 //Final do CEP
 
 //função para fazer aparecer e desaparecer com o input de troco
-document.getElementById("dinheiro").onclick = function(){
+document.getElementById("dinheiro").onclick = function () {
     document.getElementById("trocoPagamento").hidden = false
-}
-document.getElementById("cartao").onclick = function(){
-    document.getElementById("trocoPagamento").hidden = true
 }
 //final da função para fazer aparecer e desaparecer com o input de troco
 
-document.getElementById("quantidadeDeGas").onmouseup = function(){
+document.getElementById("quantidadeDeGas").onmouseup = function () {
     quantidadeDeGas = document.getElementById("quantidadeDeGas").value
     document.getElementById("valorTotalCompra").value = quantidadeDeGas * 100
 }
 
-document.getElementById("quantidadeDeGas").onblur = function(){
+document.getElementById("quantidadeDeGas").onblur = function () {
     quantidadeDeGas = document.getElementById("quantidadeDeGas").value
     document.getElementById("valorTotalCompra").value = quantidadeDeGas * 100
 }
@@ -149,7 +148,7 @@ if (window.matchMedia("(max-width: 991px)").matches) {
     navbar.style.display = "block";
     navbar.style.top = "0";
     navbar.style.zIndex = "2";
-    
+
     navbar.style.height = "auto";
     collapseLi.forEach(function (x) {
         x.setAttribute("data-toggle", "collapse");
@@ -189,7 +188,23 @@ acessoFuncionario = document.querySelector("#exampleModalLabelFuncionario");
 acessoLoginCliente = document.getElementById("loginCliente");
 acessoLoginFuncionario = document.querySelector("#loginFuncionario");
 
+/* fechamento de caixa */
 
+function addRowHandlers() {
+    var table = document.getElementById("tableIdCaixa");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler = function (row) {
+            return function () {
+                var valorTotalCaixaCompra = row.getElementsByTagName("td")[4].innerHTML;
+                var formaDePagamentoCaixaCompra = row.getElementsByTagName("td")[3].innerHTML;
 
-
+                document.getElementById("valorTotalCaixaCompra").value = valorTotalCaixaCompra;
+                document.getElementById("inputGroupSelect01").value = formaDePagamentoCaixaCompra;
+            };
+        };
+        currentRow.onclick = createClickHandler(currentRow);
+    }
+}
 

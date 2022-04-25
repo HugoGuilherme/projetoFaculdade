@@ -15,7 +15,4 @@ const Movimentos = db.define('Movimentos', {
   }
 })
 
-Movimentos.belongsTo(Caixa)
-Caixa.hasMany(Movimentos)
-
 module.exports = Movimentos

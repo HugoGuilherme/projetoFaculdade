@@ -18,7 +18,7 @@ const clienteRoutes = require('./routes/clienteRoutes')
 const funcionarioRoutes = require('./routes/funcionarioRoutes')
 const estoqueRoutes = require('./routes/estoqueRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
-const caixaRoutes = require('./routes/pedidoRoutes')
+const caixaRoutes = require('./routes/caixaRoutes')
 
 //Template engine HBS
 app.engine('handlebars', hbs.engine)

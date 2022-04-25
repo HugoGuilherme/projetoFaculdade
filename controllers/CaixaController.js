@@ -1,16 +1,32 @@
 const Caixa = require('../models/Caixa')
+const Pedido = require("../models/Pedido")
+const session = require('express-session')
+const Clientes = require("../models/Cliente")
 
 module.exports = class CaixaController {
-    static async cadastraRegistroCaixa(req, res){
-        const {valorAdicionado, valorRetirado} = req.body
-        const novoRegistro = {valorAdicionado, valorRetirado}
+
+    static async pedidosEncaminhados(req, res) {
+
+        const pedido = await Pedido.findAll({
+            include: Clientes,
+            where: {
+                statusPedidos: ['a caminho']
+            }
+        })
+        const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
+        res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados })
+    }
+
+    static async cadastraRegistroCaixa(req, res) {
+        const { valorAdicionado, valorRetirado } = req.body
+        const novoRegistro = { valorAdicionado, valorRetirado }
         const registroCadastrado = await Caixa.create(novoRegistro)
         console.log(registroCadastrado);
         //res.redirect(`/areaCliente/pedidos`)
     }
     static async registroUnicoCaixa(req, res) {
         const id = req.session.userid
-        const registro = await Caixa.findAll({where: {id: id}})
+        const registro = await Caixa.findAll({ where: { id: id } })
         const registroCadastrado = registro.map((result) => result.dataValues)
         console.log(registroCadastrado);
         //res.render('areaCliente/clientePedidos', { registroCadastrado })
@@ -35,14 +51,14 @@ module.exports = class CaixaController {
         Caixa.findOne({ where: { id: id }, raw: true })
             .then((registroCaixa) => {
                 console.log(registroCaixa);
-               // res.render('areaFuncionario/pedidos/funcionarioEditaPedido', { registroCaixa })
+                // res.render('areaFuncionario/pedidos/funcionarioEditaPedido', { registroCaixa })
             })
             .catch((err) => console.log())
     }
 
-    static  atualizaCaixa(req, res) {
+    static atualizaCaixa(req, res) {
         const id = req.body.id
-        
+
         const caixa = {
             id: req.body.id,
             valorAdicionado: req.body.valorAdicionado,

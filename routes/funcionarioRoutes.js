@@ -10,10 +10,6 @@ router.get('/dashboard', checkAuth, function (req, res) {
     res.render('areaFuncionario/funcionarioHome')
 })
 
-router.get('/dashboard/caixa', checkAuth, function (req, res) {
-    res.render('areaFuncionario/funcionarioCaixa')
-})
-
 router.get('/dashboard/relatorios', checkAuth, function (req, res) {
     res.render('areaFuncionario/funcionarioRelatorios')
 })

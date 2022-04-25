@@ -6,10 +6,10 @@ const { Op } = require('sequelize')
 
 module.exports = class PedidoController {
 
-    static async cadastrarPedido(req, res){
-        const {quantidadeDeGas, pagamento, valorTotal} = req.body
+    static async cadastrarPedido(req, res) {
+        const { quantidadeDeGas, pagamento, valorTotal } = req.body
 
-        const novoPedido = {statusPedidos: "pendente", quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid}
+        const novoPedido = { statusPedidos: "pendente", quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid }
 
         const pedidoFeito = await Pedido.create(novoPedido)
 
@@ -19,10 +19,10 @@ module.exports = class PedidoController {
     static async pedidoCadastradoCliente(req, res) {
         const id = req.session.userid
         const pedido = await Pedido.findAll({
-            where: {ClienteId: id},
+            where: { ClienteId: id },
             include: Clientes
         })
-        const pedidoCadastrado = pedido.map(el => el.get({plain: true}))
+        const pedidoCadastrado = pedido.map(el => el.get({ plain: true }))
         console.log(pedidoCadastrado);
         res.render('areaCliente/clientePedidos', { pedidoCadastrado })
     }
@@ -31,17 +31,20 @@ module.exports = class PedidoController {
 
         let search = ''
 
-        if(req.query.search){
+        if (req.query.search) {
             search = req.query.search
         }
 
-        const pedido = await Pedido.findAll({include:Clientes,
-        where:{
-            ClienteId: {[Op.like]: `%${search}%`}
-        }})            
-        const pedidosCadastrados = pedido.map(el => el.get({plain: true}))
+        const pedido = await Pedido.findAll({
+            include: Clientes,
+            where: {
+                ClienteId: { [Op.like]: `%${search}%` },
+                statusPedidos: ['pendente', 'confirmado']
+            }
+        })
+        const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
         res.render('areaFuncionario/pedidos/funcionarioPedidosDoCliente', { pedidosCadastrados })
-        
+
     }
 
     static async deletaPedido(req, res) {
@@ -63,9 +66,9 @@ module.exports = class PedidoController {
             .catch((err) => console.log())
     }
 
-    static  updatePedido(req, res) {
+    static updatePedido(req, res) {
         const id = req.body.id
-        
+
         const pedido = {
             id: req.body.id,
             tipoDePagamentoNaEntrega: req.body.tipoDePagamentoNaEntrega,
@@ -79,7 +82,7 @@ module.exports = class PedidoController {
             })
             .catch((err) => console.log())
     }
-    static  updatePedidoStatus(req, res) {
+    static updatePedidoStatus(req, res) {
         const id = req.body.id
         console.log(req.body.statusDoPedido);
         const pedido = {

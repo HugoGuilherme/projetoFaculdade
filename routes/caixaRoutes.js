@@ -4,6 +4,8 @@ const CaixaController = require('../controllers/CaixaController')
 //helpers
 const checkAuth = require('../helpers/auth').checkAuth
 
+router.get('/dashboard/caixa', checkAuth, CaixaController.pedidosEncaminhados)
+
 router.post('/pedido/realizado', checkAuth, CaixaController.cadastraRegistroCaixa)
 router.get('/areaCliente/pedidos', checkAuth, CaixaController.registroUnicoCaixa)
 router.get('/dashboard/pedidos', checkAuth, CaixaController.registroCaixa)

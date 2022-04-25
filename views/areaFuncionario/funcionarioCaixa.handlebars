@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="ContainerTable">
-                <table class="table">
+                <table id="tableIdCaixa" class="table">
                     <thead>
                         <tr>
                             <th scope="col-lg">ID</th>
@@ -12,12 +12,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row-lg">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+                         {{#each pedidosCadastrados}}
+                            <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.Cliente.nome}}</td>
+                            <td>{{{this.quantidadePedido}}}</td>
+                            <td hidden>{{this.tipoDePagamentoNaEntrega}}</td>
+                            <td id="valorTotalPedidoCaixa">{{{this.valorTotal}}}</td>
+                            </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -37,8 +40,8 @@
                             </div>
                             <select class="custom-select" id="inputGroupSelect01">
                                 <option selected disabled>ESCOLHA</option>
-                                <option value="1">DINHEIRO</option>
-                                <option value="2">CARTÃO</option>
+                                <option value="dinheiro">DINHEIRO</option>
+                                <option value="cartao">CARTÃO</option>
                             </select>
                         </div>
                         <div>
@@ -74,7 +77,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
                                     <div class="input-group-append">
-                                        <input type="text" class="form-control"
+                                        <input id="valorTotalCaixaCompra" type="text" class="form-control"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">.00</span>
                                     </div>
@@ -129,7 +132,7 @@
                                     Total
                                     R$</span>
                                 <div class="input-group-append">
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input  type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">.00</span>
                                 </div>
                             </div>
