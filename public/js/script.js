@@ -1,5 +1,4 @@
 
-window.onload = addRowHandlers();
 function limpa_formulário_cep() {
     //Limpa valores do formulário de cep.
     document.getElementById('rua').value = ("");
@@ -189,22 +188,4 @@ acessoLoginCliente = document.getElementById("loginCliente");
 acessoLoginFuncionario = document.querySelector("#loginFuncionario");
 
 /* fechamento de caixa */
-
-function addRowHandlers() {
-    var table = document.getElementById("tableIdCaixa");
-    var rows = table.getElementsByTagName("tr");
-    for (i = 0; i < rows.length; i++) {
-        var currentRow = table.rows[i];
-        var createClickHandler = function (row) {
-            return function () {
-                var valorTotalCaixaCompra = row.getElementsByTagName("td")[4].innerHTML;
-                var formaDePagamentoCaixaCompra = row.getElementsByTagName("td")[3].innerHTML;
-
-                document.getElementById("valorTotalCaixaCompra").value = valorTotalCaixaCompra;
-                document.getElementById("inputGroupSelect01").value = formaDePagamentoCaixaCompra;
-            };
-        };
-        currentRow.onclick = createClickHandler(currentRow);
-    }
-}
 
