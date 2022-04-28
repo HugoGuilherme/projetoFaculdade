@@ -1,3 +1,26 @@
+:root {
+  /*NavBar Menu*/
+  --a-escuro: #012E40;
+  /* Cor do box claro */
+  --a-escuro2: #024059;
+  /*Letras gerais*/
+  --a-claro: #3C88A6;
+  /* plano de fundo geral*/
+  --c-claro: #C1D4D9;
+  /*painel lateral*/
+  --a-claro2: #246B73;
+  /* Letras dos links */
+  --c-claro2: #ffffff8c;
+  /*Plano de fundo container*/
+  --a-claro3: #F3F3F3;
+  /* Nav Item hover*/
+  --h-navitem: #ffc95a;
+  /* Cor da borda do nav */
+  --b-navitem: #1a1b30;
+
+
+}
+
 * {
   border: none;
   background-color: none;
@@ -10,7 +33,7 @@ a {
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--c-claro2);
   font-size: 1em;
 }
 
@@ -19,7 +42,7 @@ a:hover {
 }
 
 body {
-  background: #e7e7e7 !important;
+  background: var(--c-claro) !important;
   font-family: Arial, Helvetica, sans-serif;
   width: 100% auto;
   height: 100vh !important;
@@ -30,7 +53,7 @@ body {
 }
 
 .nav-item a:hover {
-  color: #ffc95a !important;
+  color: var(--h-navitem) !important;
   transition: 0, 02s;
   font-size: 23px;
   font-weight: bolder;
@@ -51,16 +74,16 @@ p {
 
 .containerCentral {
   padding-top: 40px;
-  background: #ffffff;
+  background: var(--a-claro3);
   margin-top: 8px;
   padding: 0px !important;
 }
 
 .qualificacoes {
   /* cor de fundo anterior #c61c2c */
-  background-color: #dcae1d;
+  background-color: var(--a-escuro);
   border-radius: 2%;
-  color: #fff;
+  color: var(--a-claro3);
   text-align: justify;
 }
 
@@ -74,7 +97,7 @@ p {
 }
 
 .gasInfo {
-  background-color: #f3f3f3f3;
+  background-color: var(--a-claro3);
 }
 
 .imgInfo {
@@ -93,8 +116,8 @@ p {
 
 .nav-cor {
   /* #c61c2c */
-  background-color: #0a1612 !important;
-  border-color: #1a1b30 !important;
+  background-color: var(--a-escuro) !important;
+  border-color: var(--b-navitem) !important;
 }
 
 #loginFuncionario {
@@ -113,7 +136,7 @@ p {
   margin-top: 5px !important;
   display: block;
   padding-top: 2px;
-  color: #ffffff;
+  color: var(--a-claro3);
 }
 
 .login1 img {
@@ -124,7 +147,7 @@ p {
 }
 
 .login1:hover {
-  box-shadow: 0.6px 1px 3px rgb(26, 24, 24);
+  box-shadow: 0.6px 1px 3px var(--b-navitem);
 }
 
 .sair a {
@@ -132,26 +155,26 @@ p {
 }
 
 .sair a:hover {
-  color: #ffc95a !important;
+  color: var(--h-navitem) !important;
   transition: 0, 7s !important;
   font-size: 1.8em !important;
   font-weight: bolder !important;
 }
 
 .nav-link {
-  color: #fff !important;
+  color: var(--a-claro3) !important;
   cursor: pointer;
 }
 
 .nav-link:hover {
-  color: #ffc95a !important;
+  color: var(--h-navitem) !important;
   transition: 0, 7s;
   font-size: 1.2em;
   font-weight: bolder;
 }
 
 .itens-navbar-mobile a:hover {
-  color: #ffc95a !important;
+  color: var(--h-navitem) !important;
   transition: 0, 7s;
   font-size: 1.2em;
   font-weight: bolder;
@@ -162,7 +185,7 @@ p {
 }
 
 #acoes-botoes a {
-  color: #1a1b30;
+  color: var(--b-navitem);
 }
 
 .btn.focus,
@@ -194,8 +217,8 @@ p {
   width: 380px;
   height: 100%;
   text-align: center;
-  box-shadow: 1px 1px 10px rgb(171, 171, 173);
-  background-color: #cdcdcd;
+  box-shadow: 1px 1px 10px var(--c-claro);
+  background-color: var(--c-claro);
   /* #d2dcdd */
 }
 
@@ -210,12 +233,12 @@ p {
 
 .rodape {
   /* Cor de Fundo anterior #343a40 */
-  background: #0a1612;
+  background: var(--a-escuro);
   text-align: center;
   bottom: 0;
   width: 100%;
   padding: 1.2rem;
-  color: #fff;
+  color: var(--a-claro3);
   box-sizing: border-box;
 }
 
@@ -225,7 +248,7 @@ p {
 
 .imgFuncionarioHome {
   width: 340px;
-  background-color: white;
+  background-color: var(--a-claro3);
   border-radius: 100%;
   border: outset;
   border-bottom-style: inset;
@@ -236,7 +259,7 @@ p {
 }
 
 .logotipo {
-  background-color: white;
+  background-color: var(--a-claro3);
   border-radius: 100%;
   border-style: outset;
   width: 75px;
@@ -254,22 +277,44 @@ p {
 .posicao-caixa {
   display: flex;
   justify-content: center;
-  background-color: #cdcdcd;
+  background-color: var(--c-claro);
   /* ultima cor de fundo #b7dcdd */
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px rgb(171, 171, 173);
+  box-shadow: 1px 1px 10px var(--c-claro2);
 
 }
 
 .texto-center {
   display: flex;
   justify-content: center;
-  background-color: #c06014;
-  color: #f2d388;
+  background-color: var(--a-claro);
+  /* #c06014 */
+  color: var(--a-claro3);
+  /* #f2d388 */
   /* font-size: 30px; */
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.texto-center2 {
+  display: flex;
+  justify-content: center;
+  background-color: var(--a-claro);
+  /* #c06014 */
+  color: var(--a-claro3);
+  /* #f2d388 */
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.texto-center3 {
+  display: flex;
+  justify-content: center;
+  background-color: var(--a-claro);
+  color: var(--a-claro3);
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .valorApagar {
@@ -280,15 +325,33 @@ p {
   flex-wrap: wrap;
 }
 
+.col {
+  padding: 0 10px !important;
+}
+
 .label-estilo {
   font-size: 15px !important;
   font-weight: 800 !important;
 }
 
+.fundo-dos-pedidos {
+  background-color: var(--a-claro3);
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px var(--c-claro2);
+  height: 100%;
+}
+
+/*
+
+FALTA ALTERAR DAQUI PARA BAIXO
+
+
+*/
+
 .texto-total {
   display: flex;
   justify-content: center;
-  color: #000000;
+  color: var(--a-escuro);
   font-size: 35px;
   font-weight: 800;
   text-transform: uppercase;
@@ -313,7 +376,7 @@ p {
   }
 
   .containerCentral {
-    background: #ffffff;
+    background: var(--a-claro3);
     height: 100%;
   }
 
@@ -355,8 +418,8 @@ p {
 #funcoesCliente {
   width: 500px;
   height: 100vh;
-  background-color: #c06014;
-  /* cor de fundo anterior #9d9d9d */
+  background-color: ;
+  /* cor de fundo anterior #c06014 */
   z-index: -1;
 }
 
@@ -366,7 +429,8 @@ p {
 }
 
 #funcoesCliente li a {
-  color: #156a8f;
+  color: var(--a-escuro2);
+  /* #156a8f  */
   text-transform: uppercase;
   font-size: 35px;
   font-weight: bold;
@@ -374,7 +438,7 @@ p {
 
 #funcoesCliente li a:hover {
   margin-left: 10px;
-  color: #f57a3e;
+  color: var(--a-escuro2);
   transition: 0.2s;
 }
 
@@ -411,7 +475,7 @@ p {
 #funcoesfuncioanrio {
   width: 500px;
   height: 100vh;
-  background-color: #c06014;
+  background-color: var(--a-claro2);
 }
 
 #funcoesfuncioanrio li {
@@ -420,7 +484,7 @@ p {
 }
 
 #funcoesfuncioanrio li a {
-  color: #ffffff;
+  color: var(--a-claro3);
   text-transform: uppercase;
   font-size: larger;
   font-weight: 600;
@@ -475,13 +539,13 @@ p {
   }
 
   .sair a:hover {
-    color: #ffc95a !important;
+    color: var(--h-navitem) !important;
     transition: 0, 7s !important;
     font-size: 1em !important;
   }
 
   .nav-link:hover {
-    color: #ffc95a !important;
+    color: var(--h-navitem) !important;
     transition: 0, 7s;
     font-size: 1em;
     font-weight: bolder;
