@@ -17,12 +17,18 @@ module.exports = class CaixaController {
         res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados })
     }
 
-    static async cadastraRegistroCaixa(req, res) {
-        const { valorAdicionado, valorRetirado } = req.body
-        const novoRegistro = { valorAdicionado, valorRetirado }
-        const registroCadastrado = await Caixa.create(novoRegistro)
-        console.log(registroCadastrado);
-        //res.redirect(`/areaCliente/pedidos`)
+    static async finalizarPedidoCaixa(req, res) {
+        const id = req.body.idPedidoFinalizar
+        const finalizaPedidoCaixa = {
+            id: req.body.idPedidoFinalizar,
+            statusPedidos: "finalizado"
+        }
+        console.log(finalizaPedidoCaixa);
+        Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
+            .then(() => {
+                res.redirect(`/dashboard/relatorios`)
+            })
+            .catch((err) => console.log())
     }
     static async registroUnicoCaixa(req, res) {
         const id = req.session.userid

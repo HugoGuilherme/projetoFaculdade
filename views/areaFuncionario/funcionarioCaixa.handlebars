@@ -12,14 +12,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                         {{#each pedidosCadastrados}}
-                            <tr>
+                        {{#each pedidosCadastrados}}
+                        <tr>
                             <td>{{this.id}}</td>
                             <td>{{this.Cliente.nome}}</td>
                             <td>{{{this.quantidadePedido}}}</td>
                             <td hidden>{{this.tipoDePagamentoNaEntrega}}</td>
                             <td id="valorTotalPedidoCaixa">{{{this.valorTotal}}}</td>
-                            </tr>
+                        </tr>
                         {{/each}}
                     </tbody>
                 </table>
@@ -30,24 +30,38 @@
                 <h1
                     style="display: flex; justify-content: center; background-color:#347d9d; color: #000; font-weight: 800;">
                     Caixa Aberto</h1>
-                <div class="valorApagar"
-                    style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 10px;">
-                    <div class=" itensColuna" style="display: flex; align-items: flex-end; flex-direction: column;">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01"
-                                    style="font-size: 15px; font-weight: 800;">Forma de Pagamento</label>
+                <form method="post" action="/caixa/pedidoFinalizado">
+                    <div class="valorApagar"
+                        style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 10px;">
+                        <div class=" itensColuna" style="display: flex; align-items: flex-end; flex-direction: column;">
+                            <div class="input-group mb-3">
+                                <input type="text" id="idPedidoFinalizar" name="idPedidoFinalizar" hidden>
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01"
+                                        style="font-size: 15px; font-weight: 800;">Forma de Pagamento</label>
+                                </div>
+                                <select class="custom-select" name="tipoDePagamento" id="inputGroupSelect01">
+                                    <option selected disabled>ESCOLHA</option>
+                                    <option value="dinheiro">DINHEIRO</option>
+                                    <option value="cartao">CARTÃO</option>
+                                </select>
                             </div>
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option selected disabled>ESCOLHA</option>
-                                <option value="dinheiro">DINHEIRO</option>
-                                <option value="cartao">CARTÃO</option>
-                            </select>
-                        </div>
-                        <div>
+                            <div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Sub
+                                            Total
+                                            R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Sub Total
+                                    <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Desconto
                                         R$</span>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -56,46 +70,36 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-size: 15px; font-weight: 800;">Desconto
-                                    R$</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="input-group mb-3"
-                            style="display: flex; flex-direction: column; align-items: center;">
-                            <h1 style="display: flex; justify-content: center; color: #000; font-weight: 800;">
-                                Total
-                                a Pagar</h1>
-                            <div>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">R$</span>
-                                    <div class="input-group-append">
-                                        <input id="valorTotalCaixaCompra" type="text" class="form-control"
-                                            aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-text">.00</span>
+                        <div>
+                            <div class="input-group mb-3"
+                                style="display: flex; flex-direction: column; align-items: center;">
+                                <h1 style="display: flex; justify-content: center; color: #000; font-weight: 800;">
+                                    Total
+                                    a Pagar</h1>
+                                <div>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                        <div class="input-group-append">
+                                            <input id="valorTotalCaixaCompra" type="text" class="form-control"
+                                                aria-label="Amount (to the nearest dollar)">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {{!-- Botões da Pagina --}}
-                        <div class="botoes" style="margin-top: 15px">
-                            <p style="display: flex; justify-content: space-around;">
-                                <a href="/dashboard/caixa/entrada" class="btn btn-danger"
-                                    style="font-size: 20px; font-weight: bolder; ">CANCELAR</a>
-                                <a href="/dashboard/caixa/saida" class="btn btn-success"
-                                    style="font-size: 20px; font-weight: bolder; background">FINALIZAR</a>
-                            </p>
+                            {{!-- Botões da Pagina --}}
+                            <div class="botoes" style="margin-top: 15px">
+                                <p style="display: flex; justify-content: space-around;">
+                                    <a href="/dashboard/caixa/entrada" class="btn btn-danger"
+                                        style="font-size: 20px; font-weight: bolder; ">CANCELAR</a>
+
+                                    <button class="btn btn-success"
+                                        style="font-size: 20px; font-weight: bolder; background">FINALIZAR</button>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </form>
                 {{!-- Fechamento do Caixa --}}
                 <div class="resultados">
                     <h1
@@ -132,7 +136,7 @@
                                     Total
                                     R$</span>
                                 <div class="input-group-append">
-                                    <input  type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">.00</span>
                                 </div>
                             </div>
@@ -144,18 +148,20 @@
     </div>
     <script>
         var table = document.getElementById("tableIdCaixa");
-    var rows = table.getElementsByTagName("tr");
-    for (i = 0; i < rows.length; i++) {
-        var currentRow = table.rows[i];
-        var createClickHandler = function (row) {
-            return function () {
-                var valorTotalCaixaCompra = row.getElementsByTagName("td")[4].innerHTML;
-                var formaDePagamentoCaixaCompra = row.getElementsByTagName("td")[3].innerHTML;
+        var rows = table.getElementsByTagName("tr");
+        for (i = 0; i < rows.length; i++) {
+            var currentRow = table.rows[i];
+            var createClickHandler = function (row) {
+                return function () {
+                    var idPedidoFinalizar = row.getElementsByTagName("td")[0].innerHTML;
+                    var formaDePagamentoCaixaCompra = row.getElementsByTagName("td")[3].innerHTML;
+                    var valorTotalCaixaCompra = row.getElementsByTagName("td")[4].innerHTML;
 
-                document.getElementById("valorTotalCaixaCompra").value = valorTotalCaixaCompra;
-                document.getElementById("inputGroupSelect01").value = formaDePagamentoCaixaCompra;
+                    document.getElementById("valorTotalCaixaCompra").value = valorTotalCaixaCompra;
+                    document.getElementById("inputGroupSelect01").value = formaDePagamentoCaixaCompra;
+                    document.getElementById("idPedidoFinalizar").value = idPedidoFinalizar;
+                };
             };
-        };
-        currentRow.onclick = createClickHandler(currentRow);
-    }
+            currentRow.onclick = createClickHandler(currentRow);
+        }
     </script>
