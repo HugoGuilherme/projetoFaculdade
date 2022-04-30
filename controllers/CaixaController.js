@@ -18,10 +18,12 @@ module.exports = class CaixaController {
     }
 
     static async finalizarPedidoCaixa(req, res) {
-        const id = req.body.idPedidoFinalizar
+        const id = req.body.id
         const finalizaPedidoCaixa = {
-            id: req.body.idPedidoFinalizar,
-            statusPedidos: "finalizado"
+            id: req.body.id,
+            statusPedidos: "finalizado",
+            quantidadePedido: req.body.quantidadePedido,
+            valorTotal: req.body.totalAPagar
         }
         console.log(finalizaPedidoCaixa);
         Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
