@@ -272,6 +272,10 @@ p {
   text-align: center;
 }
 
+.table tr {
+  background-color: whitesmoke;
+}
+
 /* Estilo para o Caixa  */
 
 .posicao-caixa {
@@ -447,7 +451,7 @@ p {
     display: none !important;
   }
 
-  #funcoesfuncioanrio {
+  #funcoesfuncionario {
     display: none !important;
   }
 
@@ -464,25 +468,25 @@ p {
 /* estilização cliente final*/
 
 /*estilização funcionario*/
-#funcoesfuncioanrio {
+#funcoesfuncionario {
   width: 500px;
   height: 100vh;
   background-color: var(--a-claro2);
 }
 
-#funcoesfuncioanrio li {
+#funcoesfuncionario li {
   list-style-type: none;
   margin-top: 30px;
 }
 
-#funcoesfuncioanrio li a {
+#funcoesfuncionario li a {
   color: var(--a-claro3);
   text-transform: uppercase;
   font-size: larger;
   font-weight: 600;
 }
 
-#funcoesfuncioanrio li a:hover {
+#funcoesfuncionario li a:hover {
   margin-left: 5px;
   transition: all 0.2s;
 }

@@ -2,10 +2,34 @@ const Caixa = require('../models/Caixa')
 const Pedido = require("../models/Pedido")
 const session = require('express-session')
 const Clientes = require("../models/Cliente")
+const { Op } = require("sequelize");
 
 module.exports = class CaixaController {
 
     static async pedidosEncaminhados(req, res) {
+
+        var ts = Date.now();
+        var date_ob = new Date(ts);
+        var date = date_ob.getDate() - 1;
+        var month = date_ob.getMonth() + 1;
+        var year = date_ob.getFullYear();
+
+        const pedidoFinalizado = await Pedido.findAll({
+            where: {
+                statusPedidos: ['finalizado'],
+                createdAt: {
+                    [Op.gte]: year + "-" + month + "-" + date
+                }
+            }
+        })
+
+        const resultadosPedidosFinalizados = pedidoFinalizado.map((result) => result.dataValues.valorTotal)
+        var total = 0;
+
+        function somar(item) {
+            total += parseInt(item);
+        }
+        resultadosPedidosFinalizados.forEach(somar);
 
         const pedido = await Pedido.findAll({
             include: Clientes,
@@ -14,7 +38,7 @@ module.exports = class CaixaController {
             }
         })
         const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
-        res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados })
+        res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados, total })
     }
 
     static async finalizarPedidoCaixa(req, res) {
@@ -28,7 +52,7 @@ module.exports = class CaixaController {
         console.log(finalizaPedidoCaixa);
         Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/relatorios`)
+                res.redirect(`/dashboard/caixa`)
             })
             .catch((err) => console.log())
     }

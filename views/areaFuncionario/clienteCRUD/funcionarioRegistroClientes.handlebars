@@ -1,42 +1,48 @@
-<div class=" col-md-12 col-lg-10 secao-home-cliente-row-div-central">
-    <form action="/dashboard/clientesCadastrados" method="GET">
-        <input type="text" name="search"  placeholder="nome do cliente">
-        <input type="submit" class="btn" value="buscar">
-    </form>
-    <table class="table table-responsive">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Data de Nascimento</th>
-                <th scope="col">Email</th>
-                <th scope="col">Senha</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Ações</th>
-                <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"
-                        data-dismiss=" modal " id="btnCadastro">+</button></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each clientesCadastrados}}
-            <tr>
-                <td> {{this.id}} </td>
-                <td> {{this.nome}} </td>
-                <td> {{this.cpf}} </td>
-                <td> {{this.dataDeNascimento}} </td>
-                <td> {{this.email}} </td>
-                <td> ************ </td>
-                <td> {{this.endereco}} </td>
-                <td id="acoes-botoes">
-                    <a href="/dashboard/edit/{{this.id}}"> <button type="button"
-                            class="btn btn-primary">alterar</button></a>
-                    <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
-                        <button class="btn btn-danger" type="submit">Remover</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+<div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
+  <form action="/dashboard/clientesCadastrados" method="GET">
+    <input type="text" name="search" placeholder="nome do cliente" />
+    <input type="submit" class="btn" value="buscar" />
+  </form>
+  <table class="table table-responsive-12">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Data de Nascimento</th>
+        <th scope="col">Email</th>
+        <th scope="col">Senha</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Ações</th>
+        <th><button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target=".bd-example-modal-lg"
+            data-dismiss=" modal "
+            id="btnCadastro"
+          >+</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each clientesCadastrados}}
+        <tr>
+          <td> {{this.id}} </td>
+          <td> {{this.nome}} </td>
+          <td> {{this.cpf}} </td>
+          <td> {{formatDate this.dataDeNascimento}} </td>
+          <td> {{this.email}} </td>
+          <td> ************ </td>
+          <td> {{this.endereco}} </td>
+          <td id="acoes-botoes">
+            <a href="/dashboard/edit/{{this.id}}">
+              <button type="button" class="btn btn-primary">alterar</button></a>
+            <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
+              <button class="btn btn-danger" type="submit">Remover</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>

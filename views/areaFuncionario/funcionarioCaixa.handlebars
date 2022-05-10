@@ -8,7 +8,11 @@
     <div class="col-lg-8">
       <div class="fundo-dos-pedidos">
         <h3 class="texto-center2">Pedido de Produtos</h3>
-        <table id="tableIdCaixa" class="table w-100">
+        <table
+          id="tableIdCaixa"
+          class="table table-hover table-responsive-12 w-100"
+          style="cursor: pointer;"
+        >
           <thead class="thead-dark">
             <tr>
               <th>Quantidade</th>
@@ -16,7 +20,7 @@
               <th>valor</th>
               <th>Data</th>
               <th>Endereço</th>
-              <th>statusPedidos</th>
+              <th>status Pedidos</th>
             </tr>
           </thead>
           <tbody>
@@ -26,7 +30,7 @@
                 <td>{{{this.quantidadePedido}}}</td>
                 <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
                 <td>{{{this.valorTotal}}}</td>
-                <td>{{{this.createdAt}}}</td>
+                <td>{{{formatDate this.createdAt}}}</td>
                 <td>{{{this.Cliente.endereco}}}</td>
                 <td>{{{this.statusPedidos}}}</td>
               </tr>
@@ -136,6 +140,7 @@
             type="text"
             class="form-control"
             aria-label="Amount (to the nearest dollar)"
+            value="{{total}}"
           />
           <span class="input-group-text">.00</span>
         </div>

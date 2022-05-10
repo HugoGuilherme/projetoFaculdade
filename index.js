@@ -1,6 +1,7 @@
-const express = require('express');
-const exphbs = require("express-handlebars");
-const handlebars = require('handlebars');
+const express = require('express')
+const exphbs = require("express-handlebars")
+const moment = require('moment')
+const handlebars = require('handlebars')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
@@ -20,6 +21,7 @@ const estoqueRoutes = require('./routes/estoqueRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
 const caixaRoutes = require('./routes/caixaRoutes')
 
+//Configura a função formatDate
 //Template engine HBS
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
@@ -36,7 +38,11 @@ handlebars.registerHelper('ifCond', function (value, options) {
         return options.fn(this);
     } else
         return options.inverse(this);
-});
+})
+
+handlebars.registerHelper('formatDate', function (value) {
+    return moment(value).format('DD/MM/YYYY')
+})
 
 handlebars.registerHelper('switch', function (value, options) {
     this.switch_value = value;
