@@ -84,6 +84,7 @@
             </div>
           </div>
         </div>
+        <input type="text" id="id" name="id" hidden />
         <div>
           <h1 class="texto-center3">Troco R$</h1>
           <div>
@@ -91,9 +92,9 @@
               <span class="input-group-text">R$</span>
               <div class="input-group-append">
                 <input
+                  id="troco"
+                  name="troco"
                   type="text"
-                  id="id"
-                  name="id"
                   class="form-control"
                   aria-label="Amount (to the nearest dollar)"
                 />
@@ -106,19 +107,19 @@
           {{! Botões da Pagina }}
           <div style="display: flex;">
             <button
-              href="/dashboard/caixa/entrada"
-              class="btn btn-warning"
-              style="font-size: 20px; font-weight: bolder; "
-            >CANCELAR</button>
-            <button
               href="/caixa/pedidoFinalizado"
               class="btn btn-primary"
               style="font-size: 20px; font-weight: bolder; background"
             >FINALIZAR</button>
-
           </div>
-
         </div>
+      </form>
+      <form method="post" action="/caixa/pedidoCancelado">
+        <input type="text" id="idCancelamento" name="id" hidden />
+        <button
+          class="btn btn-warning"
+          style="font-size: 20px; font-weight: bolder; "
+        >CANCELAR</button>
       </form>
     </div>
   </div>
@@ -137,10 +138,12 @@
         <span class="input-group-text label-estilo">Valor Inserido R$</span>
         <div class="input-group-append">
           <input
+            id="valorInserido"
             type="text"
             class="form-control"
             aria-label="Amount (to the nearest dollar)"
             value="{{total}}"
+            readonly
           />
           <span class="input-group-text">.00</span>
         </div>
@@ -150,9 +153,12 @@
           <span class="input-group-text label-estilo">Valor Retirado R$</span>
           <div class="input-group-append">
             <input
+              id="valorRetirado"
               type="text"
               class="form-control"
               aria-label="Amount (to the nearest dollar)"
+              value="{{valorNoEstoqueResultado}}"
+              readonly
             />
             <span class="input-group-text">.00</span>
           </div>
@@ -162,11 +168,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text label-estilo">Valor Total R$</span>
         <div class="input-group-append">
-          <input
-            type="text"
-            class="form-control"
-            aria-label="Amount (to the nearest dollar)"
-          />
+          <input type="text" class="form-control" id="valorTotal" readonly />
           <span class="input-group-text">.00</span>
         </div>
 

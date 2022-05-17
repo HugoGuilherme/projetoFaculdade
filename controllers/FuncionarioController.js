@@ -7,10 +7,10 @@ module.exports = class FuncionarioController {
     static async atualizaFuncionarioPerfil(req, res) {
         const id = req.session.userid
         Funcionario.findOne({ where: { id: id }, raw: true })
-        .then((funcionario) => {
-            res.render('areaFuncionario/funcionarioPerfil', { funcionario })
-        })
-        .catch((err) => console.log())
+            .then((funcionario) => {
+                res.render('areaFuncionario/funcionarioPerfil', { funcionario })
+            })
+            .catch((err) => console.log())
     }
 
     static atualizaFuncionarioPerfilPost(req, res) {
@@ -32,16 +32,18 @@ module.exports = class FuncionarioController {
             .catch((err) => console.log())
     }
 
-    
+
     static async clientesCadastrados(req, res) {
         let search = ''
 
-        if(req.query.search){
+        if (req.query.search) {
             search = req.query.search
         }
-        const clientes = await Cliente.findAll({where:{
-            nome: {[Op.like]: `%${search}%`}
-        }})
+        const clientes = await Cliente.findAll({
+            where: {
+                nome: { [Op.like]: `%${search}%` }
+            }
+        })
         const clientesCadastrados = clientes.map((result) => result.dataValues)
         res.render('areaFuncionario/clienteCRUD/funcionarioRegistroClientes', { clientesCadastrados })
     }
@@ -87,16 +89,18 @@ module.exports = class FuncionarioController {
             .catch((err) => console.log())
     }
 
-    
+
     static async funcionariosCadastrados(req, res) {
         let search = ''
 
-        if(req.query.search){
+        if (req.query.search) {
             search = req.query.search
         }
-        const funcionarios = await Funcionario.findAll({where:{
-            nome: {[Op.like]: `%${search}%`}
-        }})
+        const funcionarios = await Funcionario.findAll({
+            where: {
+                nome: { [Op.like]: `%${search}%` }
+            }
+        })
         const funcionariosCadastrados = funcionarios.map((result) => result.dataValues)
         res.render('areaFuncionario/funcionarioCRUD/funcionariosCadastrados', { funcionariosCadastrados })
     }
@@ -109,7 +113,7 @@ module.exports = class FuncionarioController {
             })
             .catch((err) => console.log())
     }
-    
+
     static atualizaFuncionariotPost(req, res) {
         const id = req.body.id
 

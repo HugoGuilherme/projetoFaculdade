@@ -453,6 +453,7 @@ p {
 
   #funcoesfuncionario {
     display: none !important;
+    
   }
 
   .clienteAcessado {
@@ -469,6 +470,7 @@ p {
 
 /*estilização funcionario*/
 #funcoesfuncionario {
+  margin-left: -15px;
   width: 500px;
   height: 100vh;
   background-color: var(--a-claro2);

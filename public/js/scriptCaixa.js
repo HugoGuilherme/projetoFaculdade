@@ -12,9 +12,12 @@ for (i = 0; i < rows.length; i++) {
             document.getElementById("quantidadeDeGas").value = quantidadeDeGas;
             document.getElementById("formaDePagamento").value = formaDePagamento;
             document.getElementById("valorTotalCompra").value = valorTotalCompra;
+
             document.getElementById("id").value = id;
+            document.getElementById("idCancelamento").value = id;
 
         };
     };
     currentRow.onclick = createClickHandler(currentRow);
 }
+document.getElementById("valorTotal").value = document.getElementById("valorInserido").value - document.getElementById("valorRetirado").value;

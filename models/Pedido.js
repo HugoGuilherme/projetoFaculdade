@@ -21,6 +21,10 @@ const Pedido = db.define('Pedido', {
   tipoDePagamentoNaEntrega: {
     type: DataTypes.STRING
     // allowNull defaults to true
+  },
+  troco: {
+    type: DataTypes.STRING
+    // allowNull defaults to true
   }
 })
 

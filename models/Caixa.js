@@ -17,6 +17,10 @@ const Caixa = db.define('Caixa', {
   valorRetirado: {
     type: DataTypes.FLOAT
     // allowNull defaults to true
+  },
+  valorTotal: {
+    type: DataTypes.FLOAT
+    // allowNull defaults to true
   }
 })
 
