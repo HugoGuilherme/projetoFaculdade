@@ -81,7 +81,6 @@ const Estoque = require('./models/Estoque')
 const Movimentos = require('./models/Movimentos')
 const Caixa = require('./models/Caixa')
 
-
 // flash messages
 app.use(flash())
 
@@ -92,8 +91,6 @@ app.use((req, res, next) => {
     }
     next()
 })
-
-
 
 //Routes
 app.use('/', authRoutes)
