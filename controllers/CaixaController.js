@@ -62,8 +62,9 @@ module.exports = class CaixaController {
                 statusPedidos: ['a caminho']
             }
         })
+        var totalInseridoCaixa = total + valorNoEstoqueResultado
         const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
-        res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados, total, valorNoEstoqueResultado })
+        res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados, totalInseridoCaixa })
     }
 
     static async finalizarPedidoCaixa(req, res) {
