@@ -1,30 +1,30 @@
-<div class='row d-flex justify-content-center p-4'>
-  <div class='col-md-3'>
-    <div class='gasInicio'>
-      <div class='cardGas'>
-        <img src='../imagens/botijãoDeGas.png' />
-        <h4 class='mt-4'>
+<div class="row d-flex justify-content-center p-4">
+  <div class="col-md-3">
+    <div class="gasInicio">
+      <div class="cardGas">
+        <img src="../imagens/botijãoDeGas.png" />
+        <h4 class="mt-4">
           Gás de cozinha
         </h4>
         {{#if session.userid}}
-          <p class='mt-4'>
+          <p class="mt-4">
             Compre o seu gás no valor de R$100
           </p>
           <button
-            class='btn btn-dark col-10 mt-3 mb-4'
-            data-toggle='modal'
-            data-target='#exampleModal1'
+            class="btn btn-dark col-10 mt-3 mb-4"
+            data-toggle="modal"
+            data-target="#exampleModal1"
           >
             COMPRAR
           </button>
         {{else}}
-          <p class='m-4 text-center'>
+          <p class="m-4 text-center">
             Entre com seu usuário e venha aproveitar o melhor preço da região!
           </p>
           <button
-            class='btn btn-dark col-10 mt-3 mb-4'
-            data-toggle='modal'
-            data-target='#exampleModal'
+            class="btn btn-dark col-10 mt-3 mb-4"
+            data-toggle="modal"
+            data-target="#exampleModal"
           >
             Logar
           </button>
@@ -32,19 +32,25 @@
       </div>
     </div>
   </div>
-  <div class='col-md-6'>
-    <div class='qualificacoes p-4'>
+  <div class="col-md-6">
+    <div class="qualificacoes p-4">
       <h2>
         Qualidade
       </h2>
       <p>
-        Veja as certificações que já conquistamos pela qualidade de nossos produtos
+        Veja as certificações que já conquistamos pela qualidade de nossos
+        produtos
       </p>
       <p>
-        O Gás Legal dá atenção especial à questão da precisão e da segurança e confirma sua participação no seleto grupo de empresas nacionais certificadas pela ABNT NBR ISO 9001:2015 no Brasil.
+        O Gás Legal dá atenção especial à questão da precisão e da segurança e
+        confirma sua participação no seleto grupo de empresas nacionais
+        certificadas pela ABNT NBR ISO 9001:2015 no Brasil.
       </p>
       <p>
-        Em cada enchimento, nossos vasilhames são submetidos a um rígido controle de qualidade. Depois de aprovados, eles recebem um lacre inviolável, que funciona como uma garantia de que o produto é seguro e está dentro das normas de utilização.
+        Em cada enchimento, nossos vasilhames são submetidos a um rígido
+        controle de qualidade. Depois de aprovados, eles recebem um lacre
+        inviolável, que funciona como uma garantia de que o produto é seguro e
+        está dentro das normas de utilização.
       </p>
     </div>
   </div>
@@ -52,61 +58,62 @@
 
 <!-- Modal -->
 <div
-  class='modal fade'
-  id='exampleModal1'
-  tabindex='-1'
-  role='dialog'
-  aria-labelledby='exampleModalLabel'
-  aria-hidden='true'
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
 >
-  <div class='modal-dialog' role='document'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h5 class='modal-title' id='exampleModalLabel'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
           Solicite seu gás
         </h5>
         <button
-          type='button'
-          class='close'
-          data-dismiss='modal'
-          aria-label='Close'
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
         >
-          <span aria-hidden='true'>
+          <span aria-hidden="true">
             &times;
           </span>
         </button>
       </div>
-      <div class='modal-body'>
-        <form action='/pedido/realizado' method='post'>
+      <div class="modal-body">
+        <form action="/pedido/realizado" method="post">
           <div>
             <h6>
               Escolha a quantidade desejada
             </h6>
-            <input type='number' name='quantidadeDeGas' id='quantidadeDeGas' />
+            <input type="number" name="quantidadeDeGas" id="quantidadeDeGas" />
           </div>
           <br />
-          <div name='tipoDePagamentoNaEntrega'>
+          <div name="tipoDePagamentoNaEntrega">
             <h6>
               Escolha a sua forma de pagamento na entrega
             </h6>
             <input
-              type='radio'
-              id='dinheiro'
-              name='pagamento'
-              value='dinheiro'
+              type="radio"
+              id="dinheiro"
+              name="pagamento"
+              value="dinheiro"
             />
-            <label for='dinheiro'>
+            <label for="dinheiro">
               Dinheiro
             </label>
             <input
               hidden
-              id='trocoPagamento'
-              type='text'
-              placeholder='troco?'
+              id="trocoPagamento"
+              name="troco"
+              type="text"
+              placeholder="troco?"
             />
             <br />
-            <input type='radio' id='cartao' name='pagamento' value='cartao' />
-            <label for='cartao'>
+            <input type="radio" id="cartao" name="pagamento" value="cartao" />
+            <label for="cartao">
               Cartão
             </label>
             <br />
@@ -120,19 +127,19 @@
               R$
               <h7>
                 <input
-                  id='valorTotalCompra'
-                  name='valorTotal'
-                  type='text'
+                  id="valorTotalCompra"
+                  name="valorTotal"
+                  type="text"
                   readonly
                 />
               </h7>
             </h7>
           </div>
-          <div class='modal-footer'>
-            <button type='button' class='btn btn-danger' data-dismiss='modal'>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
               Cancelar
             </button>
-            <button type='submit' class='btn btn-success'>
+            <button type="submit" class="btn btn-success">
               Pedir
             </button>
           </div>

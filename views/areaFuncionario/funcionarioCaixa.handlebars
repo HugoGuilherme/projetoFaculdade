@@ -18,6 +18,7 @@
               <th>Quantidade</th>
               <th>Tipo de pagamento</th>
               <th>valor</th>
+              <th>troco</th>
               <th>Data</th>
               <th>Endereço</th>
               <th>status Pedidos</th>
@@ -30,6 +31,7 @@
                 <td>{{{this.quantidadePedido}}}</td>
                 <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
                 <td>{{{this.valorTotal}}}</td>
+                <td>{{this.troco}}</td>
                 <td>{{{formatDate this.createdAt}}}</td>
                 <td>{{{this.Cliente.endereco}}}</td>
                 <td>{{{this.statusPedidos}}}</td>

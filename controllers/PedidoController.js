@@ -7,9 +7,9 @@ const { Op } = require('sequelize')
 module.exports = class PedidoController {
 
     static async cadastrarPedido(req, res) {
-        const { quantidadeDeGas, pagamento, valorTotal } = req.body
+        const { quantidadeDeGas, pagamento, valorTotal, troco } = req.body
 
-        const novoPedido = { statusPedidos: "pendente", quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid }
+        const novoPedido = { statusPedidos: "pendente", troco: troco, quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid }
 
         const pedidoFeito = await Pedido.create(novoPedido)
 
@@ -91,7 +91,11 @@ module.exports = class PedidoController {
         }
         Pedido.update(pedido, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/pedidos`)
+                if (req.body.statusDoPedido == "a caminho") {
+                    res.redirect(`/dashboard/caixa`)
+                } else {
+                    res.redirect(`/dashboard/pedidos`)
+                }
             })
             .catch((err) => console.log())
     }

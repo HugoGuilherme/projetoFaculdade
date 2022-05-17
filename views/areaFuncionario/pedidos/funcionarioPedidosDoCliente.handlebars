@@ -10,10 +10,10 @@
         {{#case "2"}}
           <tr>
             <th scope="col">id pedido</th>
-            <th scope="col">id Cliente </th>
             <th scope="col">nome </th>
             <th scope="col">quantidade</th>
             <th scope="col">pagamento</th>
+            <th scope="col">troco</th>
             <th scope="col">valor total</th>
             <th scope="col">status</th>
             <th scope="col">Endereço</th>
@@ -23,10 +23,10 @@
         {{#case "3"}}
           <tr>
             <th scope="col">id pedido</th>
-            <th scope="col">id Cliente </th>
             <th scope="col">nome </th>
             <th scope="col">quantidade</th>
             <th scope="col">pagamento</th>
+            <th scope="col">troco</th>
             <th scope="col">valor total</th>
             <th scope="col">Endereço</th>
             <th scope="col">data</th>
@@ -43,10 +43,10 @@
           {{#each pedidosCadastrados}}
             <tr>
               <td>{{this.id}}</td>
-              <td>{{this.ClienteId}}</td>
               <td>{{this.Cliente.nome}}</td>
               <td>{{{this.quantidadePedido}}}</td>
               <td>{{this.tipoDePagamentoNaEntrega}}</td>
+              <td>{{this.troco}}</td>
               <td>{{{this.valorTotal}}}</td>
               <td>{{{this.statusPedidos}}}</td>
               <td>{{{this.Cliente.endereco}}}</td>
@@ -58,10 +58,10 @@
           {{#each pedidosCadastrados}}
             <tr>
               <td>{{this.id}}</td>
-              <td>{{this.ClienteId}}</td>
               <td>{{this.Cliente.nome}}</td>
               <td>{{{this.quantidadePedido}}}</td>
               <td>{{this.tipoDePagamentoNaEntrega}}</td>
+              <td>{{this.troco}}</td>
               <td>{{{this.valorTotal}}}</td>
               <td>{{{this.Cliente.endereco}}}</td>
               <td>{{{formatDate this.createdAt}}}</td>
