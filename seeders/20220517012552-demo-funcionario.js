@@ -9,7 +9,7 @@ module.exports = {
       dataDeNascimento: '1998-09-09',
       status: '3',
       email: 'adm@adm.com',
-      senha: '$2a$10$PVYwQ7rFCv2ECv3gmcTObuyyBbn8xYsfqdlIJRUhEPNF6eGIpO.F.',
+      senha: '$2a$10$PVYwQ7rFCv2ECv3gmcTObuyyBbn8xYsfqdlIJRUhEPNF6eGIpO.F.', // 123
       createdAt: '1992-09-19',
       updatedAt: '1998-09-19'
 

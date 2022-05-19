@@ -115,12 +115,12 @@
                         <div class="modal-body">
                             <form id="loginCliente" method="post" action="/acessoUsuario">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email:</label>
+                                    <label class="marg10" for="exampleInputEmail1">Email:</label>
                                     <input type="email" name="email" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="senha">Senha</label>
+                                    <label class="marg10" for="senha">Senha</label>
                                     <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
                                         placeholder="Password">
                                 </div>
@@ -159,78 +159,80 @@
                                     As senhas não conferem, tente novamente!
                                 </div>
                                 <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <label>Nome</label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Nome</label>
                                         <input type="text" name="nome" class="form-control" placeholder="nome" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>Sobrenome</label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Sobrenome</label>
                                         <input type="text" name="sobrenome" class="form-control" placeholder="sobrenome"
                                             required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>CPF</label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">CPF</label>
                                         <input type="text" name="cpf" class="form-control" placeholder="cpf" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>Data de Nascimento</label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Data de Nascimento</label>
                                         <input type="date" name="dataDeNascimento" class="form-control" required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Email</label>
+                                        <label class="marg10">Email</label>
                                         <input type="email" name="email" class="form-control" placeholder="Email"
                                             required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="password">Senha</label>
+                                        <label class="marg10" for="password">Senha</label>
                                         <input type="password" name="senha" id="senha" class="form-control"
                                             placeholder="Senha" required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="confirmpassword">Confirmação de Senha</label>
+                                        <label class="marg10" for="confirmpassword">Confirmação de Senha</label>
                                         <input type="password" name="confirmpassword" id="confirmpassword"
                                             class="form-control" placeholder="Confirme a sua senha" required>
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label>CEP
-                                            <input name="cep" class="form-control" type="text" id="cep"
-                                                placeholder="CEP" value="" size="100%" onblur="pesquisacep(this.value);"
-                                                required /></label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">CEP</label>
+                                        <input name="cep" class="form-control" type="text" id="cep" placeholder="CEP"
+                                            value="" size="100%" onblur="pesquisacep(this.value);" required />
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>NÚMERO
-                                            <input type="text" class="form-control" placeholder="Numero" size="100%"
-                                                name="numeroCasa">
-                                        </label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Número</label>
+                                        <input type="text" class="form-control" placeholder="Numero" size="100%"
+                                            name="numeroCasa" />
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>RUA
-                                            <input name="rua" class="form-control" type="text" size="100%" id="rua"
-                                                readonly /></label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Rua</label>
+                                        <input name="rua" class="form-control" type="text" size="100%" id="rua"
+                                            readonly />
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>BAIRRO
-                                            <input name="bairro" class="form-control" type="text" size="100%"
-                                                id="bairro" readonly /></label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Bairro</label>
+                                        <input name="bairro" class="form-control" type="text" size="100%" id="bairro"
+                                            readonly />
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>CIDADE
-                                            <input name="cidade" class="form-control" type="text" size="100%"
-                                                id="cidade" readonly /></label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Cidade</label>
+                                        <input name="cidade" class="form-control" type="text" size="100%" id="cidade"
+                                            readonly />
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label>ESTADO
-                                            <input name="uf" class="form-control" type="text" id="uf" size="100%"
-                                                readonly /></label>
+                                    <div class="form-group col-md-6">
+                                        <label class="marg10">Estado</label>
+                                        <input name="uf" class="form-control" type="text" id="uf" size="100%"
+                                            readonly />
                                     </div>
                                 </div>
                                 <input type="hidden" name="status" id="status" value="1" />
                                 <div class="modal-footer col-12">
                                     <button type="submit" class="btn btn-dark col-12" id="submitCadastrar"
                                         disabled>Enviar</button>
-                                </div>
 
+                                </div>
+                                <div class="modal-footer col-12 colAlinha">
+                                    <a class="" data-dismiss="modal" aria-label="Close">Já possui uma conta? Acesse
+                                        aqui.</a>
+                                </div>
                             </form>
 
                         </div>
@@ -269,7 +271,7 @@
     </section>
 
     {{> footer}}
-    
+
     <script src="/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN "
