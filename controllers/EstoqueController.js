@@ -7,20 +7,11 @@ module.exports = class EstoqueController {
         const estoque = await Estoque.findAll()
         const estoqueCadastrado = estoque.map((result) => result.dataValues)
         const quantidadeEstoqueVenda = estoque.map((result) => result.dataValues.quantidadeInserida)
-        var ts = Date.now();
-        var date_ob = new Date(ts);
-        var date = date_ob.getDate();
-        var month = date_ob.getMonth() + 1;
-        var year = date_ob.getFullYear();
-
         //valor estoque
 
         const valorPedidos = await Pedido.findAll({
             where: {
-                statusPedidos: 'finalizado',
-                createdAt: {
-                    [Op.gt]: year + "-" + month + "-" + date
-                }
+                statusPedidos: 'finalizado'
             }
         })
         const resultadosQuantidadePedidos = valorPedidos.map((result) => result.dataValues.quantidadePedido)
