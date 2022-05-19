@@ -78,7 +78,7 @@ module.exports = class CaixaController {
         console.log(finalizaPedidoCaixa);
         Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/caixa`)
+                res.redirect(`/dashboard/pedidosFinalizados`)
             })
             .catch((err) => console.log())
     }
@@ -91,7 +91,7 @@ module.exports = class CaixaController {
         console.log(finalizaPedidoCaixa);
         Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/caixa`)
+                res.redirect(`/dashboard/pedidosFinalizados`)
             })
             .catch((err) => console.log())
     }

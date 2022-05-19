@@ -12,11 +12,15 @@ const Estoque = db.define('Estoque', {
     type: DataTypes.STRING
     // allowNull defaults to true
   },
-  quantidade: {
+  quantidadeInserida: {
     type: DataTypes.INTEGER
     // allowNull defaults to true
   },
-  data:{
+  quantidadeVenda: {
+    type: DataTypes.INTEGER
+    // allowNull defaults to true
+  },
+  data: {
     type: DataTypes.DATE
   }
 });

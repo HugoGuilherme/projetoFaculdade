@@ -47,6 +47,26 @@ module.exports = class PedidoController {
 
     }
 
+    static async pedidosFinalizados(req, res) {
+
+        let search = ''
+
+        if (req.query.search) {
+            search = req.query.search
+        }
+
+        const pedido = await Pedido.findAll({
+            include: Clientes,
+            where: {
+                ClienteId: { [Op.like]: `%${search}%` },
+                statusPedidos: ['finalizado', 'cancelado']
+            }
+        })
+        const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
+        res.render('areaFuncionario/pedidos/funcionarioPedidosFinalizadosDoCliente', { pedidosCadastrados })
+
+    }
+
     static async deletaPedido(req, res) {
         const { id } = req.params
         try {
