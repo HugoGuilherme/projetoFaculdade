@@ -20,7 +20,6 @@
         <th scope="col">nomeDoProduto</th>
         <th scope="col">valorDoProduto</th>
         <th scope="col">quantidade inserida</th>
-        <th scope="col">quantidade de venda</th>
         <th scope="col">data</th>
         <th scope="col"><a href="/dashboard/novoProduto"><button
               class="btn btn-primary"
@@ -34,7 +33,6 @@
           <td> {{this.nomeDoProduto}} </td>
           <td> {{this.valorDoProduto}} </td>
           <td> {{this.quantidadeInserida}} </td>
-          <td> {{this.quantidadeVenda}} </td>
           <td> {{formatDate this.data}} </td>
           <td id="acoes-botoes">
             <a href="/dashboard/editEstoque/{{this.id}}"><button

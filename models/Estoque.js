@@ -16,10 +16,6 @@ const Estoque = db.define('Estoque', {
     type: DataTypes.INTEGER
     // allowNull defaults to true
   },
-  quantidadeVenda: {
-    type: DataTypes.INTEGER
-    // allowNull defaults to true
-  },
   data: {
     type: DataTypes.DATE
   }
