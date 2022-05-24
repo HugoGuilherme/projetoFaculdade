@@ -13,6 +13,8 @@
   --c-claro2: #ffffff8c;
   /*Plano de fundo container*/
   --a-claro3: #F3F3F3;
+  /*Plano de fundo CardGas*/
+  --a-claro4: #ffffff;
   /* Nav Item hover*/
   --h-navitem: #ffc95a;
   /* Cor da borda do nav */
@@ -218,7 +220,8 @@ p {
   height: 100%;
   text-align: center;
   box-shadow: 1px 1px 10px var(--c-claro);
-  background-color: var(--c-claro);
+  background-color: var(--a-claro4);
+  border-radius: 2%;
   /* #d2dcdd */
 }
 
@@ -466,6 +469,12 @@ p {
 .secao-home-cliente-row-div-direita {
   margin-top: 10px;
 }
+
+/* .text-center {
+  text-align: center;
+  margin: 0 auto;
+} */
+
 
 @media screen and (max-width: 992px) {
   #funcoesCliente {
