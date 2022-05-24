@@ -6,31 +6,48 @@ module.exports = class EstoqueController {
     static async estoqueCadastrado(req, res) {
         const estoque = await Estoque.findAll()
         const estoqueCadastrado = estoque.map((result) => result.dataValues)
-        const quantidadeEstoqueVenda = estoque.map((result) => result.dataValues.quantidadeInserida)
-        //valor estoque
-
-        const valorPedidos = await Pedido.findAll({
-            where: {
-                statusPedidos: 'finalizado'
-            }
-        })
-        const resultadosQuantidadePedidos = valorPedidos.map((result) => result.dataValues.quantidadePedido)
-        var QuantidadeDePedidos = 0;
-        var QuantidadeDeEstoque = 0;
-        function somarPedidos(item) {
-            QuantidadeDePedidos += parseInt(item);
+        const ultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']]
+        });
+        const ultimoEstoqueQuantidadeInserida = ultimoEstoque.quantidadeInserida
+        const ultimoEstoqueQuantidadeTotal = ultimoEstoque.quantidadeArmazenada
+        const penultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']],
+            offset: 1
+        });
+        if (penultimoEstoque) {
+            const pedidoFinalizado = await Pedido.findAll({
+                where: {
+                    updatedAt: { [Op.gt]: penultimoEstoque.updatedAt }
+                }
+            })
         }
 
-        function somarEstoque(item) {
-            QuantidadeDeEstoque += parseInt(item);
-        }
+        res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
 
+        // const quantidadeEstoqueVenda = estoque.map((result) => result.dataValues.quantidadeInserida)
+        // //valor estoque
 
-        resultadosQuantidadePedidos.forEach(somarPedidos)
-        quantidadeEstoqueVenda.forEach(somarEstoque)
+        // const valorPedidos = await Pedido.findAll({
+        //     where: {
+        //         statusPedidos: 'finalizado'
+        //     }
+        // })
+        // const resultadosQuantidadePedidos = valorPedidos.map((result) => result.dataValues.quantidadePedido)
+        // var QuantidadeDePedidos = 0;
+        // var QuantidadeDeEstoque = 0;
+        // function somarPedidos(item) {
+        //     QuantidadeDePedidos += parseInt(item);
+        // }
 
-        const quantidadeRetirada = QuantidadeDeEstoque - QuantidadeDePedidos;
-        res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, QuantidadeDeEstoque, quantidadeRetirada })
+        // function somarEstoque(item) {
+        //     QuantidadeDeEstoque += parseInt(item);
+        // }
+
+        // resultadosQuantidadePedidos.forEach(somarPedidos)
+        // quantidadeEstoqueVenda.forEach(somarEstoque)
+
+        // const quantidadeRetirada = QuantidadeDeEstoque - QuantidadeDePedidos;
     }
 
     static async cadastrarEstoque(req, res) {
@@ -72,7 +89,6 @@ module.exports = class EstoqueController {
             quantidadeInserida: req.body.quantidadeInserida,
             data: new Date()
         }
-        console.log(estoque);
         Estoque.update(estoque, { where: { id: id } })
             .then(() => {
                 res.redirect(`/dashboard/estoque`)

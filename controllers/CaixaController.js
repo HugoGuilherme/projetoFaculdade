@@ -25,7 +25,7 @@ module.exports = class CaixaController {
             }
         })
         const resultadosvalorNoEstoque = valorNoEstoque.map((result) => result.dataValues.valorDoProduto)
-        const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidade)
+        const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidadeInserida)
         var valorNoEstoqueResultado = 0;
 
         function somarEstoque(item) {
@@ -75,12 +75,68 @@ module.exports = class CaixaController {
             quantidadePedido: req.body.quantidadePedido,
             valorTotal: req.body.totalAPagar
         }
-        console.log(finalizaPedidoCaixa);
         Pedido.update(finalizaPedidoCaixa, { where: { id: id } })
-            .then(() => {
-                res.redirect(`/dashboard/pedidosFinalizados`)
+        //subindo pedido finalizado para atualizar a quantidade de botijões no estoque
+        const ultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']]
+        });
+        const ultimoIdEstoque = ultimoEstoque.id
+        const penultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']],
+            offset: 1
+        });
+        if (penultimoEstoque) {
+            const pedidoFinalizado = await Pedido.findAll({
+                where: {
+                    statusPedidos: ['finalizado'],
+                    updatedAt: { [Op.gt]: penultimoEstoque.updatedAt }
+                }
             })
-            .catch((err) => console.log())
+            const quantidadeDePedidoFinalizado = pedidoFinalizado.map((result) => result.dataValues.quantidadePedido)
+            var QuantidadeDePedidos = 0;
+            function somarPedidos(item) {
+                QuantidadeDePedidos += parseInt(item);
+            }
+
+            quantidadeDePedidoFinalizado.forEach(somarPedidos)
+            const quantidadeRestante = ultimoEstoque.quantidadeInserida + penultimoEstoque.quantidadeArmazenada - QuantidadeDePedidos
+
+            const vendasFinalizadas = {
+                quantidadeVendida: QuantidadeDePedidos,
+                quantidadeArmazenada: quantidadeRestante
+            }
+            Estoque.update(vendasFinalizadas, { where: { id: ultimoIdEstoque } })
+                .then(() => {
+                    res.redirect(`/dashboard/pedidosFinalizados`)
+                })
+                .catch((err) => console.log())
+        } else {
+            const pedidoFinalizado = await Pedido.findAll({
+                where: {
+                    statusPedidos: ['finalizado']
+                }
+            })
+            const quantidadeDePedidoFinalizado = pedidoFinalizado.map((result) => result.dataValues.quantidadePedido)
+            var QuantidadeDePedidos = 0;
+            function somarPedidos(item) {
+                QuantidadeDePedidos += parseInt(item);
+            }
+
+            quantidadeDePedidoFinalizado.forEach(somarPedidos)
+            const quantidadeRestante = ultimoEstoque.quantidadeInserida - QuantidadeDePedidos
+
+            const vendasFinalizadas = {
+                quantidadeVendida: QuantidadeDePedidos,
+                quantidadeArmazenada: quantidadeRestante
+            }
+            Estoque.update(vendasFinalizadas, { where: { id: ultimoIdEstoque } })
+                .then(() => {
+                    res.redirect(`/dashboard/pedidosFinalizados`)
+                })
+                .catch((err) => console.log())
+        }
+
+
     }
     static async cancelarPedidoCaixa(req, res) {
         const id = req.body.id

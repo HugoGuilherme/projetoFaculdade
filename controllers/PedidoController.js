@@ -1,6 +1,7 @@
 const Pedido = require("../models/Pedido")
 const session = require('express-session')
 const Clientes = require("../models/Cliente")
+const Estoque = require('../models/Estoque')
 
 const { Op } = require('sequelize')
 
@@ -10,8 +11,14 @@ module.exports = class PedidoController {
         const { quantidadeDeGas, pagamento, valorTotal, troco } = req.body
 
         const novoPedido = { statusPedidos: "pendente", troco: troco, quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid }
-
-        const pedidoFeito = await Pedido.create(novoPedido)
+        const ultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']]
+        });
+        if (ultimoEstoque.quantidadeArmazenada > 0) {
+            const pedidoFeito = await Pedido.create(novoPedido)
+        } else {
+            console.log("Estamos sem produtos no estoque, logo teremos <3");
+        }
 
         res.redirect(`/areaCliente/pedidos`)
     }
