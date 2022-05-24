@@ -362,6 +362,26 @@ p {
   align-items: flex-end;
 }
 
+.textoCorpo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.marg10 {
+  margin-left: 10px;
+}
+
+.colAlinha {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.colAlinha:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /*Media query*/
 @media screen and (max-width: 575px) {
   .c1 {
@@ -379,6 +399,7 @@ p {
 
   .textoCorpo {
     text-align: center;
+
   }
 
   .inicioh {
@@ -453,7 +474,7 @@ p {
 
   #funcoesfuncionario {
     display: none !important;
-    
+
   }
 
   .clienteAcessado {
