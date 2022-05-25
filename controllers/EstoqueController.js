@@ -24,30 +24,6 @@ module.exports = class EstoqueController {
         }
 
         res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
-
-        // const quantidadeEstoqueVenda = estoque.map((result) => result.dataValues.quantidadeInserida)
-        // //valor estoque
-
-        // const valorPedidos = await Pedido.findAll({
-        //     where: {
-        //         statusPedidos: 'finalizado'
-        //     }
-        // })
-        // const resultadosQuantidadePedidos = valorPedidos.map((result) => result.dataValues.quantidadePedido)
-        // var QuantidadeDePedidos = 0;
-        // var QuantidadeDeEstoque = 0;
-        // function somarPedidos(item) {
-        //     QuantidadeDePedidos += parseInt(item);
-        // }
-
-        // function somarEstoque(item) {
-        //     QuantidadeDeEstoque += parseInt(item);
-        // }
-
-        // resultadosQuantidadePedidos.forEach(somarPedidos)
-        // quantidadeEstoqueVenda.forEach(somarEstoque)
-
-        // const quantidadeRetirada = QuantidadeDeEstoque - QuantidadeDePedidos;
     }
 
     static async cadastrarEstoque(req, res) {

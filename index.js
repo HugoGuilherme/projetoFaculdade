@@ -20,6 +20,7 @@ const funcionarioRoutes = require('./routes/funcionarioRoutes')
 const estoqueRoutes = require('./routes/estoqueRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
 const caixaRoutes = require('./routes/caixaRoutes')
+const relatorioRoutes = require('./routes/relatorioRoutes')
 
 //Configura a função formatDate
 //Template engine HBS
@@ -99,6 +100,7 @@ app.use('/', funcionarioRoutes)
 app.use('/', estoqueRoutes)
 app.use('/', pedidoRoutes)
 app.use('/', caixaRoutes)
+app.use('/', relatorioRoutes)
 
 conn
     .sync()

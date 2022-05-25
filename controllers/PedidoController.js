@@ -1,6 +1,6 @@
 const Pedido = require("../models/Pedido")
-const session = require('express-session')
 const Clientes = require("../models/Cliente")
+const session = require('express-session')
 const Estoque = require('../models/Estoque')
 
 const { Op } = require('sequelize')
