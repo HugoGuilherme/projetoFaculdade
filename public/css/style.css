@@ -13,6 +13,8 @@
   --c-claro2: #ffffff8c;
   /*Plano de fundo container*/
   --a-claro3: #F3F3F3;
+  /*Plano de fundo CardGas*/
+  --a-claro4: #ffffff;
   /* Nav Item hover*/
   --h-navitem: #ffc95a;
   /* Cor da borda do nav */
@@ -181,6 +183,9 @@ p {
 }
 
 #acoes-botoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 3px;
 }
 
@@ -218,7 +223,8 @@ p {
   height: 100%;
   text-align: center;
   box-shadow: 1px 1px 10px var(--c-claro);
-  background-color: var(--c-claro);
+  background-color: var(--a-claro4);
+  border-radius: 2%;
   /* #d2dcdd */
 }
 
@@ -252,6 +258,7 @@ p {
   border-radius: 100%;
   border: outset;
   border-bottom-style: inset;
+  margin: 20px 0px 20px 0px;
 }
 
 .btn-warning {
@@ -265,6 +272,12 @@ p {
   width: 75px;
   border-bottom: inset;
   margin-right: 15px;
+}
+
+.pesqui {
+  display: flex;
+  justify-content: flex-end;
+  align-content: stretch;
 }
 
 /* Estilo para as Tabelas */
@@ -466,6 +479,12 @@ p {
 .secao-home-cliente-row-div-direita {
   margin-top: 10px;
 }
+
+/* .text-center {
+  text-align: center;
+  margin: 0 auto;
+} */
+
 
 @media screen and (max-width: 992px) {
   #funcoesCliente {
