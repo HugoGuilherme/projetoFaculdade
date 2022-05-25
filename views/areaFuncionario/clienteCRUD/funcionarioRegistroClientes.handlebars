@@ -1,8 +1,9 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
-  <form action="/dashboard/clientesCadastrados" method="GET">
-    <input type="text" name="search" placeholder="nome do cliente" />
-    <input type="submit" class="btn" value="buscar" />
+  <form action="/dashboard/clientesCadastrados" method="GET" class="form-group pesqui">
+    <input type="text" name="search" placeholder="Nome do Cliente" style="padding-left: 5px;" />
+    <input type="submit" class="btn btn-primary" value="buscar" />
   </form>
+
   <table class="table table-responsive-12">
     <thead class="thead-dark">
       <tr>
@@ -14,34 +15,29 @@
         <th scope="col">Senha</th>
         <th scope="col">Endereço</th>
         <th scope="col">Ações</th>
-        <th><button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target=".bd-example-modal-lg"
-            data-dismiss=" modal "
-            id="btnCadastro"
-          >+</button></th>
+        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"
+            data-dismiss=" modal " id="btnCadastro">+</button></th>
       </tr>
     </thead>
     <tbody>
       {{#each clientesCadastrados}}
-        <tr>
-          <td> {{this.id}} </td>
-          <td> {{this.nome}} </td>
-          <td> {{this.cpf}} </td>
-          <td> {{formatDate this.dataDeNascimento}} </td>
-          <td> {{this.email}} </td>
-          <td> ************ </td>
-          <td> {{this.endereco}} </td>
-          <td id="acoes-botoes">
-            <a href="/dashboard/edit/{{this.id}}">
-              <button type="button" class="btn btn-primary">alterar</button></a>
-            <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
-              <button class="btn btn-danger" type="submit">Remover</button>
-            </form>
-          </td>
-        </tr>
+      <tr>
+        <td> {{this.id}} </td>
+        <td> {{this.nome}} </td>
+        <td> {{this.cpf}} </td>
+        <td> {{formatDate this.dataDeNascimento}} </td>
+        <td> {{this.email}} </td>
+        <td> ************ </td>
+        <td> {{this.endereco}} </td>
+        <td id="acoes-botoes">
+          <a href="/dashboard/edit/{{this.id}}">
+            <button type="button" class="btn btn-primary">alterar</button></a>
+          <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
+            <button class="btn btn-danger" type="submit">Remover</button>
+          </form>
+        </td>
+        <td></td>
+      </tr>
       {{/each}}
     </tbody>
   </table>

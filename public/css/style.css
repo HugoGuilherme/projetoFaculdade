@@ -183,6 +183,9 @@ p {
 }
 
 #acoes-botoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 3px;
 }
 
@@ -255,6 +258,7 @@ p {
   border-radius: 100%;
   border: outset;
   border-bottom-style: inset;
+  margin: 20px 0px 20px 0px;
 }
 
 .btn-warning {
@@ -268,6 +272,12 @@ p {
   width: 75px;
   border-bottom: inset;
   margin-right: 15px;
+}
+
+.pesqui {
+  display: flex;
+  justify-content: flex-end;
+  align-content: stretch;
 }
 
 /* Estilo para as Tabelas */

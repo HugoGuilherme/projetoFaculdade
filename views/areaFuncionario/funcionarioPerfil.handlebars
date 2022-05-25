@@ -1,44 +1,41 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
     <form method="post" action="/dashboard/atualizaFuncionarioPerfilPost">
         <div class="form-row">
-            <div>
+            <div class="text-center">
                 <h2>Perfil</h2>
             </div>
             <input hidden type="text" value="{{funcionario.id}}">
-            <div class="col-md-12 mb-12">
-                <label>Nome completo</label>
+            <div class="form-group col-md-12 mb-12">
+                <label class="marg10">Nome Completo</label>
                 <input type="text" name="nome" value="{{funcionario.nome}}" class="form-control" placeholder="nome"
                     required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label>cpf</label>
+            <div class="form-group col-md-6">
+                <label class="marg10">CPF</label>
                 <input type="text" name="cpf" class="form-control" value="{{funcionario.cpf}}" placeholder="sobrenome"
                     required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label>Data de Nascimento</label>
-
+            <div class="form-group col-md-6">
+                <label class="marg10">Data de Nascimento</label>
                 <input type="date" name="dataDeNascimento" id="dataDeNascimento" class="form-control"
                     value="{{funcionario.dataDeNascimento}}" placeholder="sobrenome" required>
             </div>
             <div class="form-group col-md-6">
-                <label>Email</label>
+                <label class="marg10">Email</label>
                 <input type="email" name="email" id="email" value="{{funcionario.email}}" class="form-control"
                     placeholder="Email" required>
             </div>
             <div class="form-group col-md-6">
-                <label>Senha</label>
-                <input type="password" name="senha" class="form-control" value="************"
-                    placeholder="Senha" required>
+                <label class="marg10">Senha</label>
+                <input type="password" name="senha" class="form-control" value="************" placeholder="Senha"
+                    required>
             </div>
-
             <div class="form-group col-md-12 mb-12">
-                <label>Endereço</label>
+                <label class="marg10">Endereço</label>
                 <input name="endereco" class="form-control" type="text" id="cep" placeholder="CEP"
                     value="{{funcionario.endereco}}" required />
             </div>
-            <input class="btn btn-success" type="submit" value="Atualizar">
-
+            <input class="btn btn-primary" type="submit" value="Atualizar">
         </div>
     </form>
 </div>
