@@ -9,21 +9,27 @@ module.exports = class EstoqueController {
         const ultimoEstoque = await Estoque.findOne({
             order: [['createdAt', 'DESC']]
         });
-        const ultimoEstoqueQuantidadeInserida = ultimoEstoque.quantidadeInserida
-        const ultimoEstoqueQuantidadeTotal = ultimoEstoque.quantidadeArmazenada
-        const penultimoEstoque = await Estoque.findOne({
-            order: [['createdAt', 'DESC']],
-            offset: 1
-        });
-        if (penultimoEstoque) {
-            const pedidoFinalizado = await Pedido.findAll({
-                where: {
-                    updatedAt: { [Op.gt]: penultimoEstoque.updatedAt }
-                }
-            })
+        if (ultimoEstoque) {
+            const ultimoEstoqueQuantidadeInserida = ultimoEstoque.quantidadeInserida
+            const ultimoEstoqueQuantidadeTotal = ultimoEstoque.quantidadeArmazenada
+            const penultimoEstoque = await Estoque.findOne({
+                order: [['createdAt', 'DESC']],
+                offset: 1
+            });
+            if (penultimoEstoque) {
+                const pedidoFinalizado = await Pedido.findAll({
+                    where: {
+                        updatedAt: { [Op.gt]: penultimoEstoque.updatedAt }
+                    }
+                })
+            }
+
+            res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
+        } else {
+            req.flash('mensagemEstoqueVazio', 'Estoque vazio, por favor cadastre botijões')
+            res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado })
         }
 
-        res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
     }
 
     static async cadastrarEstoque(req, res) {

@@ -14,10 +14,17 @@ module.exports = class PedidoController {
         const ultimoEstoque = await Estoque.findOne({
             order: [['createdAt', 'DESC']]
         });
-        if (ultimoEstoque.quantidadeArmazenada > 0) {
+        if (ultimoEstoque == null) {
+            req.flash('mensagemFaltandoBotijao', 'Estamos sem produtos no estoque, logo teremos <3')
+            res.render('areaCliente/cliente')
+            return
+        } else if (ultimoEstoque.quantidadeArmazenada > 0) {
             const pedidoFeito = await Pedido.create(novoPedido)
         } else {
+            req.flash('mensagemFaltandoBotijao', 'Estamos sem produtos no estoque, logo teremos <3')
+            res.render('areaCliente/cliente')
             console.log("Estamos sem produtos no estoque, logo teremos <3");
+            return
         }
 
         res.redirect(`/areaCliente/pedidos`)

@@ -25,8 +25,9 @@ const Cliente = db.define('Cliente', {
     // allowNull defaults to true
   },
   email: {
-    type: DataTypes.STRING
-    // allowNull defaults to true
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
   },
   senha: {
     type: DataTypes.STRING

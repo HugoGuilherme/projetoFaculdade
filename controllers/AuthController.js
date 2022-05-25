@@ -12,7 +12,7 @@ module.exports = class AuthController {
             const funcionario = await Funcionario.findOne({ where: { email: email } })
             if (cliente) {
                 const senhaCorreta = bcrypt.compareSync(senha, cliente.senha)
-                if(cliente && senhaCorreta){
+                if (cliente && senhaCorreta) {
                     req.session.userid = cliente.id
                     req.session.status = cliente.status
                     console.log(cliente.status);
@@ -21,9 +21,11 @@ module.exports = class AuthController {
                         res.redirect('./areaCliente/cliente')
                     })
                 } else {
-                    res.redirect('/')
+                    req.flash('mensagemUsuarioInvalido', 'Email ou senha não conferem, por favor utilize os dados certos')
+                    res.render('home')
+                    return
                 }
-                
+
             } else if (funcionario) {
                 const senhaFuncionarioCorreta = bcrypt.compareSync(senha, funcionario.senha)
                 if (funcionario && senhaFuncionarioCorreta) {
@@ -33,10 +35,14 @@ module.exports = class AuthController {
                         res.redirect('./dashboard')
                     })
                 } else {
-                    res.redirect('/')
+                    req.flash('mensagemUsuarioInvalido', 'Email ou senha não conferem, por favor utilize os dados certos')
+                    res.render('home')
+                    return
                 }
             } else {
-                res.redirect('/')
+                req.flash('mensagemUsuarioInvalido', 'Email ou senha não conferem, por favor utilize os dados certos')
+                res.render('home')
+                return
             }
         } catch (error) {
             console.log(error)

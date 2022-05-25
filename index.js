@@ -26,6 +26,8 @@ const relatorioRoutes = require('./routes/relatorioRoutes')
 //Template engine HBS
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
+// flash messages
+app.use(flash())
 app.use(express.static(path.join(__dirname, 'public')))
 
 //receber resposta do body
@@ -82,8 +84,6 @@ const Estoque = require('./models/Estoque')
 const Movimentos = require('./models/Movimentos')
 const Caixa = require('./models/Caixa')
 
-// flash messages
-app.use(flash())
 
 // set session to res
 app.use((req, res, next) => {
