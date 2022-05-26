@@ -35,7 +35,7 @@ module.exports = class EstoqueController {
     static async cadastrarEstoque(req, res) {
         const { nomeDoProduto, valorDoProduto, quantidadeInserida } = req.body
 
-        const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida, data: new Date() }
+        const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: quantidadeInserida, data: new Date() }
 
         const produtoInserido = await Estoque.create(novoProduto)
 
