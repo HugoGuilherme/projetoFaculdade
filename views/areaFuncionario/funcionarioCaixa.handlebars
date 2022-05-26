@@ -42,9 +42,7 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="col-lg-4">
-        <img src="/imagens/botijãoDeGas.png" alt="botijão" width="200px" />
-      </div>
+
       <form method="post" action="/caixa/pedidoFinalizado">
         <div>
           <h3 class="texto-center3">Forma de Pagamento</h3>
@@ -72,18 +70,15 @@
         <div>
           <h3 class="texto-center3"> Total a Pagar R$</h3>
           <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <div class="input-group-append">
-                <input
-                  type="text"
-                  id="valorTotalCompra"
-                  name="totalAPagar"
-                  class="form-control"
-                  aria-label="Amount (to the nearest dollar)"
-                />
-                <span class="input-group-text">.00</span>
-              </div>
-            </div>
+            <span class="input-group-text">R$</span>
+            <input
+              type="text"
+              id="valorTotalCompra"
+              name="totalAPagar"
+              class="form-control"
+              aria-label="Amount (to the nearest dollar)"
+            />
+            <span class="input-group-text">.00</span>
           </div>
         </div>
         <input type="text" id="id" name="id" hidden />
@@ -92,25 +87,23 @@
           <div>
             <div class="input-group-prepend">
               <span class="input-group-text">R$</span>
-              <div class="input-group-append">
-                <input
-                  id="troco"
-                  name="troco"
-                  type="text"
-                  class="form-control"
-                  aria-label="Amount (to the nearest dollar)"
-                />
-                <span class="input-group-text">.00</span>
-              </div>
+              <input
+                id="troco"
+                name="troco"
+                type="text"
+                class="form-control"
+                aria-label="Amount (to the nearest dollar)"
+              />
+              <span class="input-group-text">.00</span>
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div>
           {{! Botões da Pagina }}
           <div style="display: flex;">
             <button
               href="/caixa/pedidoFinalizado"
-              class="btn btn-primary"
+              class="btn btn-success col-12 my-2"
               style="font-size: 20px; font-weight: bolder; background"
             >FINALIZAR</button>
           </div>
@@ -119,7 +112,7 @@
       <form method="post" action="/caixa/pedidoCancelado">
         <input type="text" id="idCancelamento" name="id" hidden />
         <button
-          class="btn btn-warning"
+          class="btn btn-danger col-12"
           style="font-size: 20px; font-weight: bolder; "
         >CANCELAR</button>
       </form>

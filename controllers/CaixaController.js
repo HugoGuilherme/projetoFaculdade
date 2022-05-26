@@ -25,7 +25,7 @@ module.exports = class CaixaController {
             }
         })
         const resultadosvalorNoEstoque = valorNoEstoque.map((result) => result.dataValues.valorDoProduto)
-        const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidadeInserida)
+        const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidadeArmazenada)
         var valorNoEstoqueResultado = 0;
 
         function somarEstoque(item) {
