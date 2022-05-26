@@ -16,13 +16,6 @@ module.exports = class EstoqueController {
                 order: [['createdAt', 'DESC']],
                 offset: 1
             });
-            if (penultimoEstoque) {
-                const pedidoFinalizado = await Pedido.findAll({
-                    where: {
-                        updatedAt: { [Op.gt]: penultimoEstoque.updatedAt }
-                    }
-                })
-            }
 
             res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
         } else {
@@ -34,12 +27,25 @@ module.exports = class EstoqueController {
 
     static async cadastrarEstoque(req, res) {
         const { nomeDoProduto, valorDoProduto, quantidadeInserida } = req.body
+        const ultimoEstoque = await Estoque.findOne({
+            order: [['createdAt', 'DESC']]
+        });
+        if (ultimoEstoque) {
 
-        const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: quantidadeInserida, data: new Date() }
+            const valorArmazenadoPenultimo = ultimoEstoque.quantidadeArmazenada
+            const valorArmazenadoAnteriorMaisONovo = parseInt(valorArmazenadoPenultimo) + parseInt(quantidadeInserida)
+            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: valorArmazenadoAnteriorMaisONovo, data: new Date() }
+            const produtoInserido = await Estoque.create(novoProduto)
 
-        const produtoInserido = await Estoque.create(novoProduto)
+            res.redirect(`/dashboard/estoque`)
+        } else {
+            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: quantidadeInserida, data: new Date() }
+            const produtoInserido = await Estoque.create(novoProduto)
 
-        res.redirect(`/dashboard/estoque`)
+            res.redirect(`/dashboard/estoque`)
+
+        }
+
     }
 
     static async removeEstoque(req, res) {
