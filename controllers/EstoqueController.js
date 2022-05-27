@@ -3,29 +3,36 @@ const Pedido = require("../models/Pedido")
 const { Op } = require("sequelize");
 
 module.exports = class EstoqueController {
-    static async estoqueCadastrado(req, res) {
-        const estoque = await Estoque.findAll()
+    static async pedidoDeCompraDeProdutos(req, res) {
+        const estoque = await Estoque.findAll({ order: [['data', 'DESC']] })
         const estoqueCadastrado = estoque.map((result) => result.dataValues)
         const ultimoEstoque = await Estoque.findOne({
             order: [['createdAt', 'DESC']]
         });
         if (ultimoEstoque) {
-            const ultimoEstoqueQuantidadeInserida = ultimoEstoque.quantidadeInserida
-            const ultimoEstoqueQuantidadeTotal = ultimoEstoque.quantidadeArmazenada
-            const penultimoEstoque = await Estoque.findOne({
-                order: [['createdAt', 'DESC']],
-                offset: 1
-            });
+            const valorTotalInserido = estoque.map((result) => result.dataValues.valorTotal)
+            const totalInserido = estoque.map((result) => result.dataValues.quantidadeInserida)
+            var quantidadeTotalInserida = 0;
+            var valorTotalComprada = 0;
 
-            res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado, ultimoEstoqueQuantidadeInserida, ultimoEstoqueQuantidadeTotal })
+            function somarEstoque(item) {
+                quantidadeTotalInserida += parseInt(item);
+            }
+            function somarValor(item) {
+                valorTotalComprada += parseInt(item);
+            }
+            totalInserido.forEach(somarEstoque);
+            valorTotalInserido.forEach(somarValor)
+
+            res.render('areaFuncionario/pedidoDeCompra/funcionarioPedidoDeCompra', { estoqueCadastrado, quantidadeTotalInserida, valorTotalComprada })
         } else {
             req.flash('mensagemEstoqueVazio', 'Estoque vazio, por favor cadastre botijões')
-            res.render('areaFuncionario/estoque/funcionarioEstoque', { estoqueCadastrado })
+            res.render('areaFuncionario/pedidoDeCompra/funcionarioPedidoDeCompra', { estoqueCadastrado })
         }
 
     }
 
-    static async cadastrarEstoque(req, res) {
+    static async cadastrarCompra(req, res) {
         const { nomeDoProduto, valorDoProduto, quantidadeInserida } = req.body
         const ultimoEstoque = await Estoque.findOne({
             order: [['createdAt', 'DESC']]
@@ -34,31 +41,35 @@ module.exports = class EstoqueController {
 
             const valorArmazenadoPenultimo = ultimoEstoque.quantidadeArmazenada
             const valorArmazenadoAnteriorMaisONovo = parseInt(valorArmazenadoPenultimo) + parseInt(quantidadeInserida)
-            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: valorArmazenadoAnteriorMaisONovo, data: new Date() }
+            const valorTotalInserido = parseInt(valorDoProduto) * parseInt(quantidadeInserida)
+
+            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: valorArmazenadoAnteriorMaisONovo, valorTotal: valorTotalInserido, data: new Date() }
             const produtoInserido = await Estoque.create(novoProduto)
 
-            res.redirect(`/dashboard/estoque`)
+            res.redirect(`/dashboard/pedidoDeCompra`)
         } else {
-            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: quantidadeInserida, data: new Date() }
+            const valorTotalInserido = parseInt(valorDoProduto) * parseInt(quantidadeInserida)
+            const novoProduto = { nomeDoProduto, valorDoProduto, quantidadeInserida: quantidadeInserida, quantidadeArmazenada: quantidadeInserida, valorTotal: valorTotalInserido, data: new Date() }
+
             const produtoInserido = await Estoque.create(novoProduto)
 
-            res.redirect(`/dashboard/estoque`)
+            res.redirect(`/dashboard/pedidoDeCompra`)
 
         }
 
     }
 
-    static async removeEstoque(req, res) {
+    static async removeCompra(req, res) {
         const { id } = req.params
         try {
             await Estoque.destroy({ where: { id: Number(id) } })
-            res.redirect(`/dashboard/estoque`)
+            res.redirect(`/dashboard/pedidoDeCompra`)
         } catch (error) {
             return res.status(500).json(error.message)
         }
     }
 
-    static async editEstoque(req, res) {
+    static async editCompra(req, res) {
         const { id } = req.params
         Estoque.findOne({ where: { id: id }, raw: true })
             .then((estoque) => {
@@ -67,7 +78,7 @@ module.exports = class EstoqueController {
             .catch((err) => console.log())
     }
 
-    static updateEstoque(req, res) {
+    static updateCompra(req, res) {
         const id = req.body.id
 
         const estoque = {
@@ -79,8 +90,12 @@ module.exports = class EstoqueController {
         }
         Estoque.update(estoque, { where: { id: id } })
             .then(() => {
-                res.redirect(`/dashboard/estoque`)
+                res.redirect(`/dashboard/pedidoDeCompra`)
             })
             .catch((err) => console.log())
+    }
+
+    static async estoque(req, res) {
+        res.render('areaFuncionario/estoque/estoque')
     }
 }

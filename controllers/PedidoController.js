@@ -52,7 +52,7 @@ module.exports = class PedidoController {
         const pedido = await Pedido.findAll({
             include: Clientes,
             where: {
-                ClienteId: { [Op.like]: `%${search}%` },
+                id: { [Op.like]: `%${search}%` },
                 statusPedidos: ['pendente', 'confirmado']
             }
         })
@@ -72,7 +72,7 @@ module.exports = class PedidoController {
         const pedido = await Pedido.findAll({
             include: Clientes,
             where: {
-                ClienteId: { [Op.like]: `%${search}%` },
+                id: { [Op.like]: `%${search}%` },
                 statusPedidos: ['finalizado', 'cancelado']
             }
         })

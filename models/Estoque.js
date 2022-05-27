@@ -24,6 +24,10 @@ const Estoque = db.define('Estoque', {
     type: DataTypes.INTEGER
     // allowNull defaults to true
   },
+  valorTotal: {
+    type: DataTypes.INTEGER
+    // allowNull defaults to true
+  },
   data: {
     type: DataTypes.DATE
   }

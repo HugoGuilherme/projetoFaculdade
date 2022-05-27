@@ -27,12 +27,13 @@ module.exports = class CaixaController {
         const resultadosvalorNoEstoque = valorNoEstoque.map((result) => result.dataValues.valorDoProduto)
         const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidadeArmazenada)
         var valorNoEstoqueResultado = 0;
+        var ArmazenamentoNoEstoqueResultado = 0;
 
         function somarEstoque(item) {
             valorNoEstoqueResultado += parseInt(item);
         }
         function multiply(item) {
-            valorNoEstoqueResultado *= parseInt(item);
+            ArmazenamentoNoEstoqueResultado += parseInt(item);
         }
         resultadosvalorNoEstoque.forEach(somarEstoque);
         resultadosquantidadeNoEstoque.forEach(multiply);
@@ -62,7 +63,7 @@ module.exports = class CaixaController {
                 statusPedidos: ['a caminho']
             }
         })
-        var totalInseridoCaixa = total + valorNoEstoqueResultado
+        var totalInseridoCaixa = valorNoEstoqueResultado * ArmazenamentoNoEstoqueResultado + total
         const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
         res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados, totalInseridoCaixa })
     }
