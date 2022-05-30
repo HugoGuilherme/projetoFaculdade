@@ -1,14 +1,15 @@
-<ul>
+<ul class="list-group d-flex">
   <li><a href="/dashboard">Home</a></li>
   <li><a href="/dashboard/perfil">Perfil</a></li>
-  <li><a href="/dashboard/pedidoDeCompra">Pedido de compra</a></li>
   <li><a href="/dashboard/pedidos">Pedidos de venda</a></li>
-  {{#ifCond session.status}}
   <li><a href="/dashboard/pedidosFinalizados">Pedidos finalizados</a></li>
+  {{#ifCond session.status}}
+  <li><a href="/dashboard/pedidoDeCompra">Pedido de compra</a></li>
   <li><a href="/dashboard/caixa">Caixa</a></li>
+  <li><a href="/dashboard/relatorios">Relatorios</a></li>
   <li><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a></li>
   {{/ifCond}}
   <li><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
   <li><a href="/dashboard/estoque">Estoque</a></li>
-  <li><a href="/dashboard/relatorios">Relatorios</a></li>
+
 </ul>
