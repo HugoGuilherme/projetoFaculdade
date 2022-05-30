@@ -182,10 +182,8 @@ btnCadastro.addEventListener('click', (e => {
 
 //final das funções
 
-acessoCliente = document.querySelector("#exampleModalLabelCliente");
-acessoFuncionario = document.querySelector("#exampleModalLabelFuncionario");
-acessoLoginCliente = document.getElementById("loginCliente");
-acessoLoginFuncionario = document.querySelector("#loginFuncionario");
-
-/* fechamento de caixa */
-
+closeModal = document.getElementById("close")
+closeModal.addEventListener("click", function fecharModal() {
+    document.getElementById('modal-2').style.display = 'none'
+    document.getElementById('modal-2').style.background = 'none'
+});
