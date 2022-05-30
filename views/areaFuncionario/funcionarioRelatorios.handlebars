@@ -8,27 +8,28 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
-                            style="color: #000;">Relatório Semanal</a>
+                            style="color: #000;">Relatório do mês</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>mês</th>
-                                <th>quantidade de produto inserido</th>
-                                <th>quantidade de produto retirado</th>
+                                <th>data</th>
+                                <th>quantidade de produtos inseridos</th>
+                                <th>quantidade de produtos venditos</th>
                                 <th>valor total das vendas</th>
-                                <th>valor total retirado</th>
+                                <th>valor total das compras</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each pedidosCadastrados}}
+                            {{#each estoquesCadastrados}}
                             <tr>
-                                <td>{{{this.quantidadePedido}}}</td>
-                                <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
-                                <td>{{{this.valorTotal}}}</td>
                                 <td>{{{formatDate this.createdAt}}}</td>
+                                <td>{{{this.quantidadeInserida}}}</td>
+                                <td>{{{this.quantidadeVendida}}}</td>
+                                <td>{{{valorGas this.quantidadeVendida}}}</td>
+                                <td>{{{valorCompra this.quantidadeInserida this.valorDoProduto}}}</td>
                             </tr>
                             {{/each}}
                         </tbody>
