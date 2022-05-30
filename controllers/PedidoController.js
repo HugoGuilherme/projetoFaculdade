@@ -85,7 +85,7 @@ module.exports = class PedidoController {
         const { id } = req.params
         try {
             await Pedido.destroy({ where: { id: Number(id) } })
-            res.redirect(`/dashboard/pedidos`)
+            res.redirect(`/dashboard/pedidosFinalizados`)
         } catch (error) {
             return res.status(500).json(error.message)
         }

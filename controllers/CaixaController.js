@@ -15,31 +15,6 @@ module.exports = class CaixaController {
         var month = date_ob.getMonth() + 1;
         var year = date_ob.getFullYear();
 
-        //valor estoque
-
-        const valorNoEstoque = await Estoque.findAll({
-            where: {
-                createdAt: {
-                    [Op.gt]: year + "-" + month + "-" + date
-                }
-            }
-        })
-        const resultadosvalorNoEstoque = valorNoEstoque.map((result) => result.dataValues.valorDoProduto)
-        const resultadosquantidadeNoEstoque = valorNoEstoque.map((result) => result.dataValues.quantidadeArmazenada)
-        var valorNoEstoqueResultado = 0;
-        var ArmazenamentoNoEstoqueResultado = 0;
-
-        function somarEstoque(item) {
-            valorNoEstoqueResultado += parseInt(item);
-        }
-        function multiply(item) {
-            ArmazenamentoNoEstoqueResultado += parseInt(item);
-        }
-        resultadosvalorNoEstoque.forEach(somarEstoque);
-        resultadosquantidadeNoEstoque.forEach(multiply);
-
-        //final valor estoque
-
         const pedidoFinalizado = await Pedido.findAll({
             where: {
                 statusPedidos: ['finalizado'],
@@ -63,7 +38,7 @@ module.exports = class CaixaController {
                 statusPedidos: ['a caminho']
             }
         })
-        var totalInseridoCaixa = valorNoEstoqueResultado * ArmazenamentoNoEstoqueResultado + total
+        var totalInseridoCaixa = total
         const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
         res.render('areaFuncionario/funcionarioCaixa', { pedidosCadastrados, totalInseridoCaixa })
     }

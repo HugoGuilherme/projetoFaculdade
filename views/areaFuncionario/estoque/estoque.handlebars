@@ -2,15 +2,23 @@
     <table class="table table-responsive-12">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Quantidade total inserido</th>
-                <th scope="col">Quantidade total</th>
+                <th scope="col">id</th>
+                <th scope="col">Data</th>
+                <th scope="col">Quantidade de entrada</th>
+                <th scope="col">Quantidade de saida</th>
+                <th scope="col">Quantidade em estoque</th>
             </tr>
         </thead>
         <tbody>
+            {{#each estoqueCadastrado}}
             <tr style="text-align: center;">
-                <td> {{quantidadeTotalInserida}} </td>
-                <td> {{valorTotalComprada}} </td>
+                <td> {{this.id}} </td>
+                <td> {{formatDate this.data}} </td>
+                <td> {{this.quantidadeInserida}} </td>
+                <td> {{this.quantidadeVendida}} </td>
+                <td> {{this.quantidadeArmazenada}} </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>

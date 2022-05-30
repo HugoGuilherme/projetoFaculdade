@@ -15,26 +15,20 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Quantidade</th>
-                                <th>Tipo de pagamento</th>
-                                <th>valor</th>
-                                <th>troco</th>
-                                <th>Data</th>
-                                <th>Endereço</th>
-                                <th>status Pedidos</th>
+                                <th>mês</th>
+                                <th>quantidade de produto inserido</th>
+                                <th>quantidade de produto retirado</th>
+                                <th>valor total das vendas</th>
+                                <th>valor total retirado</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each pedidosCadastrados}}
                             <tr>
-                                <td hidden>{{{this.id}}}</td>
                                 <td>{{{this.quantidadePedido}}}</td>
                                 <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
                                 <td>{{{this.valorTotal}}}</td>
-                                <td>{{this.troco}}</td>
                                 <td>{{{formatDate this.createdAt}}}</td>
-                                <td>{{{this.Cliente.endereco}}}</td>
-                                <td>{{{this.statusPedidos}}}</td>
                             </tr>
                             {{/each}}
                         </tbody>

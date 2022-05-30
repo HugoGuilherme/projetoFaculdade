@@ -47,6 +47,10 @@ handlebars.registerHelper('formatDate', function (value) {
     return moment(value).format('DD/MM/YYYY')
 })
 
+handlebars.registerHelper('valorGas', function (value) {
+    return value * 100
+})
+
 handlebars.registerHelper('switch', function (value, options) {
     this.switch_value = value;
     return options.fn(this);

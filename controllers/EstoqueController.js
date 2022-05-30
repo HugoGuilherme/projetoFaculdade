@@ -96,6 +96,8 @@ module.exports = class EstoqueController {
     }
 
     static async estoque(req, res) {
-        res.render('areaFuncionario/estoque/estoque')
+        const estoque = await Estoque.findAll({ order: [['data', 'DESC']] })
+        const estoqueCadastrado = estoque.map((result) => result.dataValues)
+        res.render('areaFuncionario/estoque/estoque', { estoqueCadastrado })
     }
 }
