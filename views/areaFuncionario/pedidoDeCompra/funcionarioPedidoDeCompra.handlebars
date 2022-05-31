@@ -5,8 +5,8 @@
   <table class="table table-responsive-12">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Quantidade de entrada</th>
-        <th scope="col">Valor total investido</th>
+        <th scope="col">Quantidade de Entrada</th>
+        <th scope="col">Valor Total Investido</th>
       </tr>
     </thead>
     <tbody>
@@ -19,12 +19,12 @@
   <table class="table table-responsive-12" style="text-align: center;">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">id de entrada</th>
-        <th scope="col">nomeDoProduto</th>
-        <th scope="col">valorDoProduto</th>
-        <th scope="col">quantidade inserida</th>
-        <th scope="col">Valor total</th>
-        <th scope="col">data</th>
+        <th scope="col">Id de Entrada</th>
+        <th scope="col">Nome Do Produto</th>
+        <th scope="col">Valor Do Produto</th>
+        <th scope="col">Quantidade Inserida</th>
+        <th scope="col">Valor Total</th>
+        <th scope="col">Data</th>
         <th scope="col"><a href="/dashboard/novoProduto"><button class="btn btn-primary">+</button></a></th>
       </tr>
     </thead>
@@ -39,7 +39,7 @@
         <td> {{formatDate this.data}} </td>
         <td id="acoes-botoes">
           <a href="/dashboard/editEstoque/{{this.id}}"><button type="button"
-              class="btn btn-primary">alterar</button></a>
+              class="btn btn-primary">Alterar</button></a>
           <form action="/dashboard/removeCompra/{{this.id}}" method="POST">
             <button type="submit" class="btn btn-danger" type="submit">Remover</button>
           </form>

@@ -1,24 +1,23 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
     <form method="post" action="/cliente/updateCliente">
         <div class="form-row">
-            <div class="text-center">
+            <div class="text-center" style="width: 100%;">
                 <h2>Perfil</h2>
             </div>
             <input hidden type="text" name="id" value="{{cliente.id}}"></input>
             <div class="form-group col-md-12 mb-12">
                 <label class="marg10">Nome Completo</label>
-                <input type="text" name="nome" value="{{cliente.nome}}" class="form-control" placeholder="nome"
+                <input type="text" name="nome" value="{{cliente.nome}}" class="form-control" placeholder="Nome"
                     required>
             </div>
             <div class="form-group col-md-6">
                 <label class="marg10">CPF</label>
-                <input type="text" name="cpf" class="form-control" value="{{cliente.cpf}}" placeholder="sobrenome"
-                    required>
+                <input type="text" name="cpf" class="form-control" value="{{cliente.cpf}}" placeholder="CPF" required>
             </div>
             <div class="form-group col-md-6">
                 <label class="marg10">Data de Nascimento</label>
                 <input type="date" name="dataDeNascimento" id="dataDeNascimento" class="form-control"
-                    value="{{cliente.dataDeNascimento}}" placeholder="sobrenome" required>
+                    value="{{cliente.dataDeNascimento}}" placeholder="Sobrenome" required>
             </div>
             <div class="form-group col-md-6">
                 <label class="marg10">Email</label>
@@ -38,7 +37,7 @@
             <div class="form-group col-md-12">
                 <div>
                     <a href="/areaCliente/cliente">
-                        <input type="button" class="btn btn-primary" value="Home">
+                        <input type="button" class="btn btn-primary" value="Voltar">
                     </a>
                     <input type="submit" class="btn btn-danger" value="Editar">
                 </div>

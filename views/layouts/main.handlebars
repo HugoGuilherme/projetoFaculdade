@@ -57,9 +57,9 @@
                         <li class="nav-item"><a href="/dashboard">Home</a></li>
                         <li class="nav-item"><a href="/dashboard/pedidos">Pedidos</a></li>
                         <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
-                        <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes Cadastrados</a> </li>
                         {{#ifCond session.status}}
-                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a>
+                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios Cadastrados</a>
                         </li>
                         {{/ifCond}}
                         <li class="nav-item"><a href="/dashboard/estoque">Estoque</a></li>
@@ -68,9 +68,9 @@
                         <li class="nav-item "><a href="/dashboard">Home</a></li>
                         <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
                         <li class="nav-item"><a href="/dashboard/pedidos">Pedidos</a></li>
-                        <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes Cadastrados</a> </li>
                         {{#ifCond session.status}}
-                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a>
+                        <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios Cadastrados</a>
                         </li>
                         {{/ifCond}}
                         <li class="nav-item"><a href="/dashboard/caixa">Caixa</a></li>
@@ -88,7 +88,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link collapseLi" onclick="mostrarQuemSomos()">Quem somos</a>
+                            <a class="nav-link collapseLi" onclick="mostrarQuemSomos()">Quem Somos</a>
                         </li>
                         {{/case}}
                     </ul>
@@ -122,13 +122,10 @@
                                     <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
                                         placeholder="Password">
                                 </div>
-<<<<<<< HEAD
                                 {{#if messages.mensagemUsuarioInvalido}}
-                                {{messages.mensagemUsuarioInvalido}}
-                                {{/if}}
-=======
->>>>>>> origin/HEAD
-                                <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
+                                    {{messages.mensagemUsuarioInvalido}} {{/if}}
+                                    <button type="submit" id="acessarCliente"
+                                        class="btn btn-dark col-12">Entrar</button>
                             </form>
                         </div>
                         <div class="modal-footer">

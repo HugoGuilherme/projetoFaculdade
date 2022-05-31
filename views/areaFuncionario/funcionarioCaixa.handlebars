@@ -12,12 +12,12 @@
           <thead class="thead-dark">
             <tr>
               <th>Quantidade</th>
-              <th>Tipo de pagamento</th>
-              <th>valor</th>
-              <th>troco</th>
+              <th>Tipo de Pagamento</th>
+              <th>Valor</th>
+              <th>Troco</th>
               <th>Data</th>
               <th>Endereço</th>
-              <th>status Pedidos</th>
+              <th>Status Pedidos</th>
             </tr>
           </thead>
           <tbody>
@@ -53,14 +53,14 @@
         </div>
         <div>
           <h5 class="texto-center3">Quantidade</h5>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3" style="text-align-last: center;">
             <input type="text" id="quantidadeDeGas" name="quantidadePedido" class="form-control"
               aria-label="Amount (to the nearest dollar)" />
           </div>
         </div>
         <div>
           <h3 class="texto-center3"> Total a Pagar R$</h3>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3" style="text-align-last: right;">
             <span class="input-group-text">R$</span>
             <input type="text" id="valorTotalCompra" name="totalAPagar" class="form-control"
               aria-label="Amount (to the nearest dollar)" />
@@ -71,7 +71,7 @@
         <div>
           <h1 class="texto-center3">Troco R$</h1>
           <div>
-            <div class="input-group-prepend">
+            <div class="input-group-prepend" style="text-align-last: right;">
               <span class="input-group-text">R$</span>
               <input id="troco" name="troco" type="text" class="form-control"
                 aria-label="Amount (to the nearest dollar)" />
@@ -104,12 +104,12 @@
   </div>
   {{!-- Fechamento do Caixa --}}
   <div class="col-lg-12 posicao-caixa">
-    <div style="display: flex;align-items: flex-end;width: 100%;">
+    <div style="display: flex;align-items: flex-end;width: 100%;justify-content: flex-end;">
       <div class="col-lg-6">
         {{!-- formatação para os valores --}}
-        <div class="input-group-prepend" style="text-align-last: right;">
+        <div class="input-group-prepend">
           <span class="input-group-text label-estilo" style="padding-left: 15px;">Valor Inserido R$</span>
-          <div class="input-group-append">
+          <div class="input-group-append" style="text-align-last: right;">
             <input id="valorInserido" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
               value="{{totalInseridoCaixa}}" readonly />
             <span class="input-group-text">.00</span>
@@ -118,7 +118,7 @@
         <div>
           <div class="input-group-prepend">
             <span class="input-group-text label-estilo">Valor Retirado R$</span>
-            <div class="input-group-append">
+            <div class="input-group-append" style="text-align-last: right;">
               <input id="valorRetirado" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
                 value="" readonly />
               <span class="input-group-text">.00</span>
@@ -127,7 +127,7 @@
         </div>
         <div class="input-group-prepend">
           <span class="input-group-text label-estilo" style="padding-left: 37px;">Valor Total R$</span>
-          <div class="input-group-append">
+          <div class="input-group-append" style="text-align-last: right;">
             <input type="text" class="form-control" id="valorTotal" readonly />
             <span class="input-group-text">.00</span>
           </div>

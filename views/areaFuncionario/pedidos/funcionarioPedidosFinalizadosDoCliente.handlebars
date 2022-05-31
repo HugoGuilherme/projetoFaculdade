@@ -1,6 +1,7 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
   <form action="/dashboard/pedidosFinalizados" method="GET" class="form-group pesqui">
-    <input type="text" name="search" placeholder="ID pedido" style="padding-left: 5px;" />
+    <input type="text" name="search" placeholder="ID Pedido"
+      style="padding-left: 5px;margin-right: 5px;border-radius: 5px;" />
     <input type="submit" class="btn btn-primary" value="buscar" />
   </form>
 
@@ -9,29 +10,29 @@
       {{#switch session.status}}
       {{#case "2"}}
       <tr>
-        <th scope="col">id de saida</th>
-        <th scope="col">nome </th>
-        <th scope="col">quantidade</th>
-        <th scope="col">pagamento</th>
-        <th scope="col">troco</th>
-        <th scope="col">valor total</th>
-        <th scope="col">status</th>
+        <th scope="col">Id de Saida</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Pagamento</th>
+        <th scope="col">Troco</th>
+        <th scope="col">Valor Total</th>
+        <th scope="col">Status</th>
         <th scope="col">Endereço</th>
-        <th scope="col">data</th>
+        <th scope="col">Data</th>
       </tr>
       {{/case}}
       {{#case "3"}}
       <tr>
-        <th scope="col">id de saida</th>
-        <th scope="col">nome </th>
-        <th scope="col">quantidade</th>
-        <th scope="col">pagamento</th>
-        <th scope="col">troco</th>
-        <th scope="col">valor total</th>
+        <th scope="col">Id de Saida</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Pagamento</th>
+        <th scope="col">Troco</th>
+        <th scope="col">Valor Total</th>
         <th scope="col">Endereço</th>
-        <th scope="col">data</th>
-        <th scope="col">status</th>
-        <th scope="col">ações</th>
+        <th scope="col">Data</th>
+        <th scope="col">Status</th>
+        <th scope="col">Ações</th>
       </tr>
       {{/case}}
       {{/switch}}
@@ -68,7 +69,7 @@
         <td>{{{this.statusPedidos}}}</td>
         <td id="acoes-botoes">
           <a href="/dashboard/editPedido/{{this.id}}">
-            <button type="button" class="btn btn-primary">alterar
+            <button type="button" class="btn btn-primary">Alterar
             </button></a>
           <form action="/dashboard/removePedido/{{this.id}}" method="POST">
             <button class="btn btn-danger" type="submit">Remover</button>
