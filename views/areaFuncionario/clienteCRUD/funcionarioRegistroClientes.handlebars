@@ -1,13 +1,14 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
   <form action="/dashboard/clientesCadastrados" method="GET" class="form-group pesqui">
-    <input type="text" name="search" placeholder="Nome do Cliente" style="padding-left: 5px;" />
+    <input type="text" name="search" placeholder="Nome do Cliente"
+      style="padding-left: 5px;margin-right: 5px;border-radius: 5px;" />
     <input type="submit" class="btn btn-primary" value="buscar" />
   </form>
 
   <table class="table table-responsive-12">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">id</th>
+        <th scope="col">Id</th>
         <th scope="col">Nome</th>
         <th scope="col">CPF</th>
         <th scope="col">Data de Nascimento</th>
@@ -31,7 +32,7 @@
         <td> {{this.endereco}} </td>
         <td id="acoes-botoes">
           <a href="/dashboard/edit/{{this.id}}">
-            <button type="button" class="btn btn-primary">alterar</button></a>
+            <button type="button" class="btn btn-primary">Alterar</button></a>
           <form action="/dashboard/removeCliente/{{this.id}}" method="POST">
             <button class="btn btn-danger" type="submit">Remover</button>
           </form>

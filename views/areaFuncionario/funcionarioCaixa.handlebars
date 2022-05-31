@@ -8,34 +8,30 @@
     <div class="col-lg-8">
       <div class="fundo-dos-pedidos">
         <h3 class="texto-center2">Pedido de Produtos</h3>
-        <table
-          id="tableIdCaixa"
-          class="table table-hover table-responsive-12 w-100"
-          style="cursor: pointer;"
-        >
+        <table id="tableIdCaixa" class="table table-hover table-responsive-12 w-100" style="cursor: pointer;">
           <thead class="thead-dark">
             <tr>
               <th>Quantidade</th>
-              <th>Tipo de pagamento</th>
-              <th>valor</th>
-              <th>troco</th>
+              <th>Tipo de Pagamento</th>
+              <th>Valor</th>
+              <th>Troco</th>
               <th>Data</th>
               <th>Endereço</th>
-              <th>status Pedidos</th>
+              <th>Status Pedidos</th>
             </tr>
           </thead>
           <tbody>
             {{#each pedidosCadastrados}}
-              <tr>
-                <td hidden>{{{this.id}}}</td>
-                <td>{{{this.quantidadePedido}}}</td>
-                <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
-                <td>{{{this.valorTotal}}}</td>
-                <td>{{this.troco}}</td>
-                <td>{{{formatDate this.createdAt}}}</td>
-                <td>{{{this.Cliente.endereco}}}</td>
-                <td>{{{this.statusPedidos}}}</td>
-              </tr>
+            <tr>
+              <td hidden>{{{this.id}}}</td>
+              <td>{{{this.quantidadePedido}}}</td>
+              <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
+              <td>{{{this.valorTotal}}}</td>
+              <td>{{this.troco}}</td>
+              <td>{{{formatDate this.createdAt}}}</td>
+              <td>{{{this.Cliente.endereco}}}</td>
+              <td>{{{this.statusPedidos}}}</td>
+            </tr>
             {{/each}}
           </tbody>
         </table>
@@ -57,27 +53,17 @@
         </div>
         <div>
           <h5 class="texto-center3">Quantidade</h5>
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              id="quantidadeDeGas"
-              name="quantidadePedido"
-              class="form-control"
-              aria-label="Amount (to the nearest dollar)"
-            />
+          <div class="input-group mb-3" style="text-align-last: center;">
+            <input type="text" id="quantidadeDeGas" name="quantidadePedido" class="form-control"
+              aria-label="Amount (to the nearest dollar)" />
           </div>
         </div>
         <div>
           <h3 class="texto-center3"> Total a Pagar R$</h3>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3" style="text-align-last: right;">
             <span class="input-group-text">R$</span>
-            <input
-              type="text"
-              id="valorTotalCompra"
-              name="totalAPagar"
-              class="form-control"
-              aria-label="Amount (to the nearest dollar)"
-            />
+            <input type="text" id="valorTotalCompra" name="totalAPagar" class="form-control"
+              aria-label="Amount (to the nearest dollar)" />
             <span class="input-group-text">.00</span>
           </div>
         </div>
@@ -85,15 +71,10 @@
         <div>
           <h1 class="texto-center3">Troco R$</h1>
           <div>
-            <div class="input-group-prepend">
+            <div class="input-group-prepend" style="text-align-last: right;">
               <span class="input-group-text">R$</span>
-              <input
-                id="troco"
-                name="troco"
-                type="text"
-                class="form-control"
-                aria-label="Amount (to the nearest dollar)"
-              />
+              <input id="troco" name="troco" type="text" class="form-control"
+                aria-label="Amount (to the nearest dollar)" />
               <span class="input-group-text">.00</span>
             </div>
           </div>
@@ -101,20 +82,14 @@
         <div>
           {{! Botões da Pagina }}
           <div style="display: flex;">
-            <button
-              href="/caixa/pedidoFinalizado"
-              class="btn btn-success col-12 my-2"
-              style="font-size: 20px; font-weight: bolder; background"
-            >FINALIZAR</button>
+            <button href="/caixa/pedidoFinalizado" class="btn btn-success col-12 my-2"
+              style="font-size: 20px; font-weight: bolder; background">FINALIZAR</button>
           </div>
         </div>
       </form>
       <form method="post" action="/caixa/pedidoCancelado">
         <input type="text" id="idCancelamento" name="id" hidden />
-        <button
-          class="btn btn-danger col-12"
-          style="font-size: 20px; font-weight: bolder; "
-        >CANCELAR</button>
+        <button class="btn btn-danger col-12" style="font-size: 20px; font-weight: bolder; ">CANCELAR</button>
       </form>
     </div>
   </div>
@@ -127,46 +102,42 @@
       </div>
     </div>
   </div>
+  {{!-- Fechamento do Caixa --}}
   <div class="col-lg-12 posicao-caixa">
-    <div class="col-lg-8">
-      <div class="input-group-prepend">
-        <span class="input-group-text label-estilo">Valor Inserido R$</span>
-        <div class="input-group-append">
-          <input
-            id="valorInserido"
-            type="text"
-            class="form-control"
-            aria-label="Amount (to the nearest dollar)"
-            value="{{totalInseridoCaixa}}"
-            readonly
-          />
-          <span class="input-group-text">.00</span>
-        </div>
-      </div>
-      <div>
+    <div style="display: flex;align-items: flex-end;width: 100%;justify-content: flex-end;">
+      <div class="col-lg-6">
+        {{!-- formatação para os valores --}}
         <div class="input-group-prepend">
-          <span class="input-group-text label-estilo">Valor Retirado R$</span>
-          <div class="input-group-append">
-            <input
-              id="valorRetirado"
-              type="text"
-              class="form-control"
-              aria-label="Amount (to the nearest dollar)"
-              value=""
-              readonly
-            />
+          <span class="input-group-text label-estilo" style="padding-left: 15px;">Valor Inserido R$</span>
+          <div class="input-group-append" style="text-align-last: right;">
+            <input id="valorInserido" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+              value="{{totalInseridoCaixa}}" readonly />
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+        <div>
+          <div class="input-group-prepend">
+            <span class="input-group-text label-estilo">Valor Retirado R$</span>
+            <div class="input-group-append" style="text-align-last: right;">
+              <input id="valorRetirado" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                value="" readonly />
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group-prepend">
+          <span class="input-group-text label-estilo" style="padding-left: 37px;">Valor Total R$</span>
+          <div class="input-group-append" style="text-align-last: right;">
+            <input type="text" class="form-control" id="valorTotal" readonly />
             <span class="input-group-text">.00</span>
           </div>
         </div>
       </div>
-
-      <div class="input-group-prepend">
-        <span class="input-group-text label-estilo">Valor Total R$</span>
-        <div class="input-group-append">
-          <input type="text" class="form-control" id="valorTotal" readonly />
-          <span class="input-group-text">.00</span>
+      <div class="col-lg-4">
+        <div style="display: flex;">
+          <button href="/caixa/pedidoFinalizado" class="btn btn-success col-12 my-2"
+            style="font-size: 20px; font-weight: bolder; background">FECHAR CAIXA</button>
         </div>
-
       </div>
     </div>
   </div>
