@@ -51,6 +51,10 @@ handlebars.registerHelper('valorGas', function (value) {
     return value * 100
 })
 
+handlebars.registerHelper('valorCompra', function (value1, value2) {
+    return value1 * value2
+})
+
 handlebars.registerHelper('switch', function (value, options) {
     this.switch_value = value;
     return options.fn(this);

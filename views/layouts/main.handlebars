@@ -62,9 +62,7 @@
                         <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios cadastrados</a>
                         </li>
                         {{/ifCond}}
-                        <li class="nav-item"><a href="/dashboard/caixa">Caixa</a></li>
                         <li class="nav-item"><a href="/dashboard/estoque">Estoque</a></li>
-                        <li class="nav-item"><a href="/dashboard/relatorios">Relatorios</a></li>
                         {{/case}}
                         {{#case '3'}}
                         <li class="nav-item "><a href="/dashboard">Home</a></li>
@@ -124,9 +122,12 @@
                                     <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
                                         placeholder="Password">
                                 </div>
+<<<<<<< HEAD
                                 {{#if messages.mensagemUsuarioInvalido}}
                                 {{messages.mensagemUsuarioInvalido}}
                                 {{/if}}
+=======
+>>>>>>> origin/HEAD
                                 <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
                             </form>
                         </div>
@@ -139,6 +140,44 @@
                     </div>
                 </div>
             </div>
+            {{#if messages.mensagemUsuarioInvalido}}
+            <div class="modal fade show" id="modal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" style="padding-right: 17px; display: block; background:#0000007d;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabelCliente">Login</h5>
+                            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="loginCliente" method="post" action="/acessoUsuario">
+                                <div class="form-group">
+                                    <label class="marg10" for="exampleInputEmail1">Email:</label>
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="marg10" for="senha">Senha</label>
+                                    <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
+                                        placeholder="Password">
+                                </div>
+                                {{messages.mensagemUsuarioInvalido}}
+
+                                <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-danger col-12" data-toggle="modal"
+                                data-target=".bd-example-modal-lg" data-dismiss=" modal "
+                                id="btnCadastro">Cadastre-se</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </section>
         <!--final da seção de login-->
 

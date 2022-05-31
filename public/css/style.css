@@ -509,9 +509,9 @@ p {
 
 /*estilização funcionario*/
 #funcoesfuncionario {
+  height: 100vh;
   margin-left: -15px;
   width: 500px;
-  height: 100vh;
   background-color: var(--a-claro2);
 }
 

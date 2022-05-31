@@ -166,10 +166,10 @@ btnCadastro.addEventListener('click', (e => {
     var inputConfirmpassword = document.querySelector('#confirmpassword');
 
     inputConfirmpassword.addEventListener('blur', (e => {
-        if (inputSenha.value !== confirmpassword.value) {
+        if (inputSenha.value !== inputConfirmpassword.value) {
             alertVermelho.style.display = 'block';
             submitCadastrar.disabled = true;
-        } else if (confirmpassword.value === '' || inputSenha.value === '') {
+        } else if (inputConfirmpassword.value === '' || inputSenha.value === '') {
             submitCadastrar.disabled = true;
         }
         else {
@@ -182,10 +182,8 @@ btnCadastro.addEventListener('click', (e => {
 
 //final das funções
 
-acessoCliente = document.querySelector("#exampleModalLabelCliente");
-acessoFuncionario = document.querySelector("#exampleModalLabelFuncionario");
-acessoLoginCliente = document.getElementById("loginCliente");
-acessoLoginFuncionario = document.querySelector("#loginFuncionario");
-
-/* fechamento de caixa */
-
+closeModal = document.getElementById("close")
+closeModal.addEventListener("click", function fecharModal() {
+    document.getElementById('modal-2').style.display = 'none'
+    document.getElementById('modal-2').style.background = 'none'
+});

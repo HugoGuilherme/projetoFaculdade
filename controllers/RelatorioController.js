@@ -1,19 +1,33 @@
 const Cliente = require('../models/Cliente')
+const Pedido = require("../models/Pedido")
+const Estoque = require("../models/Estoque")
 const session = require('express-session')
 const bcrypt = require('bcryptjs')
-const Pedido = require("../models/Pedido")
 const { Op } = require('sequelize')
+const sequelize = require('../db/conn')
 
 
 module.exports = class RelatorioController {
 
     static async pedidosFinalizados(req, res) {
+        var fromDate = Date.now()
+        var fromDateYear = new Date(fromDate).getFullYear();
+        var fromDateMonth = new Date(fromDate);
+        var fromMonth = (fromDateMonth.getMonth() + 1) < 10 ? '0' + (fromDateMonth.getMonth() + 1) : (fromDateMonth.getMonth() + 1);
 
         let search = ''
 
         if (req.query.search) {
             search = req.query.search
         }
+        const estoqueMensal = await Estoque.findAll({
+            where: sequelize.where(sequelize.fn('month', sequelize.col('createdAt')), fromMonth)
+        })
+        const estoqueAnual = await Estoque.findAll({
+            where: sequelize.where(sequelize.fn('year', sequelize.col('createdAt')), fromDateYear)
+        })
+        const estoquesCadastradosAnual = estoqueAnual.map(el => el.get({ plain: true }))
+        const estoquesCadastradosMensalmente = estoqueMensal.map(el => el.get({ plain: true }))
 
         const pedido = await Pedido.findAll({
             include: Cliente,
@@ -23,7 +37,7 @@ module.exports = class RelatorioController {
             }
         })
         const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
-        res.render('areaFuncionario/funcionarioRelatorios', { pedidosCadastrados })
+        res.render('areaFuncionario/funcionarioRelatorios', { pedidosCadastrados, estoquesCadastradosMensalmente, estoquesCadastradosAnual })
 
     }
 

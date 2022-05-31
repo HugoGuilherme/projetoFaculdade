@@ -8,27 +8,28 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
-                            style="color: #000;">Relatório Semanal</a>
+                            style="color: #000;">Relatório do mês</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>mês</th>
-                                <th>quantidade de produto inserido</th>
-                                <th>quantidade de produto retirado</th>
+                                <th>data</th>
+                                <th>quantidade de produtos inseridos</th>
+                                <th>quantidade de produtos venditos</th>
                                 <th>valor total das vendas</th>
-                                <th>valor total retirado</th>
+                                <th>valor total das compras</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each pedidosCadastrados}}
+                            {{#each estoquesCadastradosMensalmente}}
                             <tr>
-                                <td>{{{this.quantidadePedido}}}</td>
-                                <td>{{{this.tipoDePagamentoNaEntrega}}}</td>
-                                <td>{{{this.valorTotal}}}</td>
                                 <td>{{{formatDate this.createdAt}}}</td>
+                                <td>{{{this.quantidadeInserida}}}</td>
+                                <td>{{{this.quantidadeVendida}}}</td>
+                                <td>{{{valorGas this.quantidadeVendida}}}</td>
+                                <td>{{{valorCompra this.quantidadeInserida this.valorDoProduto}}}</td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -39,27 +40,34 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
-                            style="color: #000;">Relatório Mensal</a>
+                            style="color: #000;">Relatório do ano</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>data</th>
+                                <th>quantidade de produtos inseridos</th>
+                                <th>quantidade de produtos venditos</th>
+                                <th>valor total das vendas</th>
+                                <th>valor total das compras</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each estoquesCadastradosAnual}}
+                            <tr>
+                                <td>{{{formatDate this.createdAt}}}</td>
+                                <td>{{{this.quantidadeInserida}}}</td>
+                                <td>{{{this.quantidadeVendida}}}</td>
+                                <td>{{{valorGas this.quantidadeVendida}}}</td>
+                                <td>{{{valorCompra this.quantidadeInserida this.valorDoProduto}}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
-                            style="color: #000;">Relatório Anual</a>
-                    </h4>
-                </div>
-                <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                </div>
-            </div>
+
         </div>
     </div>
