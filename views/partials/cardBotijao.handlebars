@@ -7,32 +7,24 @@
           Gás de cozinha
         </h4>
         {{#if session.userid}}
-          <p class="mt-4">
-            Compre o seu gás no valor de R$100
-          </p>
-          <button
-            class="btn btn-dark col-10 mt-3 mb-4"
-            data-toggle="modal"
-            data-target="#exampleModal1"
-          >
-            COMPRAR
-          </button>
+        <p class="mt-4">
+          Compre o seu gás no valor de R$100
+        </p>
+        <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal1">
+          COMPRAR
+        </button>
         {{else}}
-          <p class="m-4 text-center">
-            Entre com seu usuário e venha aproveitar o melhor preço da região!
-          </p>
-          <button
-            class="btn btn-dark col-10 mt-3 mb-4"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            Logar
-          </button>
+        <p class="m-4 text-center">
+          Entre com seu usuário e venha aproveitar o melhor preço da região!
+        </p>
+        <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal">
+          Logar
+        </button>
         {{/if}}
       </div>
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-8">
     <div class="qualificacoes p-4">
       <h2>
         Qualidade
@@ -57,26 +49,15 @@
 </div>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal1"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
           Solicite seu gás
         </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">
             &times;
           </span>
@@ -95,22 +76,11 @@
             <h6>
               Escolha a sua forma de pagamento na entrega
             </h6>
-            <input
-              type="radio"
-              id="dinheiro"
-              name="pagamento"
-              value="dinheiro"
-            />
+            <input type="radio" id="dinheiro" name="pagamento" value="dinheiro" />
             <label for="dinheiro">
               Dinheiro
             </label>
-            <input
-              hidden
-              id="trocoPagamento"
-              name="troco"
-              type="text"
-              placeholder="troco?"
-            />
+            <input hidden id="trocoPagamento" name="troco" type="text" placeholder="troco?" />
             <br />
             <input type="radio" id="cartao" name="pagamento" value="cartao" />
             <label for="cartao">
@@ -126,12 +96,7 @@
             <h7>
               R$
               <h7>
-                <input
-                  id="valorTotalCompra"
-                  name="valorTotal"
-                  type="text"
-                  readonly
-                />
+                <input id="valorTotalCompra" name="valorTotal" type="text" readonly />
               </h7>
             </h7>
           </div>
