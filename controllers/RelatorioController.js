@@ -28,7 +28,7 @@ module.exports = class RelatorioController {
         })
         const estoquesCadastradosAnual = estoqueAnual.map(el => el.get({ plain: true }))
         const estoquesCadastradosMensalmente = estoqueMensal.map(el => el.get({ plain: true }))
-
+        console.log('ola');
         const pedido = await Pedido.findAll({
             include: Cliente,
             where: {
