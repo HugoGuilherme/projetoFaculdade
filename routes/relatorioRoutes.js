@@ -4,5 +4,6 @@ const RelatorioController = require('../controllers/RelatorioController')//helpe
 const checkAuth = require('../helpers/auth').checkAuth
 
 router.get('/dashboard/relatorios', checkAuth, RelatorioController.pedidosFinalizados)
+router.get('/dashboard/relatorios/EnviarPdf', checkAuth, RelatorioController.EnviarRelatorio)
 
 module.exports = router
