@@ -3,71 +3,169 @@
         <h2>Relatórios</h2>
         <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements
             under the specified parent will be closed when one of the collapsible item is shown.</p>
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
-                            style="color: #000;">Relatório do Mês</a>
-                    </h4>
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#RelatorioDeEstoques"
+                    style="color: #000;">Relatório de Estoque</a>
+            </h4>
+        </div>
+        <div id="RelatorioDeEstoques" class="panel-collapse collapse in">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                                style="color: #000;">Relatório do Mês atual</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Quantidade Inserida</th>
+                                    <th>Valor do Produto</th>
+                                    <th>Valor gasto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{{formatDate diaDoMesOndeComprouMais.0.0.createdAt}}}</td>
+                                    <td>{{{diaDoMesOndeComprouMais.0.0.quantidadeInserida}}}</td>
+                                    <td>{{{diaDoMesOndeComprouMais.0.0.valorDoProduto}}}</td>
+                                    <td>{{{diaDoMesOndeComprouMais.0.0.valorGasto}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>mês</th>
+                                    <th>quantidade Inserida</th>
+                                    <th>valor Total Estoque</th>
+                                    <th>Quantidade Armazenada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{{somaTotalDoMes.0.mes}}}</td>
+                                    <td>{{{somaTotalDoMes.0.quantidadeInserida}}}</td>
+                                    <td>{{{somaTotalDoMes.0.valorTotalEstoque}}}</td>
+                                    <td>{{{somaTotalDoMes.0.quantidadeArmazenada}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Data</th>
-                                <th>Quantidade de Produtos Inseridos</th>
-                                <th>Quantidade de Produtos Venditos</th>
-                                <th>Valor Total das Vendas</th>
-                                <th>Valor Total das Compras</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each estoquesCadastradosMensalmente}}
-                            <tr>
-                                <td>{{{formatDate this.createdAt}}}</td>
-                                <td>{{{this.quantidadeInserida}}}</td>
-                                <td>{{{this.quantidadeVendida}}}</td>
-                                <td>{{{valorGas this.quantidadeVendida}}}</td>
-                                <td>{{{valorCompra this.quantidadeInserida this.valorDoProduto}}}</td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                                style="color: #000;">Relatório dos Meses</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse in">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Quantidade Inserida</th>
+                                    <th>Valor do Produto</th>
+                                    <th>Valor gasto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each diaDosMesesOndeComprouMais}}
+                                <tr>
+                                    <td>{{{this.MONTH}}}</td>
+                                    <td>{{{this.quantidadeInserida}}}</td>
+                                    <td>{{{this.valorDoProduto}}}</td>
+                                    <td>{{{this.valorGasto}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>mês</th>
+                                    <th>quantidade Inserida</th>
+                                    <th>valor Total Estoque</th>
+                                    <th>Valor do Produto</th>
+                                    <th>Quantidade Armazenada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each somaTotalDosMeses}}
+                                <tr>
+                                    <td>{{{this.mes}}}</td>
+                                    <td>{{{this.quantidadeInserida}}}</td>
+                                    <td>{{{this.valorTotalEstoque}}}</td>
+                                    <td>{{{this.valorDoProduto}}}</td>
+                                    <td>{{{this.quantidadeArmazenada}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
-                            style="color: #000;">Relatório do Ano</a>
-                    </h4>
-                </div>
-                <div id="collapse2" class="panel-collapse collapse">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Data</th>
-                                <th>Quantidade de Produtos Inseridos</th>
-                                <th>Quantidade de Produtos Venditos</th>
-                                <th>Valor Total das Vendas</th>
-                                <th>Valor Total das Compras</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each estoquesCadastradosAnual}}
-                            <tr>
-                                <td>{{{formatDate this.createdAt}}}</td>
-                                <td>{{{this.quantidadeInserida}}}</td>
-                                <td>{{{this.quantidadeVendida}}}</td>
-                                <td>{{{valorGas this.quantidadeVendida}}}</td>
-                                <td>{{{valorCompra this.quantidadeInserida this.valorDoProduto}}}</td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                                style="color: #000;">Relatório dos Anos</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Quantidade Inserida</th>
+                                    <th>Valor do Produto</th>
+                                    <th>Valor gasto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each anosOndeComprouMais}}
+                                <tr>
+                                    <td>{{{this.YEAR}}}</td>
+                                    <td>{{{this.quantidadeInserida}}}</td>
+                                    <td>{{{this.valorDoProduto}}}</td>
+                                    <td>{{{this.valorGasto}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>mês</th>
+                                    <th>quantidade Inserida</th>
+                                    <th>valor Total Estoque</th>
+                                    <th>Valor do Produto</th>
+                                    <th>Quantidade Armazenada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each somaTotalDosAnos}}
+                                <tr>
+                                    <td>{{{this.mes}}}</td>
+                                    <td>{{{this.quantidadeInserida}}}</td>
+                                    <td>{{{this.valorTotalEstoque}}}</td>
+                                    <td>{{{this.valorDoProduto}}}</td>
+                                    <td>{{{this.quantidadeArmazenada}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>

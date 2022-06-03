@@ -13,31 +13,30 @@ module.exports = class RelatorioController {
         var fromDate = Date.now()
         var fromDateYear = new Date(fromDate).getFullYear();
         var fromDateMonth = new Date(fromDate);
-        var fromMonth = (fromDateMonth.getMonth() + 1) < 10 ? '0' + (fromDateMonth.getMonth() + 1) : (fromDateMonth.getMonth() + 1);
+        var fromMonth = (fromDateMonth.getMonth() + 1);
 
         let search = ''
 
         if (req.query.search) {
             search = req.query.search
         }
-        const estoqueMensal = await Estoque.findAll({
-            where: sequelize.where(sequelize.fn('month', sequelize.col('createdAt')), fromMonth)
-        })
-        const estoqueAnual = await Estoque.findAll({
-            where: sequelize.where(sequelize.fn('year', sequelize.col('createdAt')), fromDateYear)
-        })
-        const estoquesCadastradosAnual = estoqueAnual.map(el => el.get({ plain: true }))
-        const estoquesCadastradosMensalmente = estoqueMensal.map(el => el.get({ plain: true }))
-        console.log('ola');
-        const pedido = await Pedido.findAll({
-            include: Cliente,
-            where: {
-                ClienteId: { [Op.like]: `%${search}%` },
-                statusPedidos: ['finalizado']
-            }
-        })
-        const pedidosCadastrados = pedido.map(el => el.get({ plain: true }))
-        res.render('areaFuncionario/funcionarioRelatorios', { pedidosCadastrados, estoquesCadastradosMensalmente, estoquesCadastradosAnual })
+
+
+        const diaDoMesOndeComprouMais = await sequelize.query("SELECT createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
+        var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as MONTH, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
+        diaDosMesesOndeComprouMais = diaDosMesesOndeComprouMais[0]
+        var anosOndeComprouMais = await sequelize.query("SELECT YEAR(createdAt) as YEAR, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY YEAR(createdAt)")
+        anosOndeComprouMais = anosOndeComprouMais[0]
+
+
+        var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
+        somaTotalDoMes = (somaTotalDoMes[0]);
+        var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e group by month(e.createdAt)")
+        somaTotalDosMeses = (somaTotalDosMeses[0]);
+        var somaTotalDosAnos = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, YEAR(e.createdAt) as mes from estoques e group by YEAR(e.createdAt)")
+        somaTotalDosAnos = (somaTotalDosAnos[0]);
+
+        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos })
 
     }
 
