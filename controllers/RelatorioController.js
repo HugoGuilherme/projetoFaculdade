@@ -5,8 +5,10 @@ const session = require('express-session')
 const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
 const sequelize = require('../db/conn')
-const fs = require("fs");
+var http = require('http');
+var fs = require('fs');
 const PDFDocument = require("pdfkit-table");
+var path = require('path');
 
 module.exports = class RelatorioController {
 
@@ -21,7 +23,18 @@ module.exports = class RelatorioController {
         if (req.query.search) {
             search = req.query.search
         }
-
+        var download = function (url, dest, cb) {
+            var file = fs.createWriteStream(dest);
+            var request = http.get(url, function (response) {
+                response.pipe(file);
+                file.on('finish', function () {
+                    file.close(cb);  // close() is async, call cb after close completes.
+                });
+            }).on('error', function (err) { // Handle errors
+                fs.unlink(dest); // Delete the file async. (But we don't check the result)
+                if (cb) cb(err.message);
+            });
+        };
 
         const diaDoMesOndeComprouMais = await sequelize.query("SELECT createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
         var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as MONTH, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
@@ -90,7 +103,8 @@ module.exports = class RelatorioController {
         // init document
         let doc = new PDFDocument({ margin: 30, size: 'A4' });
         // save document
-        doc.pipe(fs.createWriteStream("C:/Users/Hugo/Downloads/Relatorio.pdf"));
+        const homedir = require('os').homedir();
+        doc.pipe(fs.createWriteStream(homedir + "/Downloads/Relatorio.pdf"));
 
         const tableMaiorQuantidadeMensal = {
             title: "Relatorio Estoque",

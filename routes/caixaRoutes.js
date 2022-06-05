@@ -9,6 +9,6 @@ router.post('/caixa/pedidoFinalizado', checkAuth, CaixaController.finalizarPedid
 router.post('/caixa/pedidoCancelado', checkAuth, CaixaController.cancelarPedidoCaixa)
 router.get('/dashboard/pedidos', checkAuth, CaixaController.registroCaixa)
 router.get('/dashboard/editPedido/:id', checkAuth, CaixaController.editaCaixa)
-router.post('/dashboard/updatePedido', checkAuth, CaixaController.atualizaCaixa)
+router.post('/dashboard/finalizarCaixa', checkAuth, CaixaController.finalizaCaixa)
 
 module.exports = router

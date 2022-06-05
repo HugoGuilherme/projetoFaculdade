@@ -103,44 +103,46 @@
     </div>
   </div>
   {{!-- Fechamento do Caixa --}}
-  <div class="col-lg-12 posicao-caixa">
-    <div style="display: flex;align-items: flex-end;width: 100%;justify-content: flex-end;">
-      <div class="col-lg-6">
-        {{!-- formatação para os valores --}}
-        <div class="input-group-prepend">
-          <span class="input-group-text label-estilo" style="padding-left: 15px;">Valor Inserido R$</span>
-          <div class="input-group-append" style="text-align-last: right;">
-            <input id="valorInserido" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-              value="{{totalInseridoCaixa}}" readonly />
-            <span class="input-group-text">.00</span>
-          </div>
-        </div>
-        <div>
+  <form action="/dashboard/finalizarCaixa" method="post">
+    <div class="col-lg-12 posicao-caixa">
+      <div style="display: flex;align-items: flex-end;width: 100%;justify-content: flex-end;">
+        <div class="col-lg-6">
+          {{!-- formatação para os valores --}}
           <div class="input-group-prepend">
-            <span class="input-group-text label-estilo">Valor Retirado R$</span>
+            <span class="input-group-text label-estilo" style="padding-left: 15px;">Valor Inserido R$</span>
             <div class="input-group-append" style="text-align-last: right;">
-              <input id="valorRetirado" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                value="" readonly />
+              <input id="valorInserido" name="valorAdicionado" type="text" class="form-control"
+                aria-label="Amount (to the nearest dollar)" value="{{totalInseridoCaixa}}" readonly />
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+          <div>
+            <div class="input-group-prepend">
+              <span class="input-group-text label-estilo">Valor Retirado R$</span>
+              <div class="input-group-append" style="text-align-last: right;">
+                <input id="valorRetirado" name="valorRetirado" type="text" class="form-control"
+                  aria-label="Amount (to the nearest dollar)" value="0" readonly />
+                <span class="input-group-text">.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group-prepend">
+            <span class="input-group-text label-estilo" style="padding-left: 37px;">Valor Total R$</span>
+            <div class="input-group-append" style="text-align-last: right;">
+              <input type="text" name="valorTotal" class="form-control" id="valorTotal" readonly />
               <span class="input-group-text">.00</span>
             </div>
           </div>
         </div>
-        <div class="input-group-prepend">
-          <span class="input-group-text label-estilo" style="padding-left: 37px;">Valor Total R$</span>
-          <div class="input-group-append" style="text-align-last: right;">
-            <input type="text" class="form-control" id="valorTotal" readonly />
-            <span class="input-group-text">.00</span>
+        <div class="col-lg-4">
+          <div style="display: flex;">
+            <button href="/caixa/pedidoFinalizado" class="btn btn-success col-12 my-2"
+              style="font-size: 20px; font-weight: bolder; background">FECHAR CAIXA</button>
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div style="display: flex;">
-          <button href="/caixa/pedidoFinalizado" class="btn btn-success col-12 my-2"
-            style="font-size: 20px; font-weight: bolder; background">FECHAR CAIXA</button>
-        </div>
-      </div>
     </div>
-  </div>
+  </form>
 </div>
 
 <script src="/js/scriptCaixa.js"> </script>

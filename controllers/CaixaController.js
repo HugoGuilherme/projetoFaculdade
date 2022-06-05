@@ -143,19 +143,20 @@ module.exports = class CaixaController {
             .catch((err) => console.log())
     }
 
-    static atualizaCaixa(req, res) {
-        const id = req.body.id
+    static async finalizaCaixa(req, res) {
+        const valores = req.body
 
-        const caixa = {
-            id: req.body.id,
-            valorAdicionado: req.body.valorAdicionado,
-            valorRetirado: req.body.valorRetirado
-        }
-        Caixa.update(caixa, { where: { id: id } })
-            .then(() => {
-                return "OK";
-                //res.redirect(`/dashboard/caixa`)
-            })
-            .catch((err) => console.log())
+        const valoresAdicionados = await Caixa.create(valores)
+        console.log(valores);
+        res.redirect(`/dashboard/caixa`)
+
+        // .then(() => {
+        //     res.redirect(`/dashboard/caixa`)
+
+        // })
+        // .catch((err) => console.log())
+
     }
+
+
 }
