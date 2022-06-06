@@ -318,9 +318,9 @@ module.exports = class RelatorioController {
 
         const tableResultadoGeralTotal = {
             title: "Relatorio Pedido",
-            headers: [{ label: "Quantidade de Pedidos Feito Pelo Cliente", width: 100 },
-            { label: "Quantidade de Botijões Vendidos", width: 100 },
-            { label: "Valor Total", width: 100 }
+            headers: [{ label: "Quantidade de Pedidos Feito Pelo Cliente", width: 170 },
+            { label: "Quantidade de Botijões Vendidos", width: 170 },
+            { label: "Valor Total", width: 170 }
             ],
             rows: [
                 ...resultsGeral(resultadoGeralTotal)
@@ -332,9 +332,9 @@ module.exports = class RelatorioController {
 
         const tableFinalizadosDoMes = {
             subtitle: "Soma Total do Mês",
-            headers: [{ label: "Mês", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 }
+            headers: [{ label: "Mês", width: 170, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 170 },
+            { label: "Valor Total", width: 170 }
             ],
             rows: [
                 ...results(valorTotalDaSomaDosPedidosFinalizadosDoMes)
@@ -345,10 +345,10 @@ module.exports = class RelatorioController {
         });
         const tableMaiorPedidoRealizadoNoMes = {
             subtitle: "Maior Pedido Realizado no Mês",
-            headers: [{ label: "Mês", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 },
-            { label: "Tipo de Pagamento", width: 130 }
+            headers: [{ label: "Mês", width: 128, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 128 },
+            { label: "Valor Total", width: 127 },
+            { label: "Tipo de Pagamento", width: 127 }
             ],
             rows: [
                 ...resultadoTotalRelatorio(maiorPedidoRealizadoNoMes)
@@ -359,9 +359,9 @@ module.exports = class RelatorioController {
         });
         const tableValorTotalDaSomaDosPedidosFinalizadosDosMeses = {
             subtitle: "Soma Total dos Meses",
-            headers: [{ label: "Mês", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 }
+            headers: [{ label: "Mês", width: 170, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 170 },
+            { label: "Valor Total", width: 170 }
             ],
             rows: [
                 ...results(valorTotalDaSomaDosPedidosFinalizadosDosMeses)
@@ -373,9 +373,9 @@ module.exports = class RelatorioController {
 
         const tableMaiorPedidoRealizadoDosMeses = {
             subtitle: "Maior Pedido Realizado dos Meses",
-            headers: [{ label: "Mês", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 }
+            headers: [{ label: "Mês", width: 170, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 170 },
+            { label: "Valor Total", width: 170 }
             ],
             rows: [
                 ...results(maiorPedidoRealizadoDosMeses)
@@ -387,9 +387,9 @@ module.exports = class RelatorioController {
 
         const tableValorTotalDaSomaDosPedidosFinalizadosDosAnos = {
             subtitle: "Soma Total dos Anos",
-            headers: [{ label: "Ano", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 }
+            headers: [{ label: "Ano", width: 170, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 170 },
+            { label: "Valor Total", width: 170 }
             ],
             rows: [
                 ...resultsAno(valorTotalDaSomaDosPedidosFinalizadosDosAnos)
@@ -401,15 +401,16 @@ module.exports = class RelatorioController {
 
         const tableMaiorPedidoRealizadoDosAnos = {
             subtitle: "Maior Pedido Realizado dos Anos",
-            headers: [{ label: "Ano", width: 130, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 130 },
-            { label: "Valor Total", width: 130 }
+            headers: [{ label: "Ano", width: 170, renderer: null, },
+            { label: "Quantidade de Pedidos de Botijões", width: 170, },
+            { label: "Valor Total", width: 170, }
             ],
             rows: [
                 ...resultsAno(maiorPedidoRealizadoDosAnos)
             ],
         };
         await doc.table(tableMaiorPedidoRealizadoDosAnos, {
+
             width: 400,
         });
 
