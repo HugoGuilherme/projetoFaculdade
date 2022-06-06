@@ -54,7 +54,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
+        <h5 class="modal-title text-center" id="exampleModalLabel" style="width: 95%;">
           Solicite seu gás
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,48 +66,69 @@
       <div class="modal-body">
         <form action="/pedido/realizado" method="post">
           <div>
-            <h6>
-              Escolha a quantidade desejada
-            </h6>
-            <input type="number" name="quantidadeDeGas" id="quantidadeDeGas" />
-          </div>
-          <br />
-          <div name="tipoDePagamentoNaEntrega">
-            <h6>
-              Escolha a sua forma de pagamento na entrega
-            </h6>
-            <input type="radio" id="dinheiro" name="pagamento" value="dinheiro" />
-            <label for="dinheiro">
-              Dinheiro
-            </label>
-            <input hidden id="trocoPagamento" name="troco" type="text" placeholder="troco?" />
+            <div class="form-outline">
+              <span class="input-group-text label-estilo" style="display: flex;justify-content: space-between;">Escolha
+                a quantidade desejada:
+                <div class="input-group-append" style="text-align-last: right;">
+                  <input type="number" name="quantidadeDeGas" id="quantidadeDeGas" class="form-control" min="0" />
+                </div>
+              </span>
+            </div>
             <br />
-            <input type="radio" id="cartao" name="pagamento" value="cartao" />
-            <label for="cartao">
-              Cartão
-            </label>
+            <div>
+
+              <h6> Escolha a sua forma de pagamento na entrega: </h6>
+              <div class="form-check" name="tipoDePagamentoNaEntrega">
+                <input class="form-check-input" type="radio" id="dinheiro" name="pagamento" value="dinheiro">
+                <label class="form-check-label" for="dinheiro">
+                  Dinheiro
+                </label>
+                <div hidden id="trocoPagamento" class="input-group-append">
+                  <input name="troco" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                    value="0" min="0" style="text-align-last: right;" />
+                  <span class="input-group-text">,00</span>
+                </div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="cartao" name="pagamento" value="cartao">
+                <label class="form-check-label" for="cartao">
+                  Cartão
+                </label>
+              </div>
+            </div>
+
+
             <br />
-          </div>
-          <br />
-          <div>
-            <h6>
-              Valor total
-            </h6>
-            <h7>
-              R$
+            {{!-- <div>
+              <h6>
+                Valor total
+              </h6>
               <h7>
-                <input id="valorTotalCompra" name="valorTotal" type="text" readonly />
+                R$
+                <h7>
+                  <input id="valorTotalCompra" name="valorTotal" type="text" readonly />
+                </h7>
               </h7>
-            </h7>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">
-              Cancelar
-            </button>
-            <button type="submit" class="btn btn-success">
-              Pedir
-            </button>
-          </div>
+            </div> --}}
+            <div class="input-group-prepend">
+              <span class="input-group-text label-estilo">Valor Total R$</span>
+              <div class="input-group-append" style="text-align-last: right;">
+                <input id="valorTotalCompra" name="valorTotal" type="text" class="form-control"
+                  aria-label="Amount (to the nearest dollar)" value="0" readonly style="
+    padding-left: 94px;
+" />
+                <span class="input-group-text">,00</span>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-success">
+                Pedir
+              </button>
+            </div>
         </form>
       </div>
     </div>

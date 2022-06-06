@@ -36,21 +36,48 @@ module.exports = class RelatorioController {
             });
         };
 
+        // Querys do ESTOQUE
         const diaDoMesOndeComprouMais = await sequelize.query("SELECT createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
+
         var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as MONTH, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
         diaDosMesesOndeComprouMais = diaDosMesesOndeComprouMais[0]
+
         var anosOndeComprouMais = await sequelize.query("SELECT YEAR(createdAt) as YEAR, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY YEAR(createdAt)")
         anosOndeComprouMais = anosOndeComprouMais[0]
 
-
         var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
         somaTotalDoMes = (somaTotalDoMes[0]);
+
         var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e group by month(e.createdAt)")
         somaTotalDosMeses = (somaTotalDosMeses[0]);
+
         var somaTotalDosAnos = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, YEAR(e.createdAt) as mes from estoques e group by YEAR(e.createdAt)")
         somaTotalDosAnos = (somaTotalDosAnos[0]);
 
-        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos })
+        // FIM QUERYS ESTOQUE
+
+        // QUERYS PEDIDOS
+        var valorTotalDaSomaDosPedidosFinalizadosDoMes = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos p where statusPedidos = 'finalizado' and MONTH(p.createdAt) = " + fromMonth + ";")
+        valorTotalDaSomaDosPedidosFinalizadosDoMes = valorTotalDaSomaDosPedidosFinalizadosDoMes[0]
+
+        var maiorPedidoRealizadoNoMes = await sequelize.query("select quantidadePedido, valorTotal , tipoDePagamentoNaEntrega , MONTH(createdAt) as mes from pedidos where quantidadePedido = (select max(quantidadePedido) from pedidos where MONTH(createdAt) = " + fromMonth + ");")
+        maiorPedidoRealizadoNoMes = maiorPedidoRealizadoNoMes[0]
+
+        var valorTotalDaSomaDosPedidosFinalizadosDosMeses = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos p where statusPedidos = 'finalizado' GROUP BY MONTH(p.createdAt);")
+        valorTotalDaSomaDosPedidosFinalizadosDosMeses = valorTotalDaSomaDosPedidosFinalizadosDosMeses[0]
+
+        var maiorPedidoRealizadoDosMeses = await sequelize.query("select max(quantidadePedido) as quantidadePedido, max(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos group by month(createdAt);")
+        maiorPedidoRealizadoDosMeses = maiorPedidoRealizadoDosMeses[0]
+
+        var valorTotalDaSomaDosPedidosFinalizadosDosAnos = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, YEAR(createdAt) as ano from pedidos p where statusPedidos = 'finalizado' GROUP BY YEAR(p.createdAt);")
+        valorTotalDaSomaDosPedidosFinalizadosDosAnos = valorTotalDaSomaDosPedidosFinalizadosDosAnos[0]
+
+        var maiorPedidoRealizadoDosAnos = await sequelize.query("select max(quantidadePedido) as quantidadePedido, max(valorTotal) as valorTotal, YEAR(createdAt) as ano from pedidos group by YEAR(createdAt);")
+        maiorPedidoRealizadoDosAnos = maiorPedidoRealizadoDosAnos[0]
+
+        // FIM QUERYS PEDIDOS
+
+        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos })
 
     }
 
@@ -61,20 +88,22 @@ module.exports = class RelatorioController {
         var fromMonth = (fromDateMonth.getMonth() + 1);
 
         const diaDoMesOndeComprouMais = await sequelize.query("SELECT date_format(createdAt, '%d/%m/%Y') as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
+
         var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
         diaDosMesesOndeComprouMais = diaDosMesesOndeComprouMais[0]
+
         var anosOndeComprouMais = await sequelize.query("SELECT YEAR(createdAt) as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY YEAR(createdAt)")
         anosOndeComprouMais = anosOndeComprouMais[0]
 
         var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
         somaTotalDoMes = (somaTotalDoMes[0]);
+
         var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e group by month(e.createdAt)")
         somaTotalDosMeses = (somaTotalDosMeses[0]);
+
         var somaTotalDosAnos = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, YEAR(e.createdAt) as mes from estoques e group by YEAR(e.createdAt)")
         somaTotalDosAnos = (somaTotalDosAnos[0]);
 
-        var estoque = await Estoque.findAll()
-        var estoques = estoque.map((result) => result)
         function results(value) {
             const body = []
             for (let values of value) {
@@ -87,6 +116,7 @@ module.exports = class RelatorioController {
             }
             return body
         }
+
         function resultadoTotalRelatorio(value) {
             const body = []
             for (let values of value) {
@@ -200,6 +230,189 @@ module.exports = class RelatorioController {
         // });
 
         // done!
+        doc.end();
+        res.redirect("/dashboard/relatorios")
+    }
+
+    static async relatorioPedidosPDF(req, res) {
+        var fromDate = Date.now()
+        var fromDateYear = new Date(fromDate).getFullYear();
+        var fromDateMonth = new Date(fromDate);
+        var fromMonth = (fromDateMonth.getMonth() + 1);
+
+        var resultadoGeralTotal = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, count(quantidadePedido) as pedidosFeitosPeloCliente  from pedidos p where statusPedidos = 'finalizado';")
+        var resultadoGeralTotal = resultadoGeralTotal[0]
+
+        var valorTotalDaSomaDosPedidosFinalizadosDoMes = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos p where statusPedidos = 'finalizado' and MONTH(p.createdAt) = " + fromMonth + ";")
+        valorTotalDaSomaDosPedidosFinalizadosDoMes = valorTotalDaSomaDosPedidosFinalizadosDoMes[0]
+
+        var maiorPedidoRealizadoNoMes = await sequelize.query("select quantidadePedido, valorTotal , tipoDePagamentoNaEntrega , MONTH(createdAt) as mes from pedidos where quantidadePedido = (select max(quantidadePedido) from pedidos where MONTH(createdAt) = " + fromMonth + ");")
+        maiorPedidoRealizadoNoMes = maiorPedidoRealizadoNoMes[0]
+
+        var valorTotalDaSomaDosPedidosFinalizadosDosMeses = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos p where statusPedidos = 'finalizado' GROUP BY MONTH(p.createdAt);")
+        valorTotalDaSomaDosPedidosFinalizadosDosMeses = valorTotalDaSomaDosPedidosFinalizadosDosMeses[0]
+
+        var maiorPedidoRealizadoDosMeses = await sequelize.query("select max(quantidadePedido) as quantidadePedido, max(valorTotal) as valorTotal, MONTH(createdAt) as mes from pedidos group by month(createdAt);")
+        maiorPedidoRealizadoDosMeses = maiorPedidoRealizadoDosMeses[0]
+
+        var valorTotalDaSomaDosPedidosFinalizadosDosAnos = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, YEAR(createdAt) as ano from pedidos p where statusPedidos = 'finalizado' GROUP BY YEAR(p.createdAt);")
+        valorTotalDaSomaDosPedidosFinalizadosDosAnos = valorTotalDaSomaDosPedidosFinalizadosDosAnos[0]
+
+        var maiorPedidoRealizadoDosAnos = await sequelize.query("select max(quantidadePedido) as quantidadePedido, max(valorTotal) as valorTotal, YEAR(createdAt) as ano from pedidos group by YEAR(createdAt);")
+        maiorPedidoRealizadoDosAnos = maiorPedidoRealizadoDosAnos[0]
+
+        function results(value) {
+            const body = []
+            for (let values of value) {
+                const rows = new Array()
+                rows.push(values.mes)
+                rows.push(values.quantidadePedido)
+                rows.push(values.valorTotal)
+                body.push(rows)
+            }
+            return body
+        }
+
+        function resultsGeral(value) {
+            const body = []
+            for (let values of value) {
+                const rows = new Array()
+                rows.push(values.pedidosFeitosPeloCliente)
+                rows.push(values.quantidadePedido)
+                rows.push(values.valorTotal)
+                body.push(rows)
+            }
+            return body
+        }
+
+        function resultsAno(value) {
+            const body = []
+            for (let values of value) {
+                const rows = new Array()
+                rows.push(values.ano)
+                rows.push(values.quantidadePedido)
+                rows.push(values.valorTotal)
+                body.push(rows)
+            }
+            return body
+        }
+
+        function resultadoTotalRelatorio(value) {
+            const body = []
+            for (let values of value) {
+                const rows = new Array()
+                rows.push(values.mes)
+                rows.push(values.quantidadePedido)
+                rows.push(values.valorTotal)
+                rows.push(values.tipoDePagamentoNaEntrega)
+                body.push(rows)
+            }
+            return body
+        }
+
+        // init document
+        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        // save document
+        const homedir = require('os').homedir();
+        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioPedido.pdf"));
+
+        const tableResultadoGeralTotal = {
+            title: "Relatorio Pedido",
+            headers: [{ label: "Quantidade de Pedidos Feito Pelo Cliente", width: 100 },
+            { label: "Quantidade de Botijões Vendidos", width: 100 },
+            { label: "Valor Total", width: 100 }
+            ],
+            rows: [
+                ...resultsGeral(resultadoGeralTotal)
+            ],
+        };
+        await doc.table(tableResultadoGeralTotal, {
+            width: 400,
+        });
+
+        const tableFinalizadosDoMes = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "Mês", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 }
+            ],
+            rows: [
+                ...results(valorTotalDaSomaDosPedidosFinalizadosDoMes)
+            ],
+        };
+        await doc.table(tableFinalizadosDoMes, {
+            width: 400,
+        });
+        const tableMaiorPedidoRealizadoNoMes = {
+            subtitle: "Maior Pedido Realizado no Mês",
+            headers: [{ label: "Mês", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 },
+            { label: "Tipo de Pagamento", width: 130 }
+            ],
+            rows: [
+                ...resultadoTotalRelatorio(maiorPedidoRealizadoNoMes)
+            ],
+        };
+        await doc.table(tableMaiorPedidoRealizadoNoMes, {
+            width: 400,
+        });
+        const tableValorTotalDaSomaDosPedidosFinalizadosDosMeses = {
+            subtitle: "Soma Total dos Meses",
+            headers: [{ label: "Mês", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 }
+            ],
+            rows: [
+                ...results(valorTotalDaSomaDosPedidosFinalizadosDosMeses)
+            ],
+        };
+        await doc.table(tableValorTotalDaSomaDosPedidosFinalizadosDosMeses, {
+            width: 400,
+        });
+
+        const tableMaiorPedidoRealizadoDosMeses = {
+            subtitle: "Maior Pedido Realizado dos Meses",
+            headers: [{ label: "Mês", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 }
+            ],
+            rows: [
+                ...results(maiorPedidoRealizadoDosMeses)
+            ],
+        };
+        await doc.table(tableMaiorPedidoRealizadoDosMeses, {
+            width: 400,
+        });
+
+        const tableValorTotalDaSomaDosPedidosFinalizadosDosAnos = {
+            subtitle: "Soma Total dos Anos",
+            headers: [{ label: "Ano", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 }
+            ],
+            rows: [
+                ...resultsAno(valorTotalDaSomaDosPedidosFinalizadosDosAnos)
+            ],
+        };
+        await doc.table(tableValorTotalDaSomaDosPedidosFinalizadosDosAnos, {
+            width: 400,
+        });
+
+        const tableMaiorPedidoRealizadoDosAnos = {
+            subtitle: "Maior Pedido Realizado dos Anos",
+            headers: [{ label: "Ano", width: 130, renderer: null },
+            { label: "Quantidade de Pedidos de Botijões", width: 130 },
+            { label: "Valor Total", width: 130 }
+            ],
+            rows: [
+                ...resultsAno(maiorPedidoRealizadoDosAnos)
+            ],
+        };
+        await doc.table(tableMaiorPedidoRealizadoDosAnos, {
+            width: 400,
+        });
+
         doc.end();
         res.redirect("/dashboard/relatorios")
     }

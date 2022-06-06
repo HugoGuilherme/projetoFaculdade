@@ -123,9 +123,8 @@
                                         placeholder="Password">
                                 </div>
                                 {{#if messages.mensagemUsuarioInvalido}}
-                                    {{messages.mensagemUsuarioInvalido}} {{/if}}
-                                    <button type="submit" id="acessarCliente"
-                                        class="btn btn-dark col-12">Entrar</button>
+                                {{messages.mensagemUsuarioInvalido}} {{/if}}
+                                <button type="submit" id="acessarCliente" class="btn btn-dark col-12">Entrar</button>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -210,9 +209,12 @@
 
             {{{body}}}
         </div>
-    </section>
 
-    {{> footer}}
+    </section>
+    <div>
+        {{> footer}}
+    </div>
+
 
     <script src="/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "

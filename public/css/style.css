@@ -238,7 +238,7 @@ p {
   text-align: center;
   bottom: 0;
   width: 100%;
-  padding: 1.2rem;
+  padding: 1.2rem !important;
   color: var(--a-claro3);
   box-sizing: border-box;
 }
@@ -392,9 +392,10 @@ p {
 
 /*Media query*/
 @media screen and (max-width: 575px) {
-  .rodape{
+  .rodape {
     position: fixed;
   }
+
   .c1 {
     display: none;
   }
@@ -420,7 +421,7 @@ p {
 }
 
 @media screen and (min-width: 576px) {
-  
+
   .login1 {
     margin-right: 12px;
   }
@@ -509,9 +510,10 @@ p {
 
 /*estilização funcionario*/
 #funcoesfuncionario {
-  height: 100vh;
+  height: auto;
   margin-left: -15px;
   width: 500px;
+  padding-bottom: 20px;
   background-color: var(--a-claro2);
 }
 

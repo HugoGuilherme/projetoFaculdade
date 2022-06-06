@@ -170,4 +170,164 @@
 
             </div>
         </div>
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#RelatorioDePedidos"
+                    style="color: #000;">Relatório de Pedidos</a><a
+                    href="/dashboard/relatorios/EnviarPdfPedidos"><button class="btn btn-primary ml-4">Relatorio em
+                        pdf</button></a>
+            </h4>
+        </div>
+        <div id="RelatorioDePedidos" class="panel-collapse collapse in">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1Pedido"
+                                style="color: #000;">Relatório do Mês atual</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1Pedido" class="panel-collapse collapse in">
+                        <h5>Soma total do Mês</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Mês</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{{valorTotalDaSomaDosPedidosFinalizadosDoMes.0.mes}}}</td>
+                                    <td>{{{valorTotalDaSomaDosPedidosFinalizadosDoMes.0.quantidadePedido}}}</td>
+                                    <td>{{{valorTotalDaSomaDosPedidosFinalizadosDoMes.0.valorTotal}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <h5>Maior Quantidade do Mês</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Mês</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                    <th>Tipo de Pagamento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{{maiorPedidoRealizadoNoMes.0.mes}}}</td>
+                                    <td>{{{maiorPedidoRealizadoNoMes.0.quantidadePedido}}}</td>
+                                    <td>{{{maiorPedidoRealizadoNoMes.0.valorTotal}}}</td>
+                                    <td>{{{maiorPedidoRealizadoNoMes.0.tipoDePagamentoNaEntrega}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2Pedido"
+                                style="color: #000;">Relatório dos Meses</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2Pedido" class="panel-collapse collapse in">
+                        <h5>Soma total dos Meses</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Mês</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each valorTotalDaSomaDosPedidosFinalizadosDosMeses}}
+                                <tr>
+                                    <td>{{{this.mes}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <br>
+                        <h5>Maior Quantidade de Pedido dos Meses</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Mês</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each maiorPedidoRealizadoDosMeses}}
+                                <tr>
+                                    <td>{{{this.mes}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3Pedido"
+                                style="color: #000;">Relatório dos Anos</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3Pedido" class="panel-collapse collapse">
+                        <h5>Soma de Todos os Pedidos dos Anos</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Ano</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each valorTotalDaSomaDosPedidosFinalizadosDosAnos}}
+                                <tr>
+                                    <td>{{{this.ano}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <br>
+                        <h5>Maior Quantidade de Pedido dos Anos</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Ano</th>
+                                    <th>Quantidade de Pedidos de Botijões</th>
+                                    <th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each maiorPedidoRealizadoDosAnos}}
+                                <tr>
+                                    <td>{{{this.ano}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
