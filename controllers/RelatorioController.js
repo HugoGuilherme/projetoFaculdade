@@ -78,11 +78,13 @@ module.exports = class RelatorioController {
         // FIM QUERYS PEDIDOS
 
         //query clientes
-        var maiorPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and MONTH(p.createdAt) = " + fromMonth + ";")
+        var SomarPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and MONTH(p.createdAt) = " + fromMonth + ";")
+        SomarPedidoDoClienteRealizadoDomes = SomarPedidoDoClienteRealizadoDomes[0]
+        var maiorPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, p.quantidadePedido as quantidadePedido, p.valorTotal as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.quantidadePedido = (select max(quantidadePedido) from pedidos ) and  p.statusPedidos = 'finalizado' and month(p.createdAt) = " + fromMonth + ";")
         maiorPedidoDoClienteRealizadoDomes = maiorPedidoDoClienteRealizadoDomes[0]
         //final da query
 
-        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos, maiorPedidoDoClienteRealizadoDomes })
+        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos, maiorPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDomes })
 
     }
 

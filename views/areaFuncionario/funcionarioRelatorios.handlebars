@@ -37,7 +37,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <br>
+
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -86,7 +86,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -140,7 +140,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -204,7 +204,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <br>
+
                         <h5>Maior Quantidade do Mês</h5>
                         <table class="table">
                             <thead class="thead-dark">
@@ -253,7 +253,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <h5>Maior Quantidade de Pedido dos Meses</h5>
                         <table class="table">
                             <thead class="thead-dark">
@@ -303,7 +303,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <h5>Maior Quantidade de Pedido dos Anos</h5>
                         <table class="table">
                             <thead class="thead-dark">
@@ -360,30 +360,33 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.id}}}</td>
+                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.nome}}}</td>
+                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.quantidadePedido}}}</td>
+                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.valorTotal}}}</td>
+                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.mes}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Valor maximo do mês</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>nome</th>
+                                    <th>Quantidade de Pedido Total</th>
+                                    <th>Valor total de compras</th>
+                                    <th>data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
                                     <td>{{{maiorPedidoDoClienteRealizadoDomes.0.id}}}</td>
                                     <td>{{{maiorPedidoDoClienteRealizadoDomes.0.nome}}}</td>
                                     <td>{{{maiorPedidoDoClienteRealizadoDomes.0.quantidadePedido}}}</td>
                                     <td>{{{maiorPedidoDoClienteRealizadoDomes.0.valorTotal}}}</td>
                                     <td>{{{maiorPedidoDoClienteRealizadoDomes.0.mes}}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>mês</th>
-                                    <th>quantidade Inserida</th>
-                                    <th>valor Total Estoque</th>
-                                    <th>Quantidade Armazenada</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{{somaTotalDoMes.0.mes}}}</td>
-                                    <td>{{{somaTotalDoMes.0.quantidadeInserida}}}</td>
-                                    <td>{{{somaTotalDoMes.0.valorTotalEstoque}}}</td>
-                                    <td>{{{somaTotalDoMes.0.quantidadeArmazenada}}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -417,7 +420,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -471,7 +474,7 @@
                                 {{/each}}
                             </tbody>
                         </table>
-                        <br>
+
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
