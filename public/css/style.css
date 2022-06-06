@@ -283,6 +283,9 @@ p {
 .table tr {
   background-color: whitesmoke;
 }
+.table tr td {
+  text-align: center;
+}
 
 /* Estilo para o Caixa  */
 
