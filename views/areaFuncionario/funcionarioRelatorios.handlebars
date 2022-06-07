@@ -359,13 +359,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each SomarPedidoDoClienteRealizadoDomes}}
                                 <tr>
-                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.id}}}</td>
-                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.nome}}}</td>
-                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.quantidadePedido}}}</td>
-                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.valorTotal}}}</td>
-                                    <td>{{{SomarPedidoDoClienteRealizadoDomes.0.mes}}}</td>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                    <td>{{{this.mes}}}</td>
                                 </tr>
+                                {{/each}}
                             </tbody>
                         </table>
 
@@ -381,13 +383,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each maiorPedidoDoClienteRealizadoDomes}}
                                 <tr>
-                                    <td>{{{maiorPedidoDoClienteRealizadoDomes.0.id}}}</td>
-                                    <td>{{{maiorPedidoDoClienteRealizadoDomes.0.nome}}}</td>
-                                    <td>{{{maiorPedidoDoClienteRealizadoDomes.0.quantidadePedido}}}</td>
-                                    <td>{{{maiorPedidoDoClienteRealizadoDomes.0.valorTotal}}}</td>
-                                    <td>{{{maiorPedidoDoClienteRealizadoDomes.0.mes}}}</td>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                    <td>{{{this.mes}}}</td>
                                 </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
@@ -403,19 +407,21 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Data</th>
-                                    <th>Quantidade Inserida</th>
-                                    <th>Valor do Produto</th>
-                                    <th>Valor gasto</th>
+                                    <th>Id</th>
+                                    <th>nome</th>
+                                    <th>Quantidade de Pedido Total</th>
+                                    <th>Valor total de compras</th>
+                                    <th>data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each diaDosMesesOndeComprouMais}}
+                                {{#each SomarPedidoDoClienteRealizadoDosmeses}}
                                 <tr>
-                                    <td>{{{this.MONTH}}}</td>
-                                    <td>{{{this.quantidadeInserida}}}</td>
-                                    <td>{{{this.valorDoProduto}}}</td>
-                                    <td>{{{this.valorGasto}}}</td>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                    <td>{{{this.mes}}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -424,21 +430,21 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>mês</th>
-                                    <th>quantidade Inserida</th>
-                                    <th>valor Total Estoque</th>
-                                    <th>Valor do Produto</th>
-                                    <th>Quantidade Armazenada</th>
+                                    <th>Id</th>
+                                    <th>nome</th>
+                                    <th>Quantidade de Pedido Total</th>
+                                    <th>Valor total de compras</th>
+                                    <th>data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each somaTotalDosMeses}}
+                                {{#each maiorPedidoDoClienteRealizadoDosmeses}}
                                 <tr>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
                                     <td>{{{this.mes}}}</td>
-                                    <td>{{{this.quantidadeInserida}}}</td>
-                                    <td>{{{this.valorTotalEstoque}}}</td>
-                                    <td>{{{this.valorDoProduto}}}</td>
-                                    <td>{{{this.quantidadeArmazenada}}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -457,19 +463,21 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Data</th>
-                                    <th>Quantidade Inserida</th>
-                                    <th>Valor do Produto</th>
-                                    <th>Valor gasto</th>
+                                    <th>Id</th>
+                                    <th>nome</th>
+                                    <th>Quantidade de Pedido Total</th>
+                                    <th>Valor total de compras</th>
+                                    <th>data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each anosOndeComprouMais}}
+                                {{#each SomarPedidoDoClienteRealizadoDosAnos}}
                                 <tr>
-                                    <td>{{{this.YEAR}}}</td>
-                                    <td>{{{this.quantidadeInserida}}}</td>
-                                    <td>{{{this.valorDoProduto}}}</td>
-                                    <td>{{{this.valorGasto}}}</td>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                    <td>{{{this.ano}}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -478,21 +486,21 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>mês</th>
-                                    <th>quantidade Inserida</th>
-                                    <th>valor Total Estoque</th>
-                                    <th>Valor do Produto</th>
-                                    <th>Quantidade Armazenada</th>
+                                    <th>Id</th>
+                                    <th>nome</th>
+                                    <th>Quantidade de Pedido Total</th>
+                                    <th>Valor total de compras</th>
+                                    <th>data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each somaTotalDosAnos}}
+                                {{#each maiorPedidoDoClienteRealizadoDosAnos}}
                                 <tr>
-                                    <td>{{{this.mes}}}</td>
-                                    <td>{{{this.quantidadeInserida}}}</td>
-                                    <td>{{{this.valorTotalEstoque}}}</td>
-                                    <td>{{{this.valorDoProduto}}}</td>
-                                    <td>{{{this.quantidadeArmazenada}}}</td>
+                                    <td>{{{this.id}}}</td>
+                                    <td>{{{this.nome}}}</td>
+                                    <td>{{{this.quantidadePedido}}}</td>
+                                    <td>{{{this.valorTotal}}}</td>
+                                    <td>{{{this.ano}}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>

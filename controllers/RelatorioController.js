@@ -23,18 +23,6 @@ module.exports = class RelatorioController {
         if (req.query.search) {
             search = req.query.search
         }
-        var download = function (url, dest, cb) {
-            var file = fs.createWriteStream(dest);
-            var request = http.get(url, function (response) {
-                response.pipe(file);
-                file.on('finish', function () {
-                    file.close(cb);  // close() is async, call cb after close completes.
-                });
-            }).on('error', function (err) { // Handle errors
-                fs.unlink(dest); // Delete the file async. (But we don't check the result)
-                if (cb) cb(err.message);
-            });
-        };
 
         // Querys do ESTOQUE
         const diaDoMesOndeComprouMais = await sequelize.query("SELECT createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
@@ -78,13 +66,23 @@ module.exports = class RelatorioController {
         // FIM QUERYS PEDIDOS
 
         //query clientes
-        var SomarPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and MONTH(p.createdAt) = " + fromMonth + ";")
+        var SomarPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, max(p.quantidadePedido) as quantidadePedido, max(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where  p.statusPedidos = 'finalizado' and month(p.createdAt) = " + fromMonth + " group by c.id;")
         SomarPedidoDoClienteRealizadoDomes = SomarPedidoDoClienteRealizadoDomes[0]
-        var maiorPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, p.quantidadePedido as quantidadePedido, p.valorTotal as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.quantidadePedido = (select max(quantidadePedido) from pedidos ) and  p.statusPedidos = 'finalizado' and month(p.createdAt) = " + fromMonth + ";")
+        var maiorPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and MONTH(p.createdAt) =  " + fromMonth + " group by nome;")
         maiorPedidoDoClienteRealizadoDomes = maiorPedidoDoClienteRealizadoDomes[0]
+
+        var SomarPedidoDoClienteRealizadoDosmeses = await sequelize.query("select p.ClienteId  as id, c.nome as nome, (quantidadePedido), (p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM pedidos p inner join clientes c ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and quantidadePedido in (select max(quantidadePedido) from pedidos  group by month(createdAt));")
+        SomarPedidoDoClienteRealizadoDosmeses = SomarPedidoDoClienteRealizadoDosmeses[0]
+        var maiorPedidoDoClienteRealizadoDosmeses = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        maiorPedidoDoClienteRealizadoDosmeses = maiorPedidoDoClienteRealizadoDosmeses[0]
+
+        var SomarPedidoDoClienteRealizadoDosAnos = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, year(p.createdAt) as ano FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        SomarPedidoDoClienteRealizadoDosAnos = SomarPedidoDoClienteRealizadoDosAnos[0]
+        var maiorPedidoDoClienteRealizadoDosAnos = await sequelize.query("SELECT c.id as id, c.nome as nome, max(p.quantidadePedido) as quantidadePedido, max(p.valorTotal) as valorTotal, year(p.createdAt) as ano FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        maiorPedidoDoClienteRealizadoDosAnos = maiorPedidoDoClienteRealizadoDosAnos[0]
         //final da query
 
-        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos, maiorPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDomes })
+        res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos, maiorPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDosmeses, maiorPedidoDoClienteRealizadoDosmeses, SomarPedidoDoClienteRealizadoDosAnos, maiorPedidoDoClienteRealizadoDosAnos })
 
     }
 
