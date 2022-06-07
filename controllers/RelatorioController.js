@@ -83,7 +83,6 @@ module.exports = class RelatorioController {
         //final da query
 
         res.render('areaFuncionario/funcionarioRelatorios', { diaDoMesOndeComprouMais, diaDosMesesOndeComprouMais, anosOndeComprouMais, somaTotalDoMes, somaTotalDosMeses, somaTotalDosAnos, valorTotalDaSomaDosPedidosFinalizadosDoMes, maiorPedidoRealizadoNoMes, valorTotalDaSomaDosPedidosFinalizadosDosMeses, maiorPedidoRealizadoDosMeses, valorTotalDaSomaDosPedidosFinalizadosDosAnos, maiorPedidoRealizadoDosAnos, maiorPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDomes, SomarPedidoDoClienteRealizadoDosmeses, maiorPedidoDoClienteRealizadoDosmeses, SomarPedidoDoClienteRealizadoDosAnos, maiorPedidoDoClienteRealizadoDosAnos })
-
     }
 
     static async EnviarRelatorio(req, res) {
@@ -419,6 +418,141 @@ module.exports = class RelatorioController {
             width: 400,
         });
 
+        doc.end();
+        res.redirect("/dashboard/relatorios")
+    }
+    static async EnviarRelatorioClientes(req, res) {
+        var fromDate = Date.now()
+        var fromDateYear = new Date(fromDate).getFullYear();
+        var fromDateMonth = new Date(fromDate);
+        var fromMonth = (fromDateMonth.getMonth() + 1);
+
+        var SomarPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, max(p.quantidadePedido) as quantidadePedido, max(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where  p.statusPedidos = 'finalizado' and month(p.createdAt) = " + fromMonth + " group by c.id;")
+        SomarPedidoDoClienteRealizadoDomes = SomarPedidoDoClienteRealizadoDomes[0]
+        var maiorPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and MONTH(p.createdAt) =  " + fromMonth + " group by nome;")
+        maiorPedidoDoClienteRealizadoDomes = maiorPedidoDoClienteRealizadoDomes[0]
+
+        var SomarPedidoDoClienteRealizadoDosmeses = await sequelize.query("select p.ClienteId  as id, c.nome as nome, (quantidadePedido), (p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM pedidos p inner join clientes c ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' and quantidadePedido in (select max(quantidadePedido) from pedidos  group by month(createdAt));")
+        SomarPedidoDoClienteRealizadoDosmeses = SomarPedidoDoClienteRealizadoDosmeses[0]
+        var maiorPedidoDoClienteRealizadoDosmeses = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        maiorPedidoDoClienteRealizadoDosmeses = maiorPedidoDoClienteRealizadoDosmeses[0]
+
+        var SomarPedidoDoClienteRealizadoDosAnos = await sequelize.query("SELECT c.id as id, c.nome as nome, sum(p.quantidadePedido) as quantidadePedido, sum(p.valorTotal) as valorTotal, year(p.createdAt) as ano FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        SomarPedidoDoClienteRealizadoDosAnos = SomarPedidoDoClienteRealizadoDosAnos[0]
+        var maiorPedidoDoClienteRealizadoDosAnos = await sequelize.query("SELECT c.id as id, c.nome as nome, max(p.quantidadePedido) as quantidadePedido, max(p.valorTotal) as valorTotal, year(p.createdAt) as ano FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where p.statusPedidos = 'finalizado' group by c.id;")
+        maiorPedidoDoClienteRealizadoDosAnos = maiorPedidoDoClienteRealizadoDosAnos[0]
+
+        function results(value) {
+            const body = []
+            for (let values of value) {
+                const rows = new Array()
+                rows.push(values.id)
+                rows.push(values.nome)
+                rows.push(values.quantidadePedido)
+                rows.push(values.valorTotal)
+                rows.push(values.mes)
+                body.push(rows)
+            }
+            return body
+        }
+        // init document
+        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        // save document
+        const homedir = require('os').homedir();
+        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioClientes.pdf"));
+
+        const tableSomarPedidoDoClienteRealizadoDomes = {
+            title: "RELATORIO CLIENTES",
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(SomarPedidoDoClienteRealizadoDomes)
+            ],
+        };
+        await doc.table(tableSomarPedidoDoClienteRealizadoDomes, {
+            width: 400,
+        });
+
+        const tablemaiorPedidoDoClienteRealizadoDomes = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(maiorPedidoDoClienteRealizadoDomes)
+            ],
+        };
+        await doc.table(tablemaiorPedidoDoClienteRealizadoDomes, {
+            width: 400,
+        });
+        const tableSomarPedidoDoClienteRealizadoDosmeses = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(SomarPedidoDoClienteRealizadoDosmeses)
+            ],
+        };
+        await doc.table(tableSomarPedidoDoClienteRealizadoDosmeses, {
+            width: 400,
+        });
+        const tablemaiorPedidoDoClienteRealizadoDosmeses = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(maiorPedidoDoClienteRealizadoDosmeses)
+            ],
+        };
+        await doc.table(tablemaiorPedidoDoClienteRealizadoDosmeses, {
+            width: 400,
+        });
+        const tableSomarPedidoDoClienteRealizadoDosAnos = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(SomarPedidoDoClienteRealizadoDosAnos)
+            ],
+        };
+        await doc.table(tableSomarPedidoDoClienteRealizadoDosAnos, {
+            width: 400,
+        });
+        const tablemaiorPedidoDoClienteRealizadoDosAnos = {
+            subtitle: "Soma Total do Mês",
+            headers: [{ label: "id", width: 105, renderer: null },
+            { label: "nome", width: 105 },
+            { label: "quantidadePedido", width: 105 },
+            { label: "Valor Total", width: 105 },
+            { label: "mês", width: 105 },
+            ],
+            rows: [
+                ...results(maiorPedidoDoClienteRealizadoDosAnos)
+            ],
+        };
+        await doc.table(tablemaiorPedidoDoClienteRealizadoDosAnos, {
+            width: 400,
+        });
         doc.end();
         res.redirect("/dashboard/relatorios")
     }
