@@ -25,18 +25,18 @@ module.exports = class RelatorioController {
         }
 
         // Querys do ESTOQUE
-        const diaDoMesOndeComprouMais = await sequelize.query("SELECT createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
+        const diaDoMesOndeComprouMais = await sequelize.query("SELECT MONTH(createdAt), MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
 
-        var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as MONTH, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
+        var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTH(createdAt) as MONTH, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
         diaDosMesesOndeComprouMais = diaDosMesesOndeComprouMais[0]
 
         var anosOndeComprouMais = await sequelize.query("SELECT YEAR(createdAt) as YEAR, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY YEAR(createdAt)")
         anosOndeComprouMais = anosOndeComprouMais[0]
 
-        var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
+        var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTH(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
         somaTotalDoMes = (somaTotalDoMes[0]);
 
-        var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e group by month(e.createdAt)")
+        var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTH(e.createdAt) as mes from estoques e group by month(e.createdAt)")
         somaTotalDosMeses = (somaTotalDosMeses[0]);
 
         var somaTotalDosAnos = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, YEAR(e.createdAt) as mes from estoques e group by YEAR(e.createdAt)")
@@ -87,22 +87,26 @@ module.exports = class RelatorioController {
 
     static async EnviarRelatorio(req, res) {
         var fromDate = Date.now()
-        var fromDateYear = new Date(fromDate).getFullYear();
         var fromDateMonth = new Date(fromDate);
         var fromMonth = (fromDateMonth.getMonth() + 1);
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
 
         const diaDoMesOndeComprouMais = await sequelize.query("SELECT date_format(createdAt, '%d/%m/%Y') as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques where Month(createdAt) = " + fromMonth + " GROUP BY MONTH(createdAt)")
 
-        var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTHNAME(createdAt) as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
+        var diaDosMesesOndeComprouMais = await sequelize.query("SELECT MONTH(createdAt) as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY MONTH(createdAt)")
         diaDosMesesOndeComprouMais = diaDosMesesOndeComprouMais[0]
 
         var anosOndeComprouMais = await sequelize.query("SELECT YEAR(createdAt) as createdAt, MAX(quantidadeInserida) as quantidadeInserida, valorDoProduto, (quantidadeInserida * valorDoProduto) as valorGasto FROM  estoques GROUP BY YEAR(createdAt)")
         anosOndeComprouMais = anosOndeComprouMais[0]
 
-        var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
+        var somaTotalDoMes = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTH(e.createdAt) as mes from estoques e where month(e.createdAt) = " + fromMonth + "  group by month(e.createdAt)")
         somaTotalDoMes = (somaTotalDoMes[0]);
 
-        var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTHNAME(e.createdAt) as mes from estoques e group by month(e.createdAt)")
+        var somaTotalDosMeses = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, MONTH(e.createdAt) as mes from estoques e group by month(e.createdAt)")
         somaTotalDosMeses = (somaTotalDosMeses[0]);
 
         var somaTotalDosAnos = await sequelize.query("select SUM(e.quantidadeInserida) as quantidadeInserida, SUM(e.valorTotal) as valorTotalEstoque, SUM(e.valorDoProduto) as valorDoProduto, SUM(e.quantidadeArmazenada) as quantidadeArmazenada, YEAR(e.createdAt) as mes from estoques e group by YEAR(e.createdAt)")
@@ -138,10 +142,10 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4' });
         // save document
         const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream(homedir + "/Downloads/Relatorio.pdf"));
+        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioDoEstoque.pdf"));
 
         const tableMaiorQuantidadeMensal = {
-            title: "Relatorio Estoque",
+            title: "Relatorio Estoque - " + today,
             subtitle: "Maiores quantidades referente ao mês",
             headers: [{ label: "Data", width: 130, renderer: null },
             { label: "quantidade Inserida", width: 130 },
@@ -198,7 +202,7 @@ module.exports = class RelatorioController {
             ],
         };
         const tableTotaisAnuais = {
-            subtitle: "Quantidade total referente ao ano",
+            subtitle: "Quantidade total referente aos anos",
             headers: [{ label: "Data", width: 130, renderer: null },
             { label: "quantidade Inserida", width: 130 },
             { label: "valor Total Estoque", width: 130 },
@@ -243,6 +247,11 @@ module.exports = class RelatorioController {
         var fromDateYear = new Date(fromDate).getFullYear();
         var fromDateMonth = new Date(fromDate);
         var fromMonth = (fromDateMonth.getMonth() + 1);
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
 
         var resultadoGeralTotal = await sequelize.query("select sum(quantidadePedido) as quantidadePedido, sum(valorTotal) as valorTotal, count(quantidadePedido) as pedidosFeitosPeloCliente  from pedidos p where statusPedidos = 'finalizado';")
         var resultadoGeralTotal = resultadoGeralTotal[0]
@@ -321,7 +330,8 @@ module.exports = class RelatorioController {
         doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioPedido.pdf"));
 
         const tableResultadoGeralTotal = {
-            title: "Relatorio Pedido",
+            title: "Relatorio Pedido - " + today,
+            subtitle: "Resultado total do mês",
             headers: [{ label: "Quantidade de Pedidos Feito Pelo Cliente", width: 170 },
             { label: "Quantidade de Botijões Vendidos", width: 170 },
             { label: "Valor Total", width: 170 }
@@ -426,6 +436,11 @@ module.exports = class RelatorioController {
         var fromDateYear = new Date(fromDate).getFullYear();
         var fromDateMonth = new Date(fromDate);
         var fromMonth = (fromDateMonth.getMonth() + 1);
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
 
         var SomarPedidoDoClienteRealizadoDomes = await sequelize.query("SELECT c.id as id, c.nome as nome, max(p.quantidadePedido) as quantidadePedido, max(p.valorTotal) as valorTotal, month(p.createdAt) as mes FROM clientes c INNER JOIN pedidos p ON p.ClienteId = c.id where  p.statusPedidos = 'finalizado' and month(p.createdAt) = " + fromMonth + " group by c.id;")
         SomarPedidoDoClienteRealizadoDomes = SomarPedidoDoClienteRealizadoDomes[0]
@@ -462,7 +477,7 @@ module.exports = class RelatorioController {
         doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioClientes.pdf"));
 
         const tableSomarPedidoDoClienteRealizadoDomes = {
-            title: "RELATORIO CLIENTES",
+            title: "RELATORIO CLIENTES - " + today,
             subtitle: "Soma Total do Mês",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
@@ -479,7 +494,7 @@ module.exports = class RelatorioController {
         });
 
         const tablemaiorPedidoDoClienteRealizadoDomes = {
-            subtitle: "Soma Total do Mês",
+            subtitle: "Valor maximo do mês",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
             { label: "quantidadePedido", width: 105 },
@@ -494,7 +509,7 @@ module.exports = class RelatorioController {
             width: 400,
         });
         const tableSomarPedidoDoClienteRealizadoDosmeses = {
-            subtitle: "Soma Total do Mês",
+            subtitle: "Soma Total dos Meses",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
             { label: "quantidadePedido", width: 105 },
@@ -509,7 +524,7 @@ module.exports = class RelatorioController {
             width: 400,
         });
         const tablemaiorPedidoDoClienteRealizadoDosmeses = {
-            subtitle: "Soma Total do Mês",
+            subtitle: "Valor maximo dos meses",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
             { label: "quantidadePedido", width: 105 },
@@ -524,7 +539,7 @@ module.exports = class RelatorioController {
             width: 400,
         });
         const tableSomarPedidoDoClienteRealizadoDosAnos = {
-            subtitle: "Soma Total do Mês",
+            subtitle: "Soma Total dos anos",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
             { label: "quantidadePedido", width: 105 },
@@ -539,7 +554,7 @@ module.exports = class RelatorioController {
             width: 400,
         });
         const tablemaiorPedidoDoClienteRealizadoDosAnos = {
-            subtitle: "Soma Total do Mês",
+            subtitle: "Valor maximo dos anos",
             headers: [{ label: "id", width: 105, renderer: null },
             { label: "nome", width: 105 },
             { label: "quantidadePedido", width: 105 },

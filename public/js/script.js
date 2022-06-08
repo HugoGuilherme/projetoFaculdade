@@ -158,27 +158,7 @@ if (window.matchMedia("(max-width: 991px)").matches) {
 
 var btnCadastro = document.querySelector('#btnCadastro');
 
-btnCadastro.addEventListener('click', (e => {
-    var alertVermelho = document.querySelector('#alertVermelho');
-    alertVermelho.style.display = 'none';
-    var inputSenha = document.querySelector('#senha');
-    var submitCadastrar = document.querySelector('#submitCadastrar');
-    var inputConfirmpassword = document.querySelector('#confirmpassword');
 
-    inputConfirmpassword.addEventListener('blur', (e => {
-        if (inputSenha.value !== inputConfirmpassword.value) {
-            alertVermelho.style.display = 'block';
-            submitCadastrar.disabled = true;
-        } else if (inputConfirmpassword.value === '' || inputSenha.value === '') {
-            submitCadastrar.disabled = true;
-        }
-        else {
-            alertVermelho.style.display = 'none';
-            submitCadastrar.disabled = false;
-        }
-    }));
-
-}))
 
 //final das funções
 
