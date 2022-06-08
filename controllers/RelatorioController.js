@@ -138,8 +138,10 @@ module.exports = class RelatorioController {
             return body
         }
 
+        let i;
+        let end;
         // init document
-        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
         doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioDoEstoque.pdf"));
@@ -238,6 +240,14 @@ module.exports = class RelatorioController {
         // });
 
         // done!
+        const range = doc.bufferedPageRange();
+        for (i = range.start, end = range.start + range.count, range.start <= end; i < end; i++) {
+            doc.switchToPage(i);
+            doc.text(`Page ${i + 1} of ${range.count}`, { align: 'right' });
+        }
+        // manually flush pages that have been buffered
+        doc.flushPages();
+
         doc.end();
         res.redirect("/dashboard/relatorios")
     }
@@ -322,9 +332,10 @@ module.exports = class RelatorioController {
             }
             return body
         }
-
+        let i;
+        let end;
         // init document
-        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
         doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioPedido.pdf"));
@@ -427,6 +438,13 @@ module.exports = class RelatorioController {
 
             width: 400,
         });
+        const range = doc.bufferedPageRange();
+        for (i = range.start, end = range.start + range.count, range.start <= end; i < end; i++) {
+            doc.switchToPage(i);
+            doc.text(`Page ${i + 1} of ${range.count}`, { align: 'right' });
+        }
+        // manually flush pages that have been buffered
+        doc.flushPages();
 
         doc.end();
         res.redirect("/dashboard/relatorios")
@@ -471,7 +489,9 @@ module.exports = class RelatorioController {
             return body
         }
         // init document
-        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        let i;
+        let end;
+        let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
         doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioClientes.pdf"));
@@ -568,6 +588,17 @@ module.exports = class RelatorioController {
         await doc.table(tablemaiorPedidoDoClienteRealizadoDosAnos, {
             width: 400,
         });
+        // see the range of buffered pages
+        const range = doc.bufferedPageRange(); // => { start: 0, count: 2 }
+        for (i = range.start, end = range.start + range.count, range.start <= end; i < end; i++) {
+            doc.switchToPage(i);
+            doc.text(`Page ${i + 1} of ${range.count}`, {
+                align: 'right'
+            });
+        }
+        // manually flush pages that have been buffered
+        doc.flushPages();
+
         doc.end();
         res.redirect("/dashboard/relatorios")
     }
