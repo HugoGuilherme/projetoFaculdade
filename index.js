@@ -21,6 +21,7 @@ const estoqueRoutes = require('./routes/estoqueRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
 const caixaRoutes = require('./routes/caixaRoutes')
 const relatorioRoutes = require('./routes/relatorioRoutes')
+const backupRoutes = require('./routes/backupRoutes')
 
 //Configura a função formatDate
 //Template engine HBS
@@ -109,6 +110,7 @@ app.use('/', estoqueRoutes)
 app.use('/', pedidoRoutes)
 app.use('/', caixaRoutes)
 app.use('/', relatorioRoutes)
+app.use('/', backupRoutes)
 
 conn
     .sync()
