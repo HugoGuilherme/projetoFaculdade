@@ -1,7 +1,8 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
-
+    <div class="text-center my-2 mb-4" style="width: 100%;">
+        <h1>Alterar registro do funcionario {{funcionarioCadastrado.nome}}</h1>
+    </div>
     <form class="form" action="/dashboard/updateFuncionario" method="POST">
-        <h2>Formulario Funcionario {{funcionarioCadastrado.id}}</h2>
         <div class="form-row">
             <input type="hidden" name="id" value="{{funcionarioCadastrado.id}}">
             <div class="col-md-6 mb-3">
@@ -20,8 +21,8 @@
             </div>
             <div class="form-group col-md-6">
                 <label>Senha</label>
-                <input type="password" class="form-control" name="senha" placeholder="Senha"
-                    value="**********" required>
+                <input type="password" class="form-control" name="senha" placeholder="Senha" value="**********"
+                    required>
             </div>
             <div class="form-group col-md-12">
                 <label>Endereço</label>

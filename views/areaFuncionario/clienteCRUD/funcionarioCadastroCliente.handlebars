@@ -1,6 +1,8 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
+    <div class="text-center my-2 mb-4" style="width: 100%;">
+        <h1>Alterar registro do Cliente {{clienteCadastrado.nome}}</h1>
+    </div>
     <form class="form" action="/dashboard/updateCliente" method="POST">
-        <h2>Formulario Cliente {{clienteCadastrado.id}}</h2>
         <div class="form-row">
             <input type="hidden" name="id" value="{{clienteCadastrado.id}}">
             <div class="col-md-6 mb-3">

@@ -34,6 +34,7 @@ module.exports = class PedidoController {
         const id = req.session.userid
         const pedido = await Pedido.findAll({
             where: { ClienteId: id },
+            order: [['createdAt', 'DESC']],
             include: Clientes
         })
         const pedidoCadastrado = pedido.map(el => el.get({ plain: true }))
