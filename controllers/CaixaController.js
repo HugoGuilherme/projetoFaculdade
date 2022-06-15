@@ -18,8 +18,8 @@ module.exports = class CaixaController {
         const pedidoFinalizado = await Pedido.findAll({
             where: {
                 statusPedidos: ['finalizado'],
-                createdAt: {
-                    [Op.gt]: year + "-" + month + "-" + date
+                data: {
+                    [Op.eq]: year + "-" + month + "-" + date
                 }
             }
         })

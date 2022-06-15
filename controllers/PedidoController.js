@@ -10,7 +10,7 @@ module.exports = class PedidoController {
     static async cadastrarPedido(req, res) {
         const { quantidadeDeGas, pagamento, valorTotal, troco } = req.body
 
-        const novoPedido = { statusPedidos: "pendente", troco: troco, quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid }
+        const novoPedido = { statusPedidos: "pendente", troco: troco, quantidadePedido: quantidadeDeGas, tipoDePagamentoNaEntrega: pagamento, valorTotal: valorTotal, ClienteId: req.session.userid, data: new Date() }
         const ultimoEstoque = await Estoque.findOne({
             order: [['createdAt', 'DESC']]
         });

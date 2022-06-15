@@ -25,6 +25,9 @@ const Pedido = db.define('Pedido', {
   troco: {
     type: DataTypes.STRING
     // allowNull defaults to true
+  },
+  data: {
+    type: DataTypes.DATEONLY
   }
 })
 
