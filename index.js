@@ -113,6 +113,7 @@ app.use('/', relatorioRoutes)
 app.use('/', backupRoutes)
 
 conn
+    // aqui vai o código do servidor {force: true}
     .sync()
     .then(() => {
         app.listen(3000)
