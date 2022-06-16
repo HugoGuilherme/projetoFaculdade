@@ -2,9 +2,11 @@
   <div class="text-center my-2 mb-4" style="width: 100%;">
     <h1>Pedidos de botijões</h1>
   </div>
-  {{#if messages.mensagemEstoqueVazio}}
-  {{messages.mensagemEstoqueVazio}}
-  {{/if}}
+  <div class="reportText">
+    {{#if messages.mensagemEstoqueVazio}}
+    {{messages.mensagemEstoqueVazio}}
+    {{/if}}
+  </div>
   <table class="table table-responsive-12">
     <thead class="thead-dark">
       <tr>

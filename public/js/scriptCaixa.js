@@ -13,7 +13,11 @@ for (i = 0; i < rows.length; i++) {
             document.getElementById("quantidadeDeGas").value = quantidadeDeGas;
             document.getElementById("formaDePagamento").value = formaDePagamento;
             document.getElementById("valorTotalCompra").value = valorTotalCompra;
-            document.getElementById("troco").value = trocoTotalCompra - valorTotalCompra;
+            if (trocoTotalCompra > valorTotalCompra) {
+                document.getElementById("troco").value = trocoTotalCompra - valorTotalCompra;
+            } else {
+                document.getElementById("troco").value = 0;
+            }
 
             document.getElementById("id").value = id;
             document.getElementById("idCancelamento").value = id;

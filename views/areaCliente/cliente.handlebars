@@ -1,7 +1,9 @@
 <div class="col-md-12 col-lg-10 secao-home-cliente-row-div-central">
     {{> cardTextosCentrais}}
-    {{#if messages.mensagemFaltandoBotijao}}
+    <div class="reportText">
+        {{#if messages.mensagemFaltandoBotijao}}
         {{messages.mensagemFaltandoBotijao}}
-    {{/if}}
+        {{/if}}
+    </div>
     {{> cardBotijao}}
 </div>

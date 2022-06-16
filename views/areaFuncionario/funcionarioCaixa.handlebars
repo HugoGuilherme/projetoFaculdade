@@ -104,6 +104,7 @@
   </div>
   {{!-- Fechamento do Caixa --}}
   <form action="/dashboard/finalizarCaixa" method="post">
+    <input hidden name="FuncionarioId" value="{{session.userid}}">
     <div class="col-lg-12 posicao-caixa">
       <div style="display: flex;align-items: flex-end;width: 100%;justify-content: flex-end;">
         <div class="col-lg-6">
