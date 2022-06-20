@@ -268,8 +268,8 @@ module.exports = class RelatorioController {
             const blob = stream.toBlob('application/pdf');
           
             // or get a blob URL for display in the browser
-            const url = stream.toBlobURL('application/pdf');
-            iframe.src = url;
+            // const url = stream.toBlobURL('application/pdf');
+            // iframe.src = url;
           });
         res.redirect("/dashboard/relatorios")
     }
