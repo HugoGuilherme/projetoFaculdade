@@ -384,6 +384,13 @@ p {
   margin: 0 auto;
 }
 
+.reportText{
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: x-large;
+}
+
 .marg10 {
   margin-left: 10px;
 }

@@ -24,9 +24,6 @@ const Caixa = db.define('Caixa', {
   }
 })
 
-Caixa.belongsTo(Pedido)
-Pedido.hasMany(Caixa)
-
 Caixa.belongsTo(Funcionario)
 Funcionario.hasMany(Caixa)
 
