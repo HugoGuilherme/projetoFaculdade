@@ -158,22 +158,28 @@ module.exports = class CaixaController {
             order: [['createdAt', 'DESC']]
         })
         const dataAtualBancoDataValue = dataAtualBanco.map((result) => result.dataValues.createdAt)
-        const idUltimaLinha = dataAtualBanco.map((result) => result.dataValues.id)
-        var dateBD = dataAtualBancoDataValue[0].getDate();
-        var monthBD = dataAtualBancoDataValue[0].getMonth() + 1;
-        var yearBD = dataAtualBancoDataValue[0].getFullYear();
-        const dataCompletaBD = yearBD + "-" + monthBD + "-" + dateBD
-
-        console.log(idUltimaLinha[0]);
-        if (dataCompleta === dataCompletaBD) {
-            const valorAtualizado = Caixa.update(valores, { where: { id: idUltimaLinha[0] } })
-            console.log(dataCompleta + " = " + dataCompletaBD);
-            res.redirect(`/dashboard/caixa`)
-        } else {
+        if (dataAtualBancoDataValue == null || dataAtualBancoDataValue == '' || !dataAtualBancoDataValue[0]) {
             const valorAdicionado = await Caixa.create(valores)
             console.log(dataCompleta + " != " + dataCompletaBD);
             res.redirect(`/dashboard/caixa`)
+        } else {
+            const idUltimaLinha = dataAtualBanco.map((result) => result.dataValues.id)
+            var dateBD = dataAtualBancoDataValue[0].getDate();
+            var monthBD = dataAtualBancoDataValue[0].getMonth() + 1;
+            var yearBD = dataAtualBancoDataValue[0].getFullYear();
+            const dataCompletaBD = yearBD + "-" + monthBD + "-" + dateBD
+
+            if (dataCompleta === dataCompletaBD) {
+                const valorAtualizado = Caixa.update(valores, { where: { id: idUltimaLinha[0] } })
+                console.log(dataCompleta + " = " + dataCompletaBD);
+                res.redirect(`/dashboard/caixa`)
+            } else {
+                const valorAdicionado = await Caixa.create(valores)
+                console.log(dataCompleta + " != " + dataCompletaBD);
+                res.redirect(`/dashboard/caixa`)
+            }
         }
+
     }
 
 
