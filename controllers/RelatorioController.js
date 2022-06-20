@@ -251,26 +251,17 @@ module.exports = class RelatorioController {
         doc.flushPages();
 
         doc.end();
-
-        // let blob;
-
-        // function download() {
-        // if (!blob) return;
-        // var url = window.URL.createObjectURL(blob);
-        // a.href = url;
-        // a.download = 'test.pdf';
-        // a.click();
-        // window.URL.revokeObjectURL(url);
-        // }
-
+        
         stream.on('finish', function() {
             // get a blob you can do whatever you like with
-            const blob = stream.toBlob('application/pdf');
+            blob = stream.toBlob("application/pdf");
           
             // or get a blob URL for display in the browser
             // const url = stream.toBlobURL('application/pdf');
             // iframe.src = url;
           });
+        
+        res.download('test.pdf');
         res.redirect("/dashboard/relatorios")
     }
 
