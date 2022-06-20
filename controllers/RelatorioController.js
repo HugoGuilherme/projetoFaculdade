@@ -144,7 +144,7 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioDoEstoque.pdf"));
+        doc.pipe(fs.createWriteStream("RelatorioDoEstoque.pdf"));
 
         const tableMaiorQuantidadeMensal = {
             title: "Relatorio Estoque - " + today,
@@ -338,7 +338,7 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioPedido.pdf"));
+        doc.pipe(fs.createWriteStream("RelatorioPedido.pdf"));
 
         const tableResultadoGeralTotal = {
             title: "Relatorio Pedido - " + today,
@@ -494,7 +494,7 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream(homedir + "/Downloads/RelatorioClientes.pdf"));
+        doc.pipe(fs.createWriteStream("RelatorioClientes.pdf"));
 
         const tableSomarPedidoDoClienteRealizadoDomes = {
             title: "RELATORIO CLIENTES - " + today,
