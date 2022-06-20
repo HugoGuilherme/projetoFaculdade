@@ -254,7 +254,7 @@ module.exports = class RelatorioController {
         
         stream.on('finish', function() {
             // get a blob you can do whatever you like with
-            blob = stream.toBlob("application/pdf");
+            const blob = stream.toBlob("application/pdf");
           
             // or get a blob URL for display in the browser
             // const url = stream.toBlobURL('application/pdf');
