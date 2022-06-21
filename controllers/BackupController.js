@@ -150,7 +150,7 @@ module.exports = class BackupController {
         XLSX.utils.book_append_sheet(workbook, workSheetCaixa, "Caixa")
 
         //função que cria o arquivo xlsx
-        XLSX.writeFile(workbook, homedir + "/Downloads/Backup - " + pegarData() + ".xlsx")
+        XLSX.writeFile(workbook, "./Backup - " + pegarData() + ".xlsx")
         res.redirect('/dashboard/backup')
     }
 }
