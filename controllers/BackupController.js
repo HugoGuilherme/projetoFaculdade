@@ -138,19 +138,19 @@ module.exports = class BackupController {
         const workSheetDataEstoque = [columnsNames(Estoque), ...dataEstoque]
         const workSheetEstoque = XLSX.utils.aoa_to_sheet(workSheetDataEstoque)
         XLSX.utils.book_append_sheet(workbook, workSheetEstoque, "Estoque")
-        XLSX.writeFile(workbook, homedir + "/Downloads/Backup - " + pegarData() + ".xlsx")
+        XLSX.writeFile(workbook, process.env.USERPROFILE + "/Downloads/Backup - " + pegarData() + ".xlsx")
 
         const workSheetDataPedido = [columnsNames(Pedido), ...dataPedido]
         const workSheetPedido = XLSX.utils.aoa_to_sheet(workSheetDataPedido)
         XLSX.utils.book_append_sheet(workbook, workSheetPedido, "Pedido")
-        XLSX.writeFile(workbook, homedir + "/Downloads/Backup - " + pegarData() + ".xlsx")
+        XLSX.writeFile(workbook, process.env.USERPROFILE + "/Downloads/Backup - " + pegarData() + ".xlsx")
 
         const workSheetDataCaixa = [columnsNames(Caixa), ...dataCaixa]
         const workSheetCaixa = XLSX.utils.aoa_to_sheet(workSheetDataCaixa)
         XLSX.utils.book_append_sheet(workbook, workSheetCaixa, "Caixa")
 
         //função que cria o arquivo xlsx
-        XLSX.writeFile(workbook, "./Backup - " + pegarData() + ".xlsx")
+        XLSX.writeFile(workbook, process.env.USERPROFILE + "/Downloads/Backup - " + pegarData() + ".xlsx")
         res.redirect('/dashboard/backup')
     }
 }
