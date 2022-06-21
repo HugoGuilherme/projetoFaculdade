@@ -293,6 +293,9 @@ module.exports = class RelatorioController {
         var maiorPedidoRealizadoDosAnos = await sequelize.query("select max(quantidadePedido) as quantidadePedido, max(valorTotal) as valorTotal, YEAR(createdAt) as ano from Pedidos group by YEAR(createdAt);")
         maiorPedidoRealizadoDosAnos = maiorPedidoRealizadoDosAnos[0]
 
+        console.log(fromMonth)
+        console.log(maiorPedidoRealizadoNoMes)
+
         function results(value) {
             const body = []
             for (let values of value) {
@@ -346,7 +349,9 @@ module.exports = class RelatorioController {
         // init document
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
-        const homedir = require('os').homedir();        
+        const homedir = require('os').homedir();
+
+        console.log(resultadoGeralTotal)
 
         const tableResultadoGeralTotal = {
             title: "Relatorio Pedido - " + today,
@@ -363,6 +368,7 @@ module.exports = class RelatorioController {
             width: 400,
         });
 
+        console.log(valorTotalDaSomaDosPedidosFinalizadosDoMes)
         const tableFinalizadosDoMes = {
             subtitle: "Soma Total do Mês",
             headers: [{ label: "Mês", width: 170, renderer: null },
@@ -376,20 +382,21 @@ module.exports = class RelatorioController {
         await doc.table(tableFinalizadosDoMes, {
             width: 400,
         });
-        const tableMaiorPedidoRealizadoNoMes = {
-            subtitle: "Maior Pedido Realizado no Mês",
-            headers: [{ label: "Mês", width: 128, renderer: null },
-            { label: "Quantidade de Pedidos de Botijões", width: 128 },
-            { label: "Valor Total", width: 127 },
-            { label: "Tipo de Pagamento", width: 127 }
-            ],
-            rows: [
-                ...resultadoTotalRelatorio(maiorPedidoRealizadoNoMes)
-            ],
-        };
-        await doc.table(tableMaiorPedidoRealizadoNoMes, {
-            width: 400,
-        });
+        
+        // const tableMaiorPedidoRealizadoNoMes = {
+        //     subtitle: "Maior Pedido Realizado no Mês",
+        //     headers: [{ label: "Mês", width: 128, renderer: null },
+        //     { label: "Quantidade de Pedidos de Botijões", width: 128 },
+        //     { label: "Valor Total", width: 127 }
+        //     ],
+        //     rows: [
+        //         ...resultadoTotalRelatorio(maiorPedidoRealizadoNoMes)
+        //     ],
+        // };
+        // await doc.table(tableMaiorPedidoRealizadoNoMes, {
+        //     width: 400,
+        // });
+
         const tableValorTotalDaSomaDosPedidosFinalizadosDosMeses = {
             subtitle: "Soma Total dos Meses",
             headers: [{ label: "Mês", width: 170, renderer: null },
@@ -466,10 +473,8 @@ module.exports = class RelatorioController {
             await delay(1000);
             res.download("./pdf/RelatorioPedido.pdf");
           }
-
-       // res.redirect("/dashboard/relatorios")
-      
     }
+
     static async EnviarRelatorioClientes(req, res) {
         var fromDate = Date.now()
         var fromDateYear = new Date(fromDate).getFullYear();
@@ -632,8 +637,6 @@ module.exports = class RelatorioController {
           async function run() {
             await delay(1000);
             res.download("./pdf/RelatorioClientes.pdf");
-          }
-        
-        //res.redirect("/dashboard/relatorios")
+          }       
     }
 }
