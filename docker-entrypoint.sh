@@ -2,8 +2,8 @@
 
 echo "Starting..."
 
-npm install
+npm install 
 
-sleep 60
+sleep 10
 
 npm start
