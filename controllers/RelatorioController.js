@@ -8,8 +8,7 @@ const sequelize = require('../db/conn')
 var http = require('http');
 var fs = require('fs');
 const PDFDocument = require("pdfkit-table");
-const blobStream = require('blob-stream');
-var path = require('path');
+const path = require('path');
 
 module.exports = class RelatorioController {
 
@@ -145,9 +144,7 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        //doc.pipe(fs.createWriteStream("RelatorioDoEstoque.pdf"));
-        const stream = doc.pipe(blobStream());
-
+     
         const tableMaiorQuantidadeMensal = {
             title: "Relatorio Estoque - " + today,
             subtitle: "Maiores quantidades referente ao mês",
@@ -249,20 +246,19 @@ module.exports = class RelatorioController {
         }
         // manually flush pages that have been buffered
         doc.flushPages();
-
-        doc.end();
+        doc.pipe(fs.createWriteStream("./pdf/RelatorioDoEstoque.pdf"));
+        doc.end();        
         
-        stream.on('finish', function() {
-            // get a blob you can do whatever you like with
-            const blob = stream.toBlob("application/pdf");
+        function delay(time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+          } 
           
-            // or get a blob URL for display in the browser
-            // const url = stream.toBlobURL('application/pdf');
-            // iframe.src = url;
-          });
-        
-        res.download('test.pdf');
-        res.redirect("/dashboard/relatorios")
+          run();
+          
+          async function run() {
+            await delay(1000);
+            res.download("./pdf/RelatorioDoEstoque.pdf");
+          }
     }
 
     static async relatorioPedidosPDF(req, res) {
@@ -350,8 +346,7 @@ module.exports = class RelatorioController {
         // init document
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
-        const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream("RelatorioPedido.pdf"));
+        const homedir = require('os').homedir();        
 
         const tableResultadoGeralTotal = {
             title: "Relatorio Pedido - " + today,
@@ -458,9 +453,22 @@ module.exports = class RelatorioController {
         }
         // manually flush pages that have been buffered
         doc.flushPages();
-
+        doc.pipe(fs.createWriteStream("./pdf/RelatorioPedido.pdf"));
         doc.end();
-        res.redirect("/dashboard/relatorios")
+                
+        function delay(time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+          } 
+          
+          run();
+          
+          async function run() {
+            await delay(1000);
+            res.download("./pdf/RelatorioPedido.pdf");
+          }
+
+       // res.redirect("/dashboard/relatorios")
+      
     }
     static async EnviarRelatorioClientes(req, res) {
         var fromDate = Date.now()
@@ -507,7 +515,6 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        doc.pipe(fs.createWriteStream("RelatorioClientes.pdf"));
 
         const tableSomarPedidoDoClienteRealizadoDomes = {
             title: "RELATORIO CLIENTES - " + today,
@@ -612,8 +619,21 @@ module.exports = class RelatorioController {
         // manually flush pages that have been buffered
         doc.flushPages();
 
+        doc.pipe(fs.createWriteStream("./pdf/RelatorioClientes.pdf"));
+
         doc.end();
-        res.download("RelatorioClientes.pdf");
-        res.redirect("/dashboard/relatorios")
+
+        function delay(time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+          } 
+          
+          run();
+          
+          async function run() {
+            await delay(1000);
+            res.download("./pdf/RelatorioClientes.pdf");
+          }
+        
+        //res.redirect("/dashboard/relatorios")
     }
 }
