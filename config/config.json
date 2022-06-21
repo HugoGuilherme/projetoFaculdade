@@ -3,21 +3,24 @@
     "username": "root",
     "password": "Abc123",
     "database": "projetofaculdade",
-    "host": "mysql",
-    "dialect": "mysql"
+    "host": "db",
+    "dialect": "mysql",
+    "operatorsAliases": false
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "projetoFaculdade",
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": false
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "projetoFaculdade",
+    "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": false
   }
 }

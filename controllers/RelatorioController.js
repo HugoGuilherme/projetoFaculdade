@@ -8,7 +8,6 @@ const sequelize = require('../db/conn')
 var http = require('http');
 var fs = require('fs');
 const PDFDocument = require("pdfkit-table");
-const blobStream = require('blob-stream');
 var path = require('path');
 
 module.exports = class RelatorioController {
@@ -145,8 +144,7 @@ module.exports = class RelatorioController {
         let doc = new PDFDocument({ margin: 30, size: 'A4', bufferPages: true });
         // save document
         const homedir = require('os').homedir();
-        //doc.pipe(fs.createWriteStream("RelatorioDoEstoque.pdf"));
-        const stream = doc.pipe(blobStream());
+        doc.pipe(fs.createWriteStream("RelatorioDoEstoque.pdf"));
 
         const tableMaiorQuantidadeMensal = {
             title: "Relatorio Estoque - " + today,
@@ -250,18 +248,7 @@ module.exports = class RelatorioController {
         // manually flush pages that have been buffered
         doc.flushPages();
 
-        doc.end();
-        
-        stream.on('finish', function() {
-            // get a blob you can do whatever you like with
-            const blob = stream.toBlob("application/pdf");
-          
-            // or get a blob URL for display in the browser
-            // const url = stream.toBlobURL('application/pdf');
-            // iframe.src = url;
-          });
-        
-        res.download('test.pdf');
+        doc.end();        
         res.redirect("/dashboard/relatorios")
     }
 
@@ -460,6 +447,7 @@ module.exports = class RelatorioController {
         doc.flushPages();
 
         doc.end();
+        res.download("RelatorioPedido.pdf")
         res.redirect("/dashboard/relatorios")
     }
     static async EnviarRelatorioClientes(req, res) {
