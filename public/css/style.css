@@ -23,6 +23,17 @@
 
 }
 
+.btn-primary2 {
+  color: #012e40;
+  background-color: #ffc95a;
+  border-color: #007bff !important;
+}
+.btn-primary2:hover {
+  color: #fff;
+  background-color: #012e40;
+  border-color: #ffc95a;
+}
+
 * {
   border: none;
   background-color: none;
@@ -126,6 +137,11 @@ p {
   background: transparent;
   position: relative;
   top: 0;
+}
+
+.sombra {
+  box-shadow: 7px 4px 10px 5px rgb(0 0 0 / 45%);
+  transform: scale3d(1, 1.5, 1.5);
 }
 
 /* Botões do Navbar de login e sair  */
@@ -283,6 +299,7 @@ p {
 .table tr {
   background-color: whitesmoke;
 }
+
 .table tr td {
   text-align: center;
 }
