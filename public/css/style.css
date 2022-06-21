@@ -23,6 +23,17 @@
 
 }
 
+.btn-primary2 {
+  color: #012e40;
+  background-color: #ffc95a;
+  border-color: #007bff !important;
+}
+.btn-primary2:hover {
+  color: #fff;
+  background-color: #012e40;
+  border-color: #ffc95a;
+}
+
 * {
   border: none;
   background-color: none;
