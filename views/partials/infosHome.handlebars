@@ -84,13 +84,35 @@
           Controle sobre a conta
         </li>
       </ul>
-      <button
-        class="btn btn-dark col-10 mt-3 mb-4"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
+      {{#switch session.status}}
+      {{#case '1'}}
+      <a href="/areaCliente/cliente">
+        <button class="btn btn-dark col-10 mt-3 mb-4">
+          Pagina do cliente
+        </button>
+      </a>
+      </button>
+      {{/case}}
+      {{#case '2'}}
+      <a href="/dashboard">
+        <button class="btn btn-dark col-10 mt-3 mb-4">
+          Pagina do funcionario
+        </button>
+      </a>
+      {{/case}}
+      {{#case '3'}}
+      <a href="/dashboard">
+        <button class="btn btn-dark col-10 mt-3 mb-4">
+          Pagina do funcionario
+        </button>
+      </a>
+      {{/case}}
+      {{#case null}}
+      <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal">
         Logar
       </button>
+      {{/case}}
+      {{/switch}}
     </div>
   </div>
 </section>

@@ -6,21 +6,44 @@
         <h4 class="mt-4">
           Gás de cozinha
         </h4>
-        {{#if session.userid}}
+        {{#switch session.status}}
+        {{#case '1'}}
         <p class="mt-4">
           Compre o seu gás no valor de R$100
         </p>
         <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal1">
           COMPRAR
         </button>
-        {{else}}
+        {{/case}}
+        {{#case '2'}}
+        <p class="mt-4">
+          Compre o seu gás no valor de R$100
+        </p>
+        <a href="/dashboard">
+          <button class="btn btn-dark col-10 mt-3 mb-4">
+            Pagina do funcionario
+          </button>
+        </a>
+        {{/case}}
+        {{#case '3'}}
+        <p class="mt-4">
+          Compre o seu gás no valor de R$100
+        </p>
+        <a href="/dashboard">
+          <button class="btn btn-dark col-10 mt-3 mb-4">
+            Pagina do funcionario
+          </button>
+        </a>
+        {{/case}}
+        {{#case null}}
         <p class="m-4 text-center">
           Entre com seu usuário e venha aproveitar o melhor preço da região!
         </p>
         <button class="btn btn-dark col-10 mt-3 mb-4" data-toggle="modal" data-target="#exampleModal">
           Logar
         </button>
-        {{/if}}
+        {{/case}}
+        {{/switch}}
       </div>
     </div>
   </div>

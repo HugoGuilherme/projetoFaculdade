@@ -69,6 +69,7 @@
                         <li class="nav-item"><a href="/dashboard/perfil">Perfil</a></li>
                         <li class="nav-item"><a href="/dashboard/pedidos">Pedidos</a></li>
                         <li class="nav-item"><a href="/dashboard/clientesCadastrados">Clientes Cadastrados</a> </li>
+                        <li class="nav-item"><a href="/dashboard/backup">Backup</a></li>
                         {{#ifCond session.status}}
                         <li class="nav-item"><a href="/dashboard/funcionariosCadastrados">Funcionarios Cadastrados</a>
                         </li>
@@ -132,7 +133,7 @@
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-warning col-12" data-toggle="modal"
+                            <button type="button" class="btn btn-danger col-12" data-toggle="modal"
                                 data-target=".bd-example-modal-lg-2" data-dismiss=" modal "
                                 id="btnCadastro">Cadastre-se</button>
                         </div>
@@ -172,7 +173,7 @@
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-danger col-12" data-toggle="modal"
-                                data-target=".bd-example-modal-lg" data-dismiss=" modal "
+                                data-target=".bd-example-modal-lg-2" data-dismiss=" modal "
                                 id="btnCadastro">Cadastre-se</button>
                         </div>
                     </div>
